@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{hello}}</h1>
+        <button v-on:click="showInfo">点我</button>
+        <!-- 简写 -->
+        <!-- 函数没有参数时候可以省略括号 -->
+        <!-- 想用event可以使用$event关键词占位 -->
+        <button @click="showInfo1(123,$event)">点我点我</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                hello: '你好！'
+            },
+            methods: { //methods内的方法不做数据代理
+                showInfo(e) {
+                    alert('okk')
+                    console.log(this); //这里的this是vm
+                    console.log(e.target.innerText);
+                },
+                showInfo1(num, e) {
+                    alert(num)
+                    console.log(this); //这里的this是vm
+                    console.log(e.target.innerText);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

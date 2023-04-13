@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <title>破JB贪吃蛇</title>
+<script defer src="bundle.js"></script></head>
+<body>
+<!--主容器-->
+<div id="main">
+    <!--手机商标-->
+    <p class="phone-logo">NOKIA</p>
+    <!--开始游戏按钮-->
+    <a href="javascript:;" id="start">开始游戏</a>
+    <div class="mode hide" id="mode">
+        <a href="javascript:;" id="ez" data="ez">简单</a>
+        <a href="javascript:;" id="mid" data="mid">中等</a>
+        <a href="javascript:;" id="hd" data="hd">困难</a>
+    </div>
+    <!--游戏窗口-->
+    <div class="stage">
+        <!--🐍-->
+        <div class="snake" id="snake">
+            <!--🐍头-->
+            <div id="snakehead"></div>
+        </div>
+        <!--食物-->
+        <div class="food" id="food">
+            <!--花瓣-->
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!--方向控制键-->
+    <div class="control-panel">
+        <div>
+            <div id="up" class="btn" data="w"></div>
+            <div id="down" class="btn" data="s"></div>
+        </div>
+        <div>
+            <div id="left" class="btn" data="a"></div>
+            <div id="right" class="btn" data="d"></div>
+        </div>
+    </div>
+    <!--记分牌-->
+    <div class="score-panel">
+        <div>
+            SCORE:<span id="score">0</span>
+        </div>
+        <div>
+            LEVEL:<span id="level">1</span>
+        </div>
+    </div>
+</div>
+</body>
+</html>

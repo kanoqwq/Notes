@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //和then挺像的
+        async function main() {
+            //返回非promise的数据，结果是一个成功的promise
+            // return 1212;
+
+            //返回的是一个Promise对象，结果是一个失败的promise
+            // return new Promise((resolve, reject) => {
+            //     // resolve('ok')
+            //     reject('ok')
+            // })
+
+            //抛出异常，结果是一个失败的promise
+            // throw "我操"
+        }
+        let result = main();
+        console.log(result);
+    </script>
+</body>
+
+</html>

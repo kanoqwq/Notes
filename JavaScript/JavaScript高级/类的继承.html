@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 简单的继承
+        // class Father {
+        //     constructor() {
+
+        //     }
+        //     money() {
+        //         console.log(100);
+        //     }
+        // }
+        // //继承
+        // class Son extends Father {
+
+        // }
+        // var son = new Son();
+        // son.money();
+        // 使用super关键字，子类就可以通过自己的构造器，传参给父级构造器，使用自己提供的参数来调用父类的方法
+        class Father {
+            constructor(x1, x2) {
+                this.x1 = x1;
+                this.x2 = x2;
+            }
+            sum() {
+                console.log(this.x1 + this.x2);
+            }
+        }
+        class Son extends Father {
+            constructor(x1, x2) {
+                super(x1, x2); //相当于调用了父类的构造函数
+            }
+        }
+        var son = new Son(1, 2);
+        son.sum();
+    </script>
+</body>
+
+</html>

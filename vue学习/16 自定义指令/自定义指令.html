@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 定义一个v-big指令，和v-text功能类似，但会把绑定的数值放大十倍 -->
+        <h2>当前的n是： <span v-text="n"></span></h2>
+        <h2>放大十倍的n是： <span v-big="n"></span></h2>
+        <button @click="n++">点我+1</button>
+        <hr>
+        <!-- 定义一个v-fbind指令，和v-bind功能类似，但可以让其所绑定的input元素默认获取焦点 -->
+        <input type="text" v-fbind:value="n">
+
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data:{
+                n:1
+            },
+            //自定义指令区域
+            directives:{
+                //两个参数，一个是dom，另一个是参数对象
+                //big函数何时会被调用？
+                //1.指令与元素成功绑定时(绑定时候是虚拟dom状态，还没有放入页面)
+                //2.指令所在的模板被重新解析时
+                big(ele,binding){
+                    ele.innerText = parseInt(binding.value) * 10;
+                },
+                // fbind(ele,binding){
+                //     ele.value = binding.value;
+                //     //无效，因为一开始dom并没有先渲染出来，只有点击+1后才会生效，因为元素已经在页面里面了
+                //     ele.focus()
+                // }
+                fbind:{
+                    //三个固定函数
+
+                    //指令与元素成功绑定时
+                    bind(ele,binding){
+                        ele.value = binding.value;
+                    },
+                    //指令被所在元素插入页面时
+                    inserted(ele,binding){
+                        ele.focus();
+                    },
+                    //指令所在的模板被重新解析时
+                    update(ele,binding){
+                        ele.value = binding.value;
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

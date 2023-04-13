@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="page-header">Promise Test</h2>
+        <button class="btn btn-primary" id="btn">点击抽奖</button>
+    </div>
+    <script>
+        //生成随机数
+        function rand(m, n) {
+            return Math.ceil(Math.random() * (n - m + 1)) + m - 1
+        }
+        // 点击按钮，2s后显示是否中奖，若中奖未弹出 再接再厉
+        //获取元素对象
+        const btn = document.querySelector('#btn');
+        //绑定单机事件
+        btn.addEventListener('click', function() {
+            //定时器
+            // setTimeout(() => {
+            //     //30%
+            //     //获取1-100随机数
+            //     let n = rand(1, 100);
+            //     //判断
+            //     if (n <= 30) {
+            //         alert('中！')
+            //     } else {
+            //         alert('不中')
+            //     }
+            // }, 1000);
+
+
+            //Promise
+            //resolve,reject为函数形式
+            const p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    //30%
+                    //获取1-100随机数
+                    let n = rand(1, 100);
+                    //判断
+                    if (n <= 30) {
+                        resolve(n) //将promise对象的状态设位置为成功,可传参
+                    } else {
+                        reject(n) //将promise对象的状态设位置为失败,可传参
+                    }
+                }, 1000);
+            })
+
+            //调用then
+            p.then(
+                //成功
+                (value) => {
+                    alert('中！' + value);
+                },
+                //失败
+                (reason) => {
+                    alert('没中' + reason);
+                }
+            )
+
+        })
+    </script>
+</body>
+
+</html>

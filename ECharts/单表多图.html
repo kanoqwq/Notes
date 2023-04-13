@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- echarts -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.0/echarts.common.js"></script>
+    <style>
+        .main {
+            height: 600px;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 显示图表的容器 -->
+    <div class="main"></div>
+    <script>
+        let dom = document.querySelector('.main')
+        // 初始化eharts实例
+        let myCharts = echarts.init(dom)
+        // console.log(myCharts);
+        //指定图表的配置项与数据
+        myCharts.setOption({
+            //图表标题
+            title: {
+                //主标题
+                text: '数据可视化',
+                //子标题
+                subtext: 'echarts的基本使用',
+                //主标题的颜色
+                textStyle: {
+                    color: '#66ccff'
+                },
+                //标题的位置
+                left: 'center'
+            },
+            //x轴配置项
+            xAxis: {
+                //数据
+                data: ['衣服', '直播', '游戏', '电影']
+            },
+            //y轴配置项
+            yAxis: {
+                // 显示Y轴的线
+                axisLine: {
+                    show: true
+                },
+                //显示y轴的刻度
+                axisTick: {
+                    show: true
+                }
+            },
+            //系列的设置(绘制什么样类型的图表，数据的展示在这里设置)
+            series: [
+                {
+                    //图标类型的设置{line是折线图，pie是饼图，bar是柱状图}
+                    type: 'bar',
+                    //图表的数据
+                    data: [1, 2, 3, 4],
+                    color: 'pink',
+
+                }, {
+                    //图标类型的设置{line是折线图，pie是饼图，bar是柱状图}
+                    type: 'pie',
+                    radius: '35',
+                    top: '-60%',
+                    left: '-40%',
+                    //图表的数据
+                    data: [{
+                        value: 111,
+                        name: '鸡'
+                    }, {
+                        value: 222,
+                        name: '你'
+                    }, {
+                        value: 333,
+                        name: '太'
+                    },{
+                        value:444,
+                        name:'美'
+                    }],
+
+
+                }, {
+                    //图标类型的设置{line是折线图，pie是饼图，bar是柱状图}
+                    type: 'line',
+                    //图表的数据
+                    data: [1, 2, 3, 4],
+                    color: 'pink',
+
+                }
+            ]
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 100px;
+            width: 100px;
+            border: 10px solid red;
+            padding: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <script>
+        //client宽度
+        var div = document.querySelector("div");
+        console.log("clientWidth不包含边框宽度,但包含padding宽度：" + div.clientWidth + "px");
+        console.log("clientHeight不包含边框高度,但包含padding高度：" + div.clientHeight + "px");
+        console.log("offsetWidth包含所有的宽度：" + div.offsetWidth + "px");
+        console.log("offsetHeight包含所有的高度" + div.offsetHeight + "px");
+        console.log("clientTop返回元素上边框大小：" + div.clientTop + "px");
+        console.log("clientLeft返回元素左边框大小：" + div.clientLeft + "px");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.min.js"></script>
+    <style>
+        .flex{
+            display: flex;
+            justify-content: center;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            width: 800px;
+            background-color: #000;
+        }
+        .flex img{
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex">
+        <img src="./img/alb (12).jpg" alt="">
+        <img src="./img/alb (14).jpg" alt="">
+        <img src="./img/alb (15).jpg" alt="">
+        <img src="./img/alb (17).jpg" alt="">
+    </div>
+    <script>
+        $('.flex img').hover(function(){
+            $(this).siblings().stop().fadeTo(400,0.5)
+        },function(){
+            $(this).siblings().stop().fadeTo(400,1)
+        })
+    </script>
+</body>
+</html>

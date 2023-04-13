@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sort排序</title>
+</head>
+
+<body>
+    <script>
+        //mySort
+        Array.prototype.mySort = function(fn) {
+            for (let i = 0; i < this.length - 1; i++) {
+                var isSorted = true;
+                for (var j = 0; j < this.length - i - 1; j++) {
+                    if (fn(this[j], this[j + 1]) > 0) {
+                        isSorted = false;
+                        var t = this[j];
+                        this[j] = this[j + 1];
+                        this[j + 1] = t;
+
+                    }
+                }
+                if (isSorted) break;
+            }
+        }
+
+        var arr = [3, 23, 4, 54, 1, 543, 32, 45, 432, 6, 8745, 4, 8, 56];
+        arr.mySort(function(a, b) {
+            // return a - b; //a>b 前一项大于后一项，从小到大排
+            return b - a;
+        })
+        console.log(arr);
+    </script>
+</body>
+
+</html>

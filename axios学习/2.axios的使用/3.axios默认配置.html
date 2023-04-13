@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="row">
+            <h1>其他使用</h1>
+            <hr>
+            <button type="button" class="btn btn-primary">发送GET请求</button>
+            <button type="button" class="btn btn-success">发送POST请求</button>
+            <button type="button" class="btn btn-info">发送PUT请求</button>
+            <button type="button" class="btn btn-warning">发送DELETE请求</button>
+        </div> 
+    </div>
+    <script>
+        //获取按钮
+        const btn = document.querySelectorAll('button');
+        //默认配置
+        axios.defaults.method = 'GET'
+        axios.defaults.baseURL = 'http://localhost:3000'
+        // axios.defaults.params = {id:100}
+        axios.defaults.timeout = 3000 //单位是ms
+        //发送GET请求
+        btn[0].onclick = function(){
+            axios.request({
+                url:'/comments'
+            }).then(res=>{
+                console.log(res);
+            })
+        }
+    </script>
+</body>
+</html>

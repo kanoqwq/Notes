@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p>hello</p>
+    <script>
+        window.addEventListener("load", function() {
+            //等待页面加载完毕在执行这个事件，不然操作不了DOM对象
+            var body = document.querySelector("body");
+            window.addEventListener("resize", function() {
+                console.log(window.innerWidth);
+                if (window.innerWidth < 400) {
+                    body.style.display = "none";
+                } else {
+                    body.style.display = "block";
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

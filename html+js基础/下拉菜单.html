@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .button {
+            position: relative;
+            z-index: 10;
+            font-size: 30px;
+            text-indent: 14px;
+            width: 50px;
+            height: 50px;
+            background-color: #999;
+            line-height: 45px;
+            transition: all .5s;
+            user-select: none;
+        }
+        
+        * {
+            list-style: none;
+        }
+        
+        .list {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 100%;
+            left: 0;
+            margin: 0;
+            padding: 0;
+            background-color: #999;
+            overflow: hidden;
+            transition: all .5s;
+        }
+        
+        .hide {
+            left: -100px;
+        }
+        
+        body {
+            transition: all .5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="button">+</div>
+        <div class="menu">
+            <ul class="list hide">
+                <li>第一个</li>
+                <li>第二个</li>
+                <li>第三个</li>
+                <li>第四个</li>
+                <li>第一个</li>
+                <li>第二个</li>
+                <li>第三个</li>
+                <li>第四个</li>
+                <li>第一个</li>
+                <li>第二个</li>
+                <li>第三个</li>
+                <li>第四个</li>
+                <li>第一个</li>
+                <li>第二个</li>
+                <li>第三个</li>
+                <li>第四个</li>
+                <li>第一个</li>
+                <li>第二个</li>
+                <li>第三个</li>
+                <li>第四个</li>
+            </ul>
+        </div>
+        <span id="deng">点我关灯</span>
+    </div>
+    <script>
+        var deng = document.querySelector("#deng");
+        var bd = document.querySelector("body");
+        var lst = document.querySelector('.list');
+        var btn = document.querySelector(".button");
+        deng.onclick = function() {
+            if (this.innerText === '点我开灯') {
+                this.style.color = "black";
+                this.innerText = '点我关灯';
+                bd.style.backgroundColor = "white";
+            } else {
+                this.style.color = "white";
+                this.innerText = '点我开灯';
+                bd.style.backgroundColor = "black";
+            }
+        }
+        btn.onclick = function() {
+
+            if (this.style.transform === 'rotate(-180deg)') {
+                this.style.transform = 'rotate(0deg)';
+                lst.className = 'list hide';
+            } else {
+                this.style.transform = 'rotate(-180deg)'
+                lst.className = 'list';
+            }
+
+        }
+    </script>
+</body>
+
+</html>

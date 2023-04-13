@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //let
+        // let申明的变量只在所处于的块级作用域中有效
+        if (true) {
+            let ddd = 'ddd';
+            var varvar = 'ddd1s';
+            console.log(ddd); //ddd
+            //在一个大括号中，使用let关键字申明的变量才具有块级作用域，var关键字事不具备这个特点的
+        }
+        console.log(varvar); //正常输出
+        console.log(ddd); //报错，未定义
+        // 防止循环变量变为全局变量
+        for (var i1 = 0; i1 < 10; i1++);
+        console.log(i1); //可以输出
+        // for (let i = 0; i < 10; i++);
+        // console.log(i); //报错，未定义
+
+        //使用let不存在变量提升
+        // console.log(a);
+        // let a = 10; //报错，变量没有提升
+        console.log(a1);
+        var a1 = 10; //有变量提升，可以使用
+
+        //使用let关键字申明的变量具有暂时性死区的特性
+        // var num = 10;
+        // if (true) {
+        //     console.log(num); //这样也会报错，以为let绑定了这个if作用域，会报未定义错误
+        //     let num = 20;
+        // }
+        //经典题型
+        // var arr = [];
+        // for (var i11 = 0; i11 < 10; i11++) {
+        //     arr[i11] = function() {
+        //         console.log(i11);
+        //     }
+        // }
+        // arr[0](); //10
+        // arr[1](); //10
+        //两次输出的结果都是10，变量i是全局的，最终还是10
+        //如果使用let
+        var arr = [];
+        for (let i11 = 0; i11 < 10; i11++) {
+            arr[i11] = function() {
+                console.log(i11);
+            }
+        }
+        arr[0](); //10
+        arr[1](); //10
+        //这种情况，函数调用时候会分别向自己所属的块级作用域中查找i的值，所以输出 0和1
+        //每次循环都会产生一个块级作用域，每个块级作用域中的变量都是不同的，函数执行时候是输出自己上一级（循环产生的块级作用域）作用域下的i值
+
+
+        // const
+        // 作用：声明常量，常量就是值（内存地址）不能变化的量
+        if (true) {
+            const a = 10; //和let一样，使用const关键字申明常量具有块级作用域
+        }
+        console.log(a); //报错，变量未定义
+        //作用域与let性质相同
+
+        //使用const 关键字必须赋初值
+        // const ddddd; //错误 
+        //常量赋值后，不能修改
+        const aaa = 111;
+        //aaa = 333; //Assignment to constant variable.
+        //但是这样却可以
+        const arrayd = [1, 2, 3];
+        arrayd.push('ddd');
+        console.info(arrayd); //[1, 2, 3, 'ddd']
+        arrayd[1] = 11111;
+        console.info(arrayd); //[1, 11111, 3, 'ddd']
+        //arrayd = [2, 1, 3, 1] //错误，这样改变了常量绑定的内存地址
+        //也就是说 const 对于引用类型来说，绑定的就是引用类型的内存地址，但是里面的内容可以随意更改
+        //使用const创建一个对象
+        const obj = {
+            name: "kano",
+            age: 10,
+            Say: function() {
+                console.log("我是" + this.name + "你好呀");
+            }
+        }
+        obj.name = "kanokano";
+        obj.Say(); //我是kanokano你好呀
+        //这样创建对象可以保护对象的安全性
+        // obj = {
+        //     name: "ddd"//错误
+        // }
+
+        //总结： let const var 的区别
+        //1. 使用var声明的变量,其作用域所在的函数内，且存在变量提升的对象
+        //2. 使用let申明的变量，其作用域为该语句所在的代码块内，不存在变量提升
+        //3. 使用const 申明的是常量，在后面出现的代码中，不能再修改该常量的值
+
+        //解构赋值
+        //ES6中允许从数组中提取值，按照对应的位置，对变量赋值，对象也可以实现解构
+        //数组解构
+        let [a, b, c] = [1, 2, 3]; //分别给a b c 赋值为 1 2 3
+        //也可以这样写
+        // let ary = [1, 2, 3];
+        // let [a, b, c] = ary;
+        //如果变量没有对应的值，那就为undefined
+        //let [a, b, c] = [1, 2]; //c = undefiend
+        //对象解构允许我们使用变量的名字匹配对象的属性 匹配成功后将对象属性的值赋值给变量
+        // let kano = {
+        //     name: "kano",
+        //     age: 18
+        // };
+        // let {name,age} = kano;
+        // console.log(name); //kano
+        // console.log(age);  //18
+
+        //对象解构的另一种写法
+        // let kano = {
+        //     name: "kano",
+        //     age: 18
+        // };
+        // let {name:myName,age:myAge} = kano //name指kano中的name属性，myName指的是替代这个属性的值的变量
+        // console.log(myName)//kano
+        // console.log(myAge)//18
+        //注：修改myName不会影响原对象的name
+
+        //箭头函数
+        //箭头函数是ES6中新增定义函数的方式
+        () => {} //这就是一个匿名箭头函数，只不过啥也没干
+        const fn = () => {}; //fn箭头函数
+        //箭头函数的特点
+        //如果函数体只有一句代码，且代码的执行结果就是返回值，可以省略大括号
+        const sum = (num1, num2) => num1 + num2;
+        //如果形参只有一个，可以省略小括号
+        const Say = info => info + " YYDS";
+        //箭头函数的性质
+        //箭头函数不绑定this关键字，箭头函数中的this指向的是函数定义位置的上下文this
+        var obj = {
+            name: "kano"
+        }
+
+        function fn() {
+            console.log(this);
+            return () => {
+                console.log(this);
+            }
+        }
+        const resultFn = fn.call(obj); //使用call方法让fn里面的this改变指向
+        resultFn();
+        //结果是两个this都指向obj
+        //结论： 箭头函数不绑定this，箭头函数没有自己的关键字
+        //return 中的箭头函数中的this其实就是fn函数的this
+        //经典例题
+        var obj = {
+            age: 22,
+            say: () => {
+                alert(this.age)
+            }
+        }
+        obj.say(); //输出undefined 因为箭头函数没有自己的this，而对象是不能产生作用域的。所以this指向的是window//
+
+        //剩余参数
+        //剩余参数允许我们将一个不定数量的参数表示为一个数组，和arguments差不多
+        //使用...args作为剩余参数的标识
+        const sum1 = (...args) => {
+            let total = 0;
+            args.forEach(val => total += val)
+            return total;
+        };
+        console.log(sum1(1, 2, 3, 4, 5, 6, 7, 8, 9, 10));
+        console.log(sum1(1, 2));
+        //剩余参数和解构的配合使用
+        let aa1 = ["张三", "李四", "王五"];
+        let [s1, ...s2] = aa1; //s2为数组形式，接受aa1剩余的变量
+
+        //Array的扩展方法
+        //扩展运算符
+        //扩展运算符（ spread ）是三个点（...），可以将一个数组转为用逗号分隔的参数序列。
+        //扩展运算符可以将数组或者对象转为用逗号分割的参数序列，和剩余参数是反着来的
+        let aa = ['a', 'b', 'c'];
+        console.log(...aa); //...aa 其实就是 'a', 'b', 'c' 但因为逗号会 被log函数解析为参数列表的分隔符，所以最终输出 a b c
+        console.log('a', 'b', 'c');
+        //扩展运算符也能拆解字符串
+        var str = "kanokano";
+        console.log(...str); //k a n o k a n o
+        //扩展运算符可以运用在合并数组操作上
+        let arr1 = [1, 2, 3, 4, 5];
+        let arr2 = [6, 7, 8, 9];
+        arr1 = [...arr1, ...arr2]; //合并
+        //或者 arr1.push(...arr2);
+        //扩展运算符+max方法求最大值
+        var max2 = Math.max(...arr1);
+        console.log(max2);
+        console.info(arr1); //[1, 2, 3, 4, 5, 6, 7, 8, 9]
+        //利用扩展运算符将伪数组转换为真正的数组
+        var divs = document.getElementsByTagName('div'); //返回的是一个伪数组
+        console.log(divs);
+        var divary = [...divs]; //转换为真正的数组
+        divary.push("kanokanokanokano"); //可以使用数组中的push方法了
+        console.log(divary); //数组
+
+        //Array扩展方法之 构造函数方法 ：Array.from()
+        // Array.from()方法对一个类似数组或可迭代对象创建一个新的，浅拷贝的数组实例。
+        //Array.from(arrayLike[, mapFn[, thisArg]])
+        //arrayLike：想要转换成数组的伪数组对象或可迭代对象。
+        //mapFn ：如果指定了该参数，新数组中的每个元素会执行该回调函数。
+        //thisArg ：可选参数，执行回调函数 mapFn 时 this 对象。
+        let fakearray = { //伪数组
+            '0': "kano",
+            '1': "kano1",
+            '2': "kano2",
+            '3': "kano3",
+            'length': 4
+        };
+        console.log(fakearray);
+        //转换为真数组
+        fakearray = Array.from(fakearray);
+        console.log(fakearray);
+
+        //Array 之 find()方法扩展
+        var facebook = [{ //数组里面装了三个对象
+            id: 1,
+            name: "张三"
+        }, {
+            id: 2,
+            name: "kano"
+        }, {
+            id: 3,
+            name: "王五"
+        }];
+        console.log(facebook.find(val => val.id == 2)); //如果找不到就返回undefined
+        //Array 之 findIndex 方法
+        //这个方法只会返回第一次遇到的符合条件的元素的下标
+        let ary = [1, 2, 143, 123];
+        console.log(ary.findIndex(item => item > 100)); //返回2
+
+        //Array 之 includes 方法
+        //表示某个数组是否包含指定的值，返回布尔值
+        [1, 2, 3].includes(2); //true
+
+        //String 的扩展方法
+        //模板字符串
+        //模板字符串可以解析变量，函数
+        //模板字符串需要用 `` 而不是引号
+        //模板字符串可以换行
+        let name = 'kano';
+        function dd() {
+            return "我是函数";
+        }
+        let sayHello = `hello,我是${name}
+        ${dd()}dddd`;
+        //String 的扩展方法 startWith() 和 endsWith()
+        //startWith()：表示参数字符串是否在源字符串的头部，返回一个布尔值
+        //endsWith()：表示参数字符串是否在源字符串的尾部，返回一个布尔值
+        "hello woeld!".startsWith('hello') //true
+        "hello woeld!".startsWith('!') //true
+
+        //String 的扩展方法 repeat()
+        //repeat方法表示将源字符串重复n次，返回一个新字符串
+        console.log('kano'.repeat(10)); //kanokanokanokanokanokanokanokanokanokano
+        console.log('kano'.repeat(0)); //输出空
+        console.log('kano'.repeat()); //输出空
+
+        //Set数据结构
+        //ES6提供了新的数据结构Set，它类似于数组，但是成员的值都是唯一的, 没有重复的值。
+        const s = new Set();
+        console.log(s.size); //查看数据结构的长度 0
+        //set数据结构会自动去重
+        const s11 = new Set([1, 1, 2, 2, 3, 3, 4, 4]);
+        console.log(s11.size); //长度为4 说明自动去重了
+        //利用set数据结构做数组去重
+        //思路就是，使用set数据结构返回一个不重复的伪数组，再使用扩展运算符打散为逗号分隔的元素，再转换为数组
+        const badarr = [1, 2, 1, 2, 1, 31, 4, 1, 5, 15, 1, 6, 54, 2, 4, 5, 3, 43, 5];
+        const goodarr = [...(new Set(badarr))];
+        console.log(goodarr);
+        //Set数据结构中的实例方法
+        //add(value) 添加某个值，返回Set结构本身
+        //delete(value) 删除某个值，返回一个布尔值，表示删除是否成功
+        //has(value) 返回一个布尔值，表示该值是否为Set的成员
+        //clear() 清除所有成员，没有返回值
+
+        const sss = new Set();
+        sss.add(1).add(2).add(3) //添加数据，因为返回的是set本身，所以可以链式调用
+        sss.delete(3) //删除set结构中为3的值，如果没有的话，返回false，成功返回true
+        sss.has(3) //返回 false
+        sss.clear(); //清除set结构中所有的值
+        //set数据结构中的遍历
+        //set结构的实例与数组一样，也有forEach方法，用于对每个成员执行某种操作，没有返回值。
+        sss.forEach(val => console.log(val))
+    </script>
+</body>
+
+</html>

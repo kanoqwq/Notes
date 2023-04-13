@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //发布订阅模式演示
+
+        //订阅模式类实现
+        class Dispatch {
+            constructor() {
+                this.list = {}
+            }
+            //发布消息
+            on(name, fn) {
+                const callback = this.list[name] || []
+                callback.push(fn)
+                this.list[name] = callback
+                // console.log(this.list);
+            }
+            //订阅消息
+            emit(name, ...args) {
+                let eventName = this.list[name]
+                if (eventName) {
+                    eventName.forEach((fn) => {
+                        fn.apply(this, args)
+                    })
+                } else {
+                    console.error('没有找到订阅');
+                }
+            }
+            //取消订阅
+            off(name, fn) {
+                let eventName = this.list[name]
+                if (eventName && fn) {
+                    //寻找函数所在下标
+                    let index = eventName.findIndex(fns => fns === fn)
+                    eventName.splice(index, 1)
+                } else {
+                    console.error('没有找到订阅');
+                }
+            }
+            //单次订阅
+            once(name, fn) {
+                // 包裹一层函数
+                let tempfn = (...args) => {
+                    //调用完之后删除
+                    fn.apply(this, args)
+                    this.off(name, tempfn)
+                }
+                this.on(name, tempfn)
+            }
+        }
+
+        const o = new Dispatch()
+
+        o.on('post', (...args) => {
+            console.log(args, 1);
+        })
+        o.on('post', (...args) => {
+            console.log(args, 2);
+        })
+        let fn = (...args) => {
+            console.log(args, 3);
+        }
+        o.on('post', fn)
+        o.off('post', fn)
+        o.once('post1', fn)
+        o.emit('post1', 1, 'kano', { ddd: true })
+        o.emit('post',123,456)
+    </script>
+</body>
+
+</html>

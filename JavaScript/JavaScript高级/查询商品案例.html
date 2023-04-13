@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .w {
+            margin: 50px auto;
+            text-align: center;
+        }
+        
+        .top {
+            margin: 50px auto;
+        }
+        
+        table,
+        td,
+        th {
+            border: 1px solid #333;
+            border-collapse: collapse;
+            padding: 0 30px;
+        }
+        
+        table {
+            margin: 30px auto;
+        }
+        
+        input {
+            width: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="w">
+        <div class="top">
+            <span>按照价格查询：</span>
+            <input type="number" name="" id="from"> -
+            <input type="number" name="" id="to">
+            <input type="button" value="搜索" id="searchPrice">
+            <span>按照商品名称查询</span>
+            <input type="text" name="" id="productName">
+            <input type="button" value="查询" id="searchName">
+        </div>
+        <div class="table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>产品名称</th>
+                        <th>价格</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        //查询商品案例
+        var data = [{
+            id: 1,
+            pname: "小米",
+            price: 3999
+        }, {
+            id: 2,
+            pname: "oppo",
+            price: 999
+        }, {
+            id: 3,
+            pname: "荣耀",
+            price: 1299
+        }, {
+            id: 4,
+            pname: "华为",
+            price: 1999
+        }];
+        //渲染到页面
+        function pData(data1) {
+            var tbody = document.querySelector("tbody");
+            //清空一下
+            tbody.innerHTML = "";
+            //封装为方法
+            data1.forEach(function(value) {
+                var tr = document.createElement('tr');
+                tr.innerHTML = "<td>" + value.id + "</td><td>" + value.pname + "</td><td>" + value.price + "</td>"
+                tbody.appendChild(tr);
+            });
+        }
+        pData(data);
+        //点击搜索按钮筛选
+        var searchPrice = document.querySelector('#searchPrice')
+        var start = document.querySelector('#from');
+        var end = document.querySelector('#to');
+        searchPrice.addEventListener("click", function() {
+            var newarr = data.filter(function(value) {
+                return value.price >= start.value && value.price <= end.value;
+            });
+            console.log(start.value);
+            if (start.value.trim() === "" && end.value.trim() === "") {
+                pData(data)
+            } else {
+                pData(newarr)
+            }
+        });
+        //根据商品名称查找商品
+        //使用some,因为只需要找一个，找到了就直接返回了，不会继续循环
+        var product = document.querySelector("#productName");
+        var search_pro = document.querySelector("#searchName");
+        search_pro.addEventListener("click", function() {
+            var isFind = data.some(function(val) {
+                if (val.pname === product.value) {
+                    pData([val]);
+                    return true;
+                }
+            });
+            if (isFind != true) {
+                alert("未找到该商品");
+                pData(data);
+            }
+        });
+    </script>
+</body>
+
+</html>

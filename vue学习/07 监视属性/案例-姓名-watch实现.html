@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- v-model 双向数据绑定 -->
+        <p> 姓：<input type="text" v-model="firstname"> </p>
+        <p> 名：<input type="text" v-model="lastname"></p>
+        <!-- 上面的input内容只要发生变化，vue的模板都会重新解析一遍html，从而带动下面的函数的重载 -->
+        <p> 姓名：<span>{{fullName}}</span></p>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                firstname: '张',
+                lastname: '三',
+                fullName: '张-三'
+            },
+            watch: {
+                firstname(newValue) {
+                    //可以写定时器
+                    setTimeout(() => {
+                        this.fullName = newValue + '-' + this.lastname;
+                    }, 1000);
+
+                },
+                lastname(newValue) {
+                    this.fullName = this.firstname + '-' + newValue;
+                }
+            },
+            //显然，这个例子用计算属性更简单
+            //computed和watch的区别：
+            //computed能完成的功能，watch都可以完成
+            //watch能完成的功能，computed不一定能完成，例如，watch可以执行异步操作
+            //重要的两个小原则：
+            //1.所被vue管理的函数，最好写成普通函数，这样this的指向才会是vm
+            //2.所有不会被vue所管理的函数，（定时器，ajax回调）。最好写成箭头函数，这样this指向才是vm
+        });
+    </script>
+</body>
+
+</html>

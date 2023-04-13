@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //让不支持迭代器的对象支持for of遍历
+        let obj = {
+            code: 200,
+            name: 'ok',
+            list: ["111", '222', '33333'],
+            [Symbol.iterator]: function () {
+                let index = 0;
+                return {
+                    next: () => {
+                        if (index < this.list.length) {
+                            return {
+                                value: this.list[index++],
+                                done: false
+                            }
+                        } else {
+                            return {
+                                value: undefined,
+                                done: true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        for (let key of obj) {
+            // console.log(key);
+        }
+        function* gen(i) {
+            yield i;
+            yield i + 10
+        }
+        const gent = gen(1)
+        console.log(gent.next().value);
+        console.log(gent.next().value);
+    </script>
+</body>
+
+</html>

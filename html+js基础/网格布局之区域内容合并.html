@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 600px;
+            height: 600px;
+            border: 5px solid gray;
+            display: grid;
+            grid-template-columns: repeat(3, 200px);
+            grid-template-rows: repeat(3, 200px);
+            /* 区域命名 */
+            grid-template-areas: 'a a f' 'd e f' 'd i i';
+        }
+        
+        .box div {
+            border: 1px solid red;
+        }
+        /* 应用设置好的区域名称 */
+        
+        .box div:nth-child(1) {
+            grid-area: a;
+        }
+        
+        .box div:nth-child(3) {
+            grid-area: f;
+        }
+        
+        .box div:nth-child(4) {
+            grid-area: d;
+        }
+        
+        .box div:nth-child(5) {
+            grid-area: i;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+    </div>
+</body>
+
+
+</html>

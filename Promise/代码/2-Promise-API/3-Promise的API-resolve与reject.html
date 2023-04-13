@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // Promise.resolve方法
+
+        // //如果传入的参数为非promise类型的对象，则返回的结果为成功的promise对象
+        // let p1 = Promise.resolve(521)
+
+        // //如果传入的参数为Promise对象，则参数结果决定了resolve 的结果
+        // let p2 = Promise.resolve(new Promise((resolve, reject) => {
+        //     // resolve('ok'); //如果里面的promise是成功的，则p2也是成功的promise
+        //     reject('err') //如果里面的promise是失败的，则p2也是失败的promise
+        // }))
+        // p2.catch(err => {
+        //     console.log(err);
+        // })
+        // console.log(p2); //p2的promise状态是上面的传入的promise参数的返回值决定的
+
+
+
+
+
+        // Promise.reject方法
+        // let p3 = Promise.reject(123) //说明：返回一个失败的promise对象
+        // console.log(p3);//是失败的
+
+        //返回的结果： 状态（PromiseState）是失败的，但结果（PromiseResult）是一个成功的promise，即使里面的参数是一个成功的promise
+        //简而言之，传入的是什么，返回的Result就是什么
+        let p3 = Promise.reject(new Promise((resolve, reject) => {
+            resolve('OK')
+        }))
+        p3.catch(err => {
+            //这个是异步的，后输出
+            console.log(err); //输出的是参数Promise返回的成功Promise
+        })
+        console.log(p3); //这个先输出，结果是Promise.reject方法返回的失败promise
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .container1,
+        .container2 {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            background-color: pink;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-around;
+
+        }
+
+        .header li {
+            flex: 1;
+            height: 40px;
+            border: 1px solid skyblue;
+            background-color: red;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .header .active {
+            background-color: yellowgreen;
+        }
+
+        .box .active {
+            display: flex;
+            place-content: center;
+        }
+
+        .box li {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container1">
+        <ul class="header">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+        <ul class="box">
+            <li class="active">1111</li>
+            <li>2222</li>
+            <li>3333</li>
+            <li>4444</li>
+            <li>5555</li>
+            <li>6666</li>
+        </ul>
+    </div>
+    <div class="container2">
+        <ul class="header">
+            <li class="active">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+        <ul class="box">
+            <li class="active">1111</li>
+            <li>2222</li>
+            <li>3333</li>
+            <li>4444</li>
+            <li>5555</li>
+            <li>6666</li>
+        </ul>
+    </div>
+    <script>
+        //tab导航栏的应用
+        function Tabs(selector, type) {
+            this.selector = document.querySelector(selector)
+            this.headerItems = this.selector.querySelectorAll('.header li')
+            this.boxItems = this.selector.querySelectorAll('.box li')
+            this.type = type
+            console.log(this.headerItems, this.boxItems, this.type);
+            this.change()
+        }
+        Tabs.prototype.change = function () {
+            // 注意要用let，var的作用域不严格
+            for (let i = 0; i < this.headerItems.length; i++) {
+                // 注意箭头函数的指向
+                this.headerItems[i].addEventListener(this.type, () => {
+                    //removeAll
+                    for (let m = 0; m < this.headerItems.length; m++) {
+                        this.headerItems[m].classList.remove('active')
+                        this.boxItems[m].classList.remove('active')
+                    }
+                    this.headerItems[i].classList.add('active')
+                    this.boxItems[i].classList.add('active')
+                }, false)
+            }
+        }
+        let tab1 = new Tabs('.container1', 'click')
+        let tab2 = new Tabs('.container2', 'mouseover')
+    </script>
+</body>
+
+</html>

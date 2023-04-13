@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //	对象的继承:
+        //1．原型链继承;引用值共享的问题;
+        //2．构造函数继承;没办法拿到原型上的方法;3．组合继承;(伪经典继承)
+        //4．寄生组合继承(经典继承)
+        //5．圣杯模式;
+        //6. extends继承:
+        //7．拷贝继承;
+
+        //借用父构造函数继承属性+原型链继承
+        //这种方法会多次创建不必要的示例，会造成资源浪费
+
+
+
+
+        ///组合继承
+
+
+        //1.父构造函数
+        function Father(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+
+        //共有的方法，写到原型对象中
+        Father.prototype.money = function() {
+            console.log(9999999);
+        }
+
+        //子构造函数
+        function Son(name, age, dd) {
+            //借用父构造函数，把Father的this变成了Son的this，然后传入子构造函数的name，age，给子构造函数添加name和age属性
+            Father.call(this, name, age);
+            //子构造函数自己的属性
+            this.dd = dd;
+
+        }
+
+
+
+
+        Son.prototype = new Father(); //通过创建一个实例对象，调用的时候系统会自动使用该实例对象的__proto__属性来访问原型对象，这样就可以间接的调用到Father的方法了
+        Son.prototype.constructor = Son; //如果利用对象赋值形式修改了原型对象，别忘了利用constructor 指回原来构造函数
+        //不过通过New Father的方式比较浪费空间
+        Son.prototype.say = function() {
+            console.log(this.name);
+        };
+
+
+        var son = new Son("kano", 14, true);
+        var father = new Father("kanoFather", 44, true);
+        console.dir(son);
+        console.dir(Son);
+        son.say();
+        son.money();
+        console.log('-----------------------');
+        console.dir(father);
+        console.dir(Father);
+        father.money();
+
+
+        //寄生组合继承（可以去了解一下） 这样有缺点，就是会覆盖掉子原型的的方法
+        //Son.prototype = Object.create(Father.prototype);
+        //内置方法Object.create原理
+        /*if(!Object.create){
+        Object.create = function(proto){
+        		function F(){}
+        		F.prototype =proto;
+        		return new F();
+        	}
+        }*/
+
+
+
+        console.log('-------------------------------------------');
+
+
+
+        //1.父构造函数
+        function Father1(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        //共有的方法，写到原型对象中
+        Father1.prototype.money = function() {
+            console.log(this.name + "有：" + 9999999);
+        };
+        //子构造函数
+        function Son1(name, age, dd) {
+            //子构造函数自己的属性
+            this.dd = dd;
+            this.name = name;
+            this.age = age;
+            this.say = function() {
+                console.log(this.name);
+            };
+        }
+
+        //圣杯模式继承，这种最完美
+
+        var inherit = (function() {
+            var Temp = function() {} //闭包
+            return function(Target, Origin) { //target继承自origin
+                Temp.prototype = Origin.prototype //保存原型
+                Target.prototype = new Temp() //把工具人实例化给子构造函数的原型
+                Target.prototype.constructor = Target //为了让Target原型的constructor指回Target构造函数
+                Target.prototype.uber = Origin.prototype //找到自己的超类
+            }
+        })();
+
+        inherit(Son1, Father1);
+        var son1 = new Son1('son', 12, '我是dd');
+        var father1 = new Father1('Father', 42, '我是father');
+        console.dir(Son1);
+        console.dir(son1);
+        son1.say();
+        son1.money();
+        console.dir(Father1);
+        console.dir(father1);
+        // father1.say();
+        father1.money();
+    </script>
+</body>
+
+</html>

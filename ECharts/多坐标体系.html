@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- echarts -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.0/echarts.common.js"></script>
+    <style>
+        .main {
+            height: 600px;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 显示图表的容器 -->
+    <div class="main"></div>
+    <script>
+        let dom = document.querySelector('.main')
+        // 初始化eharts实例
+        let myCharts = echarts.init(dom)
+        // console.log(myCharts);
+        //指定图表的配置项与数据
+        myCharts.setOption({
+            //图表标题
+            title: {
+                //主标题
+                text: '数据可视化',
+                //主标题的颜色
+                textStyle: {
+                    color: '#66ccff'
+                },
+                //标题的位置
+                left: 'center'
+            },
+            xAxis: {
+                data: ['游戏', '直播', '经济', '娱乐']
+            },
+            //双坐标系,数组形式就可
+            yAxis: [
+                {
+                    axisLine: {
+                        show: true
+                    },
+                    axisTick: {
+                        show: true
+                    }
+                },
+                {
+                    axisLine: {
+                        show: true
+                    },
+                    axisTick: {
+                        show: true
+                    }
+                }
+            ],
+            series: [
+                {
+                    type: 'line',
+                    data: [10, 20, 30, 40],
+                    //指定使用的是哪一个坐标轴
+                    yAxisIndex: 0
+                },
+                {
+                    type: 'bar',
+                    data: [6, 10, 99, 20],
+                    yAxisIndex: 1
+                }]
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="row">
+            <h1>一言</h1>
+            <hr>
+            <button type="button" class="btn btn-primary">发送GET请求</button>
+            <button type="button" class="btn btn-success">发送POST请求</button>
+        </div> 
+    </div>
+    <script>
+        //获取按钮
+        const btn = document.querySelectorAll('button');
+        const h1 = document.querySelector('h1')
+        //创建实例对象 /getJoke
+        const duanzi = axios.create({
+            baseURL: 'http://v1.hitokoto.cn',
+            timeout: 200,
+            method:'get'
+        })
+        //这里段子与axios对象的功能几乎是一样的
+        console.log(duanzi);
+
+        
+        const kano_pic = axios.create({
+            baseURL: 'https://pan.kanokano.cn/api/public/path',
+            method:'post',
+            timeout:10000
+        })
+        
+        //发送GET请求
+        btn[0].onclick = function(){
+            duanzi({
+                params:{
+                    c:'a' 
+                }
+            }).then(
+                res=>{
+                    console.log(res);
+                    h1.innerHTML = res.data.hitokoto +'—'+res.data.from
+                },
+                reason =>{
+                    console.warn(reason.message);
+                }
+            )
+        }
+        //发送POST请求
+        btn[1].onclick = function(){
+            kano_pic({
+                data:{
+                    path:"/百度の相册/鹿乃图集",
+                    page_num:1,
+                    page_size:99999
+                }
+            }).then(
+                res=>{
+                    console.log(res.data.data.files);
+                },
+                reason =>{
+                    console.warn(reason.message);
+                }
+            )
+        }
+
+    </script>
+</body>
+</html>

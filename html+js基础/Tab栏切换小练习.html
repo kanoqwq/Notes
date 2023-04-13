@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        ul,
+        ul>li {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .tabBox {
+            height: 300px;
+        }
+        
+        .top {
+            height: 100px;
+        }
+        
+        .topTab li {
+            box-sizing: border-box;
+            float: left;
+            text-align: center;
+            padding: 15px 20px;
+            height: 50px;
+        }
+        
+        .current {
+            background-color: #D6271D;
+            color: white;
+        }
+        
+        .content li {
+            display: none;
+            font-size: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tabBox">
+        <div class="top">
+            <ul class="topTab">
+                <li class="current">商品介绍</li>
+                <li>规格与包装</li>
+                <li>售后保障</li>
+                <li>商品评价 (50000)</li>
+                <li>手机社区</li>
+            </ul>
+        </div>
+        <div class="detail">
+            <ul class="content">
+                <li style="display: block">商品介绍模块内容</li>
+                <li>规格与包装模块内容</li>
+                <li>售后保障内容</li>
+                <li>商品评价内容</li>
+                <li>手机社区内容</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var tabBtn = document.getElementsByClassName("topTab")[0].getElementsByTagName("li");
+        var content = document.getElementsByClassName("content")[0].getElementsByTagName("li");
+        //循环注册tab栏点击事件
+        for (var i = 0; i < tabBtn.length; i++) {
+            //官方思路
+            // 设置index索引号
+            tabBtn[i].setAttribute("data-index", i);
+            tabBtn[i].onclick = function() {
+                    //循环重置tab栏内的显示方式
+                    //循环重置content内的显示方式
+                    for (var i = 0; i < tabBtn.length; i++) {
+                        tabBtn[i].removeAttribute("class");
+                        content[i].removeAttribute("style");
+                    }
+                    //设置高亮tab与显示的栏目
+                    this.className = "current";
+                    var index = this.getAttribute("data-index");
+                    content[index].setAttribute("style", "display:block");
+                }
+                //以下是我自己的思路
+                // tabBtn[i].onclick = function() {
+                //     //循环重置tab栏内的显示方式
+                //     //循环重置content内的显示方式
+                //     for (var i = 0; i < tabBtn.length; i++) {
+                //         tabBtn[i].removeAttribute("class");
+                //         content[i].removeAttribute("style");
+                //     }
+                //     //设置高亮tab与显示的栏目
+                //     //这里不能使用i作为下标，因为外部循环已经完成，i为5，形成闭包
+                //     this.className = "current";
+                //     for (var i = 0; i < content.length; i++) {
+                //         if (tabBtn[i].className === "current") {
+                //             content[i].setAttribute("style", "display:block");
+                //         }
+                //     }
+                // }
+
+        }
+    </script>
+</body>
+
+</html>

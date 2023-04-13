@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{msg}}</h1>
+    </div>
+    <script>
+        //创建一个student组件
+        const student = Vue.extend({
+            //写template
+            template: `
+            <div>
+                <h2>学生姓名 {{name}}</h2>
+                <h2>学生年龄 {{age}}</h2>
+            </div>
+            `,
+            data() {
+                return {
+                    name: 'kano',
+                    age: 19
+                }
+            }
+        })
+
+        //school组件
+        const school = Vue.extend({
+            //可以使用name属性强制指定组件在开发者工具中呈现的组件名
+            name: 'kano',
+            // student是school的子组件,所以要写在school的模板里面
+            template: `
+            <div>
+                scholl组件开始
+                <h2>学校名称 {{name}}</h2>
+                <h2>学校地址 {{address}}</h2>
+                <button @click="ChangeName">点我修改学校名为加里顿</button>
+                <student></student>
+                scholl组件结束
+            </div>
+            `,
+            data() {
+                return {
+                    name: 'MIT',
+                    address: 'USA'
+                }
+            },
+            methods: {
+                ChangeName() {
+                    this.name = "加里顿"
+                }
+            },
+            //嵌套注册(注意student要在school前面)
+            components: {
+                student
+            }
+        })
+
+        //定义hello组件
+        const hello = Vue.extend({
+            template: `<h1>{{msg}}</h1>`,
+            data() {
+                return {
+                    msg: 'hello world'
+                }
+            }
+        })
+
+        //定义app组件
+        const app = Vue.extend({
+                template: `
+                <div>
+                    <school></school>
+                    <hello></hello>
+                </div>
+                `,
+                components: {
+                    school,
+                    hello
+                }
+            })
+            //创建vm
+        new Vue({
+            template: `<app></app>`,
+            el: '#root',
+            //注册组件(局部)
+            components: {
+                //es6缩写
+                app
+            },
+            data: {
+                msg: 'hello'
+            }
+        });
+    </script>
+</body>
+
+</html>

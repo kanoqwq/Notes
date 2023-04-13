@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="https://image.kanokano.cn/2022/03/20220317075909589.webp">
+    <script>
+        img = document.querySelector("img");
+        document.addEventListener("mousemove", function(e) {
+            console.log(e.pageX, e.pageY);
+            img.style.top = e.pageY - 150 + 'px';
+            img.style.left = e.pageX - 150 + 'px';
+        });
+    </script>
+</body>
+
+</html>

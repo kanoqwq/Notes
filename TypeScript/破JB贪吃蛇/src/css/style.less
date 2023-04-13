@@ -1,0 +1,161 @@
+//var
+@bgcolor: #b7d4a8;
+@bdcolor: #999;
+@keyframes food {
+  0% {
+    transform: scale(0.8) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+  }
+  100% {
+    transform: scale(0.8) rotate(360deg);
+  }
+}
+
+//清除默认样式
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font: bold 20px "Courier";
+  background-color: @bdcolor;
+}
+
+//主容器样式
+#main {
+  position: relative;
+  width: 360px;
+  //height: 420px;
+  height: 600px;
+  background-color: @bgcolor;
+  margin: 10% auto;
+  border: 10px solid black;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-around;
+  //手机商标
+  .phone-logo {
+    position: relative;
+    top: 5px;
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+    transition: color .3s;
+  }
+
+  a:hover {
+    color: #999;
+  }
+
+  #start {
+    position: absolute;
+    top: 200px;
+    z-index: 99;
+  }
+
+  .mode {
+    position: absolute;
+    z-index: 99;
+    top: 200px;
+  }
+
+  .hide {
+    display: none;
+  }
+
+  //游戏容器
+  .stage {
+    position: relative;
+    width: 304px;
+    height: 304px;
+    border: 2px solid black;
+    //🐍样式
+    .snake {
+      //死去的less语法忽然开始攻击我
+      & > div {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background-color: #000;
+        border: 1px solid @bgcolor;
+      }
+    }
+
+    & > .food {
+      position: absolute;
+      //给一个位置
+      top: 20px;
+      left: 20px;
+      width: 10px;
+      height: 10px;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-content: space-between;
+      transform: rotate(45deg);
+
+      & > div {
+        width: 4px;
+        height: 4px;
+        border-radius: 1px;
+        transform: rotate(15deg) scale(1);
+        animation: food 1s infinite reverse;
+        background-color: black;
+      }
+    }
+  }
+
+  //方向控制键
+  .control-panel {
+    display: flex;
+    transform: translateX(20px);
+
+    & > div:first-child, & > div:nth-child(2) {
+      display: flex;
+      flex-flow: column;
+      justify-content: space-between;
+      width: 40px;
+      height: 130px;
+      border-radius: 10px;
+      overflow: hidden;
+      background-color: black;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+    }
+
+    & > div:nth-child(2) {
+      transform: rotate(-90deg) translateY(-40px);
+    }
+
+    .btn {
+      height: 45px;
+      background-color: #000;
+      //border-radius: 10px;
+      user-select: none;
+      transition: background-color .2s;
+    }
+
+    .btn:active {
+      background-color: @bdcolor;
+    }
+  }
+
+  //记分牌
+  .score-panel {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+  }
+}

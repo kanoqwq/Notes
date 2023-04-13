@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- echarts -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.0/echarts.common.js"></script>
+    <style>
+        .main {
+            height: 600px;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 显示图表的容器 -->
+    <div class="main"></div>
+    <script>
+        let dom = document.querySelector('.main')
+        // 初始化eharts实例
+        let myCharts = echarts.init(dom)
+        // console.log(myCharts);
+        //指定图表的配置项与数据
+        myCharts.setOption({
+            //图表标题
+            title: {
+                //主标题
+                text: '数据可视化',
+                //子标题
+                subtext: 'echarts的基本使用',
+                //主标题的颜色
+                textStyle: {
+                    color: '#66ccff'
+                },
+                //标题的位置
+                left: 'center'
+            },
+            xAxis:{
+                type:'category'
+            },
+            yAxis:{},
+            series:[{
+                type:'scatter',
+                data:[
+                    [10,20],
+                    [33,66],
+                    [44,22],
+                    [10,49]
+                ]
+            }]
+        })
+    </script>
+</body>
+
+</html>

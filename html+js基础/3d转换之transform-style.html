@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            /* 透视效果 */
+            perspective: 800px;
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin-left: 400px;
+            margin-top: 200px;
+            transition: all 1s;
+            /* 在父盒子中给子盒子开启3d空间 */
+            transform-style: preserve-3d;
+        }
+        
+        .box:hover {
+            transform: rotateY(80deg);
+        }
+        
+        .d1,
+        .d2 {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+        }
+        
+        .d1 {
+            background-color: pink;
+        }
+        
+        .d2 {
+            background-color: skyblue;
+            transform: rotateX(80deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="d1">12422423425</div>
+        <div class="d2">fffffffffffffff</div>
+    </div>
+</body>
+
+</html>

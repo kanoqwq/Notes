@@ -1,0 +1,56 @@
+@color: pink;
+@acolor: red;
+//less运算符 必须要有空格
+//如果两个数有一个有单位，那就按照那一个单位来识别
+//如果两个数有两个都有单位，而且单位不同，那就以第一个单位为准
+@var: 5px + 1; 
+@var2: 5px * 10;
+//除法要带括号
+@var3: (5px / 10);
+body {
+    background-color: #666 - #444;
+    //less嵌套，子元素的样式直接写在父元素里面就行了
+    a{
+        width: 100px;
+        height: 100px;
+        display: block;
+        color: @acolor;
+        //如果有伪类，伪元素选择器，只需要加上&就行了
+        //伪类选择器
+        &:hover{
+            color: green;
+        }
+        //伪元素
+        &:before{
+            content: "dd";
+        }
+        border-radius: @var solid blue;
+    }
+    
+}
+//拼接类名
+
+@Class: nmsl;
+
+.@{Class}{
+    height: 40px;
+}
+// 类混入
+
+.mix{
+    position: absolute;
+}
+
+html{
+    .mix;
+}
+
+//函数混入
+
+.d(@dr:left){
+    float: @dr;
+}
+
+body{
+    .d(right);
+}

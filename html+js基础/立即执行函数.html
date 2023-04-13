@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //立即执行函数，不需要调用，立马能执行
+        //(function() {})() //第一种写法
+        //(function() {}()) //第二种写法(不常用)
+
+        (function(d, f) {
+            console.log(d + f);
+        })("abc", "defg"); //第二个小括号可以看作是调用函数
+        //两个函数之间用分号隔开！！！
+        (function name(d, f) { //可以写函数名
+            console.log(d + f);
+        })("abc", "defg");
+
+        (function(d, f) {
+            console.log(d + f);
+        }("abc", "defg"))
+        //立即执行函数的最大作用是，独立创建了一个作用域，变量不会暴露到全局
+    </script>
+</body>
+
+</html>

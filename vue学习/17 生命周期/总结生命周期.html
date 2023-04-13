@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2 :style="{opacity}" @click="bye">Vue</h2>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                opacity: 1
+            },
+            methods: {
+                bye(){
+                    //调用了destroy后
+                    this.$destroy();
+                }
+            },
+            //挂载完毕（真实DOM放入到页面）执行的函数
+            //Vue完成模板解析并吧真实DOM元素放入页面后（完成挂载）调用mounted
+            //整个生命周期中mounted只调用一次
+            mounted() {
+                this.interval = setInterval(() => {
+                    console.log('定时器工作中捏');
+                    this.opacity -= 0.01;
+                    if (this.opacity <= 0) {
+                        this.opacity = 1;
+                    }
+                }, 16);
+            },
+            //记得清除定时器
+            beforeDestroy() {
+                console.log('啊我死了qaq');
+                clearInterval(this.interval)
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-width: 900px;
+    background-color: #CBCECB;
+}
+
+li,
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.w {
+    width: 800px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+header {
+    height: 60px;
+    background-color: #2F322F;
+}
+
+header .title {
+    float: left;
+    margin: 0;
+    line-height: 60px;
+    color: #ddd;
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+header .add {
+    float: right;
+    display: block;
+    height: 60px;
+}
+
+header .add input {
+    outline: none;
+    height: 29px;
+    width: 480px;
+    border-radius: 6px;
+    padding-left: 10px;
+    margin: 13px 0;
+}
+
+.banner::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.banner h1 {
+    float: left;
+}
+
+.info {
+    float: right;
+    min-width: 25px;
+    height: 30px;
+    padding: 0 2px;
+    margin: 27px 10px;
+    border-radius: 40%;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    background-color: #E2E7FB;
+}
+
+.remove {
+    float: right;
+    display: block;
+    margin-right: 10px;
+    font-size: 35px;
+    line-height: 100%;
+    text-decoration: none;
+    color: #ccc;
+    font-weight: 500;
+    user-select: none;
+}
+
+.remove:hover {
+    color: #999;
+}
+
+.dad li {
+    margin: 10px 0;
+}
+
+.dad li input {
+    height: 20px;
+    width: 20px;
+    background-color: #E1E4E1;
+    vertical-align: sub;
+    margin-right: 10px;
+}
+
+li {
+    position: relative;
+    height: 42px;
+    background-color: #FCFFFC;
+    border-left: 8px solid #5D959B;
+    border-radius: 5px;
+    padding-left: 10px;
+    margin-left: 10px;
+    box-shadow: 1px 2px 10px -4px #333;
+}
+
+#done li {
+    opacity: 0.5;
+    filter: grayscale(1);
+}
+
+.dad li p {
+    margin: 10px 0;
+}
+
+.dad li input,
+.dad li p {
+    display: inline-block;
+}
+
+footer {
+    text-align: center;
+}

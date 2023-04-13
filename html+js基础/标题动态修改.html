@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var sleep = function(time) {
+            var startTime = new Date().getTime() + parseInt(time, 10);
+            while (new Date().getTime() < startTime) {}
+        };
+        window.addEventListener("load", function() {
+            var ico = document.getElementsByClassName('site-icon')[0].href;
+            document.addEventListener('visibilitychange', function() {
+                if (document.visibilityState == 'hidden') {
+                    //backup oringinal title
+                    normal_title = document.title;
+                    document.getElementsByClassName('site-icon')[0].href = "https://image.kanokano.cn/2020/08/wuhu.png";
+                    document.title = '(●—●)喔唷，崩溃啦！';
+                } else {
+                    document.title = '骗你哒~';
+                    sleep(876);
+                    document.getElementsByClassName('site-icon')[0].href = ico;
+                    document.title = normal_title;
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

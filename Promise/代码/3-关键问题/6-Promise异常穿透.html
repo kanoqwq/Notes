@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let p = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('OK')
+            }, 1000);
+        })
+        p.then(
+                value => {
+                    console.log(111);
+                }
+            ).then(
+                value => {
+                    return new Promise((resolve, reject) => {
+                        // resolve('OK1')
+                        reject('寄')
+                    })
+                }
+            ).then(
+                value => {
+                    return new Promise((resolve, reject) => {
+                        // resolve('OK1')
+                        reject('寄1')
+                    })
+                }
+            ).then(
+                value => {
+                    console.log(333);
+                }
+            ).then(
+                value => {
+                    console.log(444);
+                }
+            ).catch(reason => {
+                console.warn(reason); //输出寄
+            }) //异常穿透，就是指这个catch可以穿过中间所有的then，直接捕获到前面任何一个先出现异常的promise（前提是没有被前面的then捕获到异常）
+
+        //执行结果是 
+        // 111
+        // 寄
+        //因为从寄开始就发生错误了，被catch穿透捕获之后，本来要经过下面的then也不会执行了
+    </script>
+</body>
+
+</html>

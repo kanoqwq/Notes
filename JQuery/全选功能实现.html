@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.min.js"></script>
+    <style>
+        #btnlst li {
+            width: 200px;
+            height: 50px;
+            background-color: pink;
+            text-align: center;
+            line-height: 50px;
+        }
+        
+        ul {
+            display: flex;
+            align-items: center;
+        }
+        
+        li {
+            list-style: none;
+            border: 1px solid #ccc;
+            font-size: 0;
+        }
+        
+        #img li {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    全选：<input type="checkbox" id="selectAll">
+    <div>
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+    </div>
+    <script>
+        $($('#selectAll').change(function() {
+            //全选功能模块
+            //就是把全选按钮的状态赋值给小按钮就可以了
+
+            $('div input').prop("checked", $(this).prop('checked'))
+        }));
+        // $($('div input').change(function() {
+        //     //但是要注意的是，如果是在全选状态下，下面的小按钮任意一个被取消选择的话，就要把全选按钮的激活状态取消掉
+        //     //全选状态判断 
+        //     $('#selectAll').prop('checked', function() {
+        //         var isSelectAll = true;
+        //         $('div input').each(
+        //             function() {
+        //                 if ($(this).prop('checked') == false) {
+        //                     isSelectAll = false;
+        //                 }
+        //             }
+        //         )
+        //         return isSelectAll;
+        //     })
+        // }));
+        //另一种算法：如果小复选框的选中个数是满的，就表示为全选(css3 checked选择器 )
+        $($('div input').change(function() {
+            if ($('div input:checked').length == $('div input').length) {
+                $('#selectAll').prop('checked', true);
+            } else {
+                $('#selectAll').prop('checked', false);
+            }
+        }))
+    </script>
+</body>
+
+</html>

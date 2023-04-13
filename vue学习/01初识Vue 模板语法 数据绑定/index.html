@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>第一个vue应用程序</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        1. 想让Vue工作，就必须创建一个Vue实例，且要传入一个配置对象
+        2. root容器里的代码依然符合html的规范标准，只是混入了vue的一些语法
+        3. root容器里的代码被称为Vue模板
+     -->
+    <!-- 准备一个容器 -->
+    <div id="root">
+        <!-- 插值 -->
+        <p>Hello {{name}}</p>
+        <p>事{{name2}}捏</p>
+        <!-- 使用v-bind:来模板化href属性 -->
+        <!-- <a v-bind:href="url">kanokano的博客</a> -->
+        <!-- v-bind 可以简写成一个： -->
+        <a :href="url">kanokano的博客</a>
+        <!-- 总结：标签体内用插值语法，标签属性用指令语法 -->
+
+        <p>-------------------------------------------</p>
+        <!-- 数据绑定 -->
+        <span>单向数据绑定：</span><input type="text" :value="name2">
+        <p>单向数据绑定是不会改变Vue中对应属性的值的</p>
+        <p>————————————————————————</p>
+        <span>双向数据绑定：</span><input type="text" v-model:value="name2">
+        <!-- v-model:value 可以简写为 v-model 因为 v-model 默认收集的就是value的值 -->
+        <span>双向数据绑定：</span><input type="text" v-model="name2">
+
+        <!-- 注意，以下代码是错误的 -->
+        <!-- <h1 v-model:data="name"></h1> -->
+        <!-- 因为 v-model 只支持表单类等输入型元素内 -->
+    </div>
+
+    <script>
+        //关闭测试提示
+        // Vue.config.productionTip = false;
+        // 开启vue开发者工具
+        Vue.config.devtools = true;
+        //创建Vue实例
+        const x = new Vue({
+            //配置对象
+            el: '#root', //el 用于指定当前Vue实例为哪个容器服务，css选择器格式
+            data: { //data 中用于指定存储的数据，数据供el所指定的容器去使用
+                name: 'kanokano',
+                name2: '嘉然',
+                url: 'https://kanokano.cn'
+            }
+        });
+    </script>
+</body>
+
+</html>

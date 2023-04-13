@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .main {
+            width: 400px;
+            height: 400px;
+            margin: 0 auto;
+            border: 1px solid #6cf;
+            padding: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="panel panel-info">...</div>
+    <div class="main">
+        <p><span>关系A: </span><input type="text" id="A"></p>
+        <p><span>关系R: </span><input type="text" id="R"></p>
+        <button id="judge">计算</button>
+    </div>
+    <script>
+        //判断A上的二元关系R的自反、对称、传递性；
+        //输入一个二元关系，格式：
+        //<1,2>,<1,4>,<4,1>,<2,3>,<3,4>,<1,3>
+        //输出结果应为反自反
+
+        //创建矩阵
+        function createArray(A, R) {
+            //解构赋值，正则替换
+            let arrSize = A.replace(/{|}|,/g, '').length;
+            let arrB = [...R.replace(/{|}|,|<|>/g, '')]
+            let array = [];
+            //转换为二维数组
+            for (let i = 1; i < arrB.length; i += 2) {
+                array.push([parseInt(arrB[i - 1]), parseInt(arrB[i])]);
+            }
+
+            //创建一个A长A宽的矩阵
+            let Square = Array.from(Array(arrSize), () => new Array(arrSize));
+
+            //填充数字
+            for (let i = 0; i < Square.length; i++) {
+                for (let j = 0; j < Square.length; j++) {
+                    Square[i][j] = 0;
+                }
+            }
+            for (let i = 0; i < array.length; i++) {
+                Square[array[i][0] - 1][array[i][1] - 1] = 1;
+            }
+            return Square;
+        }
+
+        //判断关系
+        function RelationJudge(Square) {
+            let zf = 0,
+                dc = 0;
+            let ii = 0;
+            let jj = 0;
+            for (; ii < Square.length; ii++) {
+                //累加，最终zf === i 为自反 或者 zf === 0 为反自反
+                if (Square[ii][ii] == 1) {
+                    zf++;
+                }
+                for (; jj < Square.length; jj++) {
+                    //累加，最终dc === i 为对称 或者 dc === 0 为反对称
+                    if (Square[ii][jj] == Square[jj][ii]) {
+                        if (Square[ii][jj] == 1) {
+                            dc++;
+                        }
+                    }
+                }
+            }
+            //判断传递性关系
+            let cd = true;
+            for (let i = 0; i < Square.length; i++) {
+                for (let j = 0; j < Square.length; j++) {
+                    if (Square[i][j] == 1) {
+                        for (let k = 0; k < Square.length; k++) {
+                            if (Square[j][k] == 1 && Square[i][k] != 1) {
+                                cd = false;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            //总结结论
+            if (zf === ii || zf === 0) {
+                zf = zf === ii ? '自反' : '反自反';
+            } else {
+                zf = '';
+            }
+            if (dc === ii || dc === 0) {
+                dc = dc === ii ? '对称' : '反对称';
+            } else {
+                dc = '';
+            }
+            cd = cd === true ? '传递' : '';
+            let summary = zf + ' ' + dc + ' ' + cd
+            console.log(summary);
+        }
+
+        function main() {
+            // 关系
+            let R = '{<1,2>,<2,1>,<1,3>,<3,1>,<1,1>';
+            // 阶数
+            let A = '{1,2,3}';
+
+            console.log(createArray(A, R));
+            RelationJudge(createArray(A, R));
+        }
+        main();
+    </script>
+</body>
+
+</html>

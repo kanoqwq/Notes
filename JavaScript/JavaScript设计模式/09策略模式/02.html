@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        li {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="mylist">
+
+    </ul>
+    <script>
+        //后端返回来的数据
+        let list = [{
+            title: '好耶！',
+            type: 1
+        }, {
+            title: '前方高能',
+            type: 2
+        }, {
+            title: '坏',
+            type: 3
+        }, {
+            title: '开口跪',
+            type: 1
+        }]
+        //后端返回回来的规则
+        let status = {
+            '1': {
+                title: '已通过',
+                color: 'red'
+            },
+            '2': {
+                title: '审核中',
+                color: 'pink'
+            },
+            '3': {
+                title: '已驳回',
+                color: 'skyblue'
+            }
+        }
+        //前端渲染
+        mylist.innerHTML = list.map(item => {
+            return `
+            <li>
+                <div>${item.title}</div>
+                <div style="background:${status[item.type].color}">${status[item.type].title}</div>
+            </li>
+            `
+        }).join('')
+    </script>
+</body>
+<div>
+
+</div>
+
+</html>

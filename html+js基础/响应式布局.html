@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            width: 750px;
+            height: 30px;
+            margin: 0 auto;
+        }
+        
+        .container ul li {
+            float: left;
+            width: 93.75px;
+            height: 30px;
+            background-color: green;
+            list-style: none;
+            text-align: center;
+            line-height: 30px;
+        }
+        
+        @media screen and (max-width:767px) {
+            .container {
+                width: 100%;
+            }
+            .container ul li {
+                width: 33.33%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- container-fluid 类则是100%宽度 -->
+    <!-- container类，响应式布局的容器 大屏为1170px 其次970px 小屏为750px 超小屏为100%  -->
+    <div class="container">
+        <ul>
+            <li>内容</li>
+            <li>内容</li>
+            <li>内容</li>
+            <li>内容</li>
+            <li>内容</li>
+            <li>内容</li>
+            <li>内容</li>
+            <li>内容</li>
+
+        </ul>
+    </div>
+</body>
+
+</html>

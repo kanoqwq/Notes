@@ -1,0 +1,25 @@
+html{
+    font-size: 50px;
+}
+a{
+    text-decoration: none;
+}
+// 设置常见的屏幕尺寸，修改里面的html大小
+// 规定划分的分数为15
+@no: 15;
+//less 列表
+@sizes:320px,360px,375px,384px,400px,414px,424px,480px,540px,720px,750px;
+@len:length(@sizes);
+
+//循环
+.loopMedia(@i) when (@i <= @len) {
+    @media screen and (min-width: extract(@sizes,@i)){
+        html{
+            font-size: (extract(@sizes,@i) / @no);
+        }
+    }
+    //调用自身（自增）
+    .loopMedia(@i + 1)
+}
+//i初值为1，调用函数
+.loopMedia(1);

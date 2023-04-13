@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <script src="../dayjs.min.js"></script>
+</head>
+
+<body>
+    <!-- 过滤器：
+        过滤器就是对要显示的数据进行特定格式化后再显示，（适用于一些简单的逻辑处理）
+        语法：
+            注册过过滤器：Vue.filter(name,callback) 或者new Vue（filters:{}）
+            使用过滤器：{{xx | 过滤器名}} 或者 v-bind:="xx | 过滤器名"
+        备注：
+            过滤器也可以接收额外的参数
+            并没有改变原本数据，而是产生对应的新数据
+     -->
+    <div id="root">
+        <h2>显示格式化后的时间</h2>
+        <h3>现在是：{{fmtTime}}（计算属性）</h3>
+        <h3>现在是：{{getFmtTime()}}（方法）</h3>
+        <!-- |为管道符 -->
+        <!-- 这玩意以后必淘汰，不用管他 -->
+        <!-- 顺便说一下，可以连续往后写函数，带上管道符就行 -->
+        <!-- 过滤器还可以用在v-bind上 -->
+        <h3 :num=" 'xx' | myfun">现在是：{{time | timeFormatter('YYYY-MM-DD HH:mm:ss') | myfun}}（过滤器）</h3>
+    </div>
+    <script>
+        //全局过滤器
+        Vue.filter('myfun', function(val) {
+            return val + '  时间捏';
+        });
+
+        new Vue({
+            el: '#root',
+            data: {
+                time: Date.now()
+            },
+            //计算属性实现
+            computed: {
+                fmtTime() {
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            //methods
+            methods: {
+                getFmtTime() {
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            //局部过滤器
+            filters: {
+                //俩参数，t是管道传入参数，f是自定义实参
+                //这里还可以使用以下es6的预定义参数的方法，如果f没有传入值的话，可以使用后面的'YYYY-MM-DD HH:mm:ss'
+                timeFormatter(t, f = 'YYYY-MM-DD HH:mm:ss') {
+                    return dayjs(t).format(f)
+                },
+                //过滤器可以有多个
+            }
+        });
+    </script>
+</body>
+
+</html>

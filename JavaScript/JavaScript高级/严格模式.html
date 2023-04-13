@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 为某个函数开启严格模式 -->
+    <script>
+        function fn() {
+            'use strict';
+            //下面的代码按照严格模式执行
+        }
+
+        function fun() {
+            //里面的还是按照普通模式执行
+        }
+        //*在正常横式中，如果一个变量没有声明就赋值，默认是全局变量。严格模式禁止这种用法，变量都必须先用**var**命令声明，然后再使用。*
+        function fff() {
+            'use strict';
+            // num = 10;
+            // console.log(num);
+            //严禁删除已经申明的变量
+            var kano = 1224;
+            // delete kano; //报错，无法在严格模式中删除已经定义好的变量
+
+            //严格模式下全局作用域中函数中的this是undefined。
+            function ffff() {
+                console.log(this); //undefined
+            }
+            ffff();
+            //在正常模式下构造函数可以当普通函数调用
+            function Kano() {
+                this.age = 22
+            } //严格模式下this指向的是undefined
+            Kano();
+            console.log(window.age); //严格模式下报错
+            var kano = new Kano();
+            console.log(kano.age); //可以调用 显示22
+
+            //定时器的this指向的还是window
+            setTimeout(function() {
+                console.log(this);
+            }, 1000);
+            //在普通模式下参数可以重名
+            //a=1
+            //a=2
+            function aa(a, a) {
+                console.log(a + a);
+            }
+            aa(1, 2); //结果是4
+            //但在严格模式下会直接报错Duplicate parameter name not allowed in this context
+        }
+        fff();
+    </script>
+</body>
+
+</html>

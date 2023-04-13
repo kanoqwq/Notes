@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+    <script>
+        let singer = {
+            name: 'kano'
+        }
+        Object.defineProperty(singer, 'age', {
+            value: 8
+        })
+        console.log(singer);
+        console.log(Object.getOwnPropertyDescriptors(singer)); //**该方法返回指定对象所有 自身属性 的描述对象**
+        //我们会发现 singer的age属性他的 writable, enumerable, configurable的值都为false
+        //这保证了我们添加的属性的值的隐蔽性，防篡改性
+        //使用Object.defineProperty 创建的属性是非枚举的，也就是不参与遍历的，除非在配置中申明创建的属性可以被枚举
+        Object.defineProperty(singer, 'openage', {
+            value: 8,
+            enumerable: true, //控制属性是否可被枚举
+            writable: true, //控制属性是否可被修改
+            configurable: true //控制属性是否可被删除
+        });
+        console.log(singer);
+        //以上代码配置了可修改，可配置，可被枚举的属性，所以是可以遍历且值可以被修改
+
+        //数据代理
+        let msg = 'hello~';
+        Object.defineProperty(singer, 'msg', {
+            //当读取msg属性的时候，get访问器就会自动调用函数获取相应的值，返回的值就是msg属性的值
+            get: function() {
+                console.log('调用了getter');
+                return msg
+            },
+            //修改 set也是一样，有java/C#类语言的基础会更好理解
+            set: value => {
+                console.log('调用了setter');
+                msg = value
+            }
+        });
+        console.log(singer);
+        //这样，通过get访问器就可以实现代理msg变量了，实现了数据的双向/单向同步
+
+        //总结：Object.defineProperty 是一个比较高级的给对象添加属性的方法，不仅增加了对象属性的安全性，也可以让我们更灵活使用对象中的属性
+        //更重要的是 这个方法可以设置访问代理，Vue的数据双向绑定就是依照这个方法构建的
+
+        //数据代理实操
+        //数据代理：通过一个对象代理另一个对象中的属性的操作
+        let obj = {
+            a: 10
+        };
+        let objj = {
+            b: 20
+        };
+
+        Object.defineProperty(objj, 'a', {
+            get: () => obj.a,
+            set: (value) => {
+                obj.a = value
+            }
+        })
+        console.log(objj.a);
+        console.log(obj.a);
+        obj.a = 111;
+        console.log(objj.a);
+        console.log(obj.a);
+    </script>
+</body>
+
+</html>1

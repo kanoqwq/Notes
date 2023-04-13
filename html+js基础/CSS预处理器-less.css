@@ -1,0 +1,28 @@
+body {
+  background-color: #222222;
+}
+body a {
+  width: 100px;
+  height: 100px;
+  display: block;
+  color: red;
+  border-radius: 6px solid blue;
+}
+body a:hover {
+  color: green;
+}
+body a:before {
+  content: "dd";
+}
+.nmsl {
+  height: 40px;
+}
+.mix {
+  position: absolute;
+}
+html {
+  position: absolute;
+}
+body {
+  float: right;
+}

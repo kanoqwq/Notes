@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+    </div>
+    <script>
+        //菜单
+        function Menu(menu) {
+            this.menu = menu
+            this.list = []
+        }
+        Menu.prototype.add = function (res) {
+            this.list.push(res)
+        }
+        Menu.prototype.scan = function (deep = "") {
+            let nul = document.createElement('ul')
+            if (this.menu == '主菜单') {
+                console.log(deep + this.menu);
+            } else {
+                let ul = document.createElement('ul')
+                let li = document.createElement('li')
+                li.innerHTML = this.menu
+                ul.appendChild(li)
+                li.appendChild(nul)
+                root.appendChild(ul)
+            }
+            for (let i = 0; i < this.list.length; i++) {
+                this.list[i].scan(nul)
+            }
+        }
+        function SubMenu(menu){
+            this.menu = menu
+        }
+        SubMenu.prototype.scan = function(nul){
+            let li = document.createElement('li')
+            li.innerHTML = this.menu
+            nul.appendChild(li)
+            console.log(nul);
+        }
+        let Root = new Menu('主菜单')
+        let userManage = new Menu('用户管理')
+        let addUser = new SubMenu('添加用户')
+        let delUser = new SubMenu('删除用户')
+
+        let accessManage = new Menu('权限管理')
+        let addAccess = new SubMenu('添加权限')
+        let removeAccess = new SubMenu('删除权限')
+
+        Root.add(userManage)
+        Root.add(accessManage)
+
+        userManage.add(addUser)
+        userManage.add(delUser)
+
+        accessManage.add(addAccess)
+        accessManage.add(removeAccess)
+
+        Root.scan()
+    </script>
+</body>
+
+</html>

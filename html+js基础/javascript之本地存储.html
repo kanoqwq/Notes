@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="key">
+    <input type="text" id="value">
+    <input type="button" value="添加数据" id="add">
+    <input type="button" value="删除数据" id="del">
+    <input type="button" value="清空数据" id="clear">
+    <p>---------------------</p>
+    <input type="text" id="user">
+    <input type="password" id="pwd">
+    <input type="checkbox" name="" id="rem">记住用户名
+    <div id="valueD">
+
+    </div>
+    <!-- window.sessionStorage -->
+    <!-- 生命周期为关闭浏览器窗口 在同一个窗口（页面）下数据可以共享 以键值对的形式存储使用 -->
+    <script>
+        var key = document.querySelector("#key");
+        var value = document.querySelector("#value");
+        var add = document.querySelector("#add");
+        var del = document.querySelector("#del");
+        var clear = document.querySelector("#clear");
+        var valueD = document.querySelector("#valueD");
+        var user = document.querySelector("#user");
+        var pwd = document.querySelector("#pwd");
+        var rem = document.querySelector("#rem");
+
+        if (localStorage.getItem("userName")) {
+            user.value = localStorage.getItem("userName");
+            rem.checked = true
+        }
+        rem.addEventListener("change", function() {
+            if (this.checked == true) {
+                localStorage.setItem("userName", user.value);
+            } else {
+                localStorage.removeItem("userName")
+            }
+        });
+        add.addEventListener("click", function() {
+            sessionStorage.setItem(key.value, value.value);
+            list();
+        });
+        del.addEventListener("click", function() {
+            sessionStorage.removeItem(key.value, value.value);
+            list();
+        });
+        clear.addEventListener("click", function() {
+            // var u = prompt("宁真的要清空所有数据吗 yes/任意键 ？")
+            // console.log(u);
+            // if (u == 'yes') {
+            sessionStorage.clear()
+                // }
+            list();
+        });
+        var list = function() {
+            //清空一下
+            valueD.innerHTML = " ";
+            for (var i = 0; i < sessionStorage.length; i++) {
+                var p = document.createElement("p");
+                p.innerText = (i + 1) + ". key:" + sessionStorage.key(i) + "\t value:" + sessionStorage.getItem(sessionStorage.key(i));
+                valueD.appendChild(p);
+            }
+        }
+    </script>
+</body>
+
+</html>

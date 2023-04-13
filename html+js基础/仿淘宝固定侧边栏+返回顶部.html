@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        
+        .w {
+            width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background-color: pink;
+            height: 200px;
+        }
+        
+        .banner {
+            height: 600px;
+            background-color: red;
+        }
+        
+        .main {
+            height: 1000px;
+            background-color: purple;
+        }
+        
+        .slider-bar {
+            position: absolute;
+            height: 50px;
+            width: 40px;
+            right: 100px;
+            top: 600px;
+            background-color: skyblue;
+        }
+        
+        .goBack {
+            display: none;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header w">头部区域</div>
+    <div class="banner w">banner区域</div>
+    <div class="main w">主体部分</div>
+    <div class="slider-bar">
+        <span class="goBack">返回顶部</span>
+    </div>
+    <script>
+        var back = document.querySelector(".slider-bar");
+        var banner = document.querySelector(".banner");
+        var bannerTop = banner.offsetTop;
+        var sb = back.offsetTop;
+        var goBack = document.querySelector(".goBack");
+        document.addEventListener("scroll", function() {
+
+            //window.pageYOffset; 表示被页面卷去的头部高度
+            if (window.pageYOffset >= bannerTop) {
+                //显示返回顶部字样
+                goBack.style.display = "block";
+
+                back.style.position = "fixed";
+                //sliderbar距离文档顶部的高度，减去banner顶部离页面的高度
+                back.style.top = (sb - bannerTop) + 'px';
+                console.log(sb, bannerTop);
+            } else {
+                //不显示返回顶部字样
+                goBack.style.display = "none";
+                back.style.top = sb + "px";
+                back.style.position = "absolute";
+            }
+        });
+        goBack.addEventListener("click", function() {
+            ScrollEase(window, 0);
+        });
+        //缓动动画函数
+        //缓动动画公式 Math.ceil(（目标值 - 现在的位置）/10)
+        function ScrollEase(obj, targetY) {
+            clearInterval(obj.timer);
+            //移动
+            obj.timer = setInterval(() => {
+                // 如果到达目的坐标，则停止
+                if (window.pageYOffset == targetY) {
+                    clearInterval(obj.timer);
+                }
+                var stepY = (targetY - window.pageYOffset) / 10;
+                //如果stepY大于0，step就向上取整
+                stepY = stepY > 0 ? Math.ceil(stepY) : Math.floor(stepY);
+                window.scrollTo(0, window.pageYOffset + stepY);
+            }, 10);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>人员列表</h2>
+        <input type="text" placeholder="请输入姓名" v-model="Keyword">
+        <button @click="sortType=2">年龄升序</button>
+        <button @click="sortType=1">年龄降序</button>
+        <button @click="sortType=0">原顺序</button>
+        <ul>
+            <!-- key的另一种写法 -->
+            <!-- a就相当于item，b就相当于index -->
+            <li v-for="(a,b) in findPersons" :key="a.id">{{a.name}}-{{a.age}}-{{a.sex}}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                Keyword: '',
+                sortType: 0, //0原序 1 降序 2升序
+                persons: [{
+                    id: '000',
+                    name: '张三',
+                    age: '11',
+                    sex: '男'
+                }, {
+                    id: '001',
+                    name: '张麻子',
+                    age: '28',
+                    sex: '男'
+                }, {
+                    id: '002',
+                    name: '李四',
+                    age: '19',
+                    sex: '男'
+                }, {
+                    id: '003',
+                    name: '王五',
+                    age: '50',
+                    sex: '男'
+                }, {
+                    id: '004',
+                    name: '马冬梅',
+                    age: '12',
+                    sex: '女'
+                }],
+                // findPersons: []
+            },
+            //使用计算属性实现
+            computed: {
+                //这玩意开始的时候执行一次
+                //所依赖的keyword变化时候又会执行一次
+                //里面用到了sortType 所以sortType改变的时候也会触发这个函数
+                findPersons() {
+                    const arr = this.persons.filter((p) => {
+                        //true就是符合，返回一个新数组
+                        //indexof对于空字符串的返回是0（特别重要）
+                        return p.name.indexOf(this.Keyword) !== -1
+                    });
+                    //别急着返回，判断一下是否要排序
+                    if (this.sortType) {
+                        arr.sort((a, b) => {
+                            //由于a和b在这里都是对象，不能直接比，我们要获取里面的age
+                            return this.sortType == 1 ? b.age - a.age : a.age - b.age
+                        })
+                    }
+                    return arr;
+                }
+            }
+            //#region
+            //使用监视属性实现
+            // watch: {
+            //     Keyword: {
+            //         //立即执行一次，否则页面没数据
+            //         immediate: true,
+            //         handler(val) {
+            //             this.findPersons = this.persons.filter((p) => {
+            //                 //true就是符合，返回一个新数组
+            //                 //indexof对于空字符串的返回是0（特别重要）
+            //                 return p.name.indexOf(val) !== -1
+            //             })
+            //         }
+            //     }
+            // },
+            //#endregion
+        });
+    </script>
+</body>
+
+</html>

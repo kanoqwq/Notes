@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function Singer(name) {
+            this.name = name;
+        }
+
+        //把sing方法添加到Singer构造函数的原型对象中
+        // Singer.prototype = {
+        //         //要写constructor，不然会覆盖掉原构造函数
+        //         constructor: Singer,
+        //         sing: function() {
+        //             console.log("我会唱歌");
+        //         }
+        //     }
+        console.log(Object.__proto__.sing);
+        //通过成员查找机制，可以把sing定义在顶级类Object中
+        Object.prototype.sing = function() {
+            console.log("我会唱歌");
+        }
+        console.log(Object.__proto__.sing);
+        //每个原型对象都有一个固有属性__proto__ 这个属性连接了上一级原型对象
+        //顶级原型对象Object 也有一个__proto__属性，这个属性指向为空
+        //通过这个属性，就可以不断的向上查找
+        //按顺序查找，如果查找到了需要的属性或者函数，就会停止查找
+        //所以就会存在子方法覆盖父方法的问题
+        var kano = new Singer("kano");
+        var kano1 = new Singer("kano1");
+        console.log(kano.name);
+        console.log(kano1.name);
+        kano.sing();
+    </script>
+</body>
+
+</html>

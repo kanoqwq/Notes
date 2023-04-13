@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="https://www.baidu.com">百度</a><br>
+    <button>按钮</button>
+    <div class="father" style="height: 100px; width: 100px; background-color: pink;">
+        1
+        <div class="son" style="height: 50px; width: 50px; background-color: skyblue;">2</div>
+    </div>
+    <script>
+        var a = document.querySelector("a");
+        var btn = document.querySelector('button');
+        //在addEventListener内阻止默认行为
+        // a.addEventListener("click", function(e) {
+        //     //阻止打开百度
+        //     console.log("已阻止打开链接");
+        //     e.preventDefault();
+        // });
+        //在onclick事件中阻止默认行为,可以用preventDefault(); 也可以用return false
+        a.onclick = function() {
+            console.log("已阻止打开链接");
+            return false;
+        }
+
+        // 阻止事件冒泡
+        document.addEventListener("click", function() {
+            alert("document");
+        });
+        document.querySelector(".father").addEventListener("click", function() {
+            alert(".father");
+        });
+        document.querySelector(".son").onclick = function(e) {
+            alert(".son");
+            //阻止事件冒泡 Propagation 冒泡
+            //e.stopPropagation();
+            //另一种写法
+            e.cancelBubble = true;
+        }
+    </script>
+</body>
+
+</html>

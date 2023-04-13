@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .father {
+            position: relative;
+            top: 100px;
+            left: 100px;
+            width: 150px;
+            height: 150px;
+            background-color: pink;
+        }
+        
+        .son {
+            position: absolute;
+            top: 40px;
+            left: 40px;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            border: 10px solid blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+    </div>
+    <script>
+        var father = document.querySelector(".father");
+        var son = document.querySelector(".son");
+
+
+        //返回自身包括padding，边框，内容区的宽高度，返回的数值不带单位
+        //如果块级元素 css没有写宽度 默认以当前窗口宽度为准
+        console.log(son.offsetWidth + "px");
+        console.log(son.offsetHeight + "px");
+
+        //以下都以有定位的父元素为准，没有就以body为准
+
+        //返回该元素带有定位的父级元素，如果父级都没有定位则返回body
+        console.log(son.offsetParent);
+
+        //返回相对带有定位父元素上方/左边框的偏移
+        console.log(son.offsetTop);
+        console.log(son.offsetLeft);
+
+        //offset与style的区别
+        /*
+        offset:
+            1.可以得到任意样式中的样式值                    
+            2.offset获得的数值是没有单位的
+            3.offfsetWidth包含padding+border+width
+            4.offsetWidth等属性是只读属性，只能获取不能赋值 只能获取不能赋值！！
+            //所以，我们想要获取元素大小位置，用offset更合适
+        style：
+            1.style只能得到行内样式表中的样式值
+            2.style获得的是带有单位的字符串
+            3.style.width获得不包含padding和border的值
+            4.style.width是可读写属性，可以获取也可以赋值
+            //所以，我们想要给元素更改值，则需要用style改变
+        */
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <school></school>
+        <h1>{{msg}}</h1>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+
+        const school = Vue.extend({
+            //可以使用name属性强制指定组件在开发者工具中呈现的组件名
+            name: 'kano',
+            template: `
+            <div>
+                <h2>学校名称 {{name}}</h2>
+                <h2>学校地址 {{address}}</h2>
+                <button @click="ChangeName">点我修改学校名为加里顿</button>
+            </div>
+            `,
+            data() {
+                return {
+                    name: 'MIT',
+                    address: 'USA'
+                }
+            },
+            methods: {
+                ChangeName() {
+                    this.name = "加里顿"
+                }
+            },
+        })
+
+        //创建vm
+        new Vue({
+            el: '#root',
+            //填入组件
+            components: {
+                //es6缩写
+                school
+            },
+            data: {
+                msg: 'hello'
+            }
+        });
+    </script>
+</body>
+
+</html>

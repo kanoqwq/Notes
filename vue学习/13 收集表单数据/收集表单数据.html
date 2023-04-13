@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <form @submit.prevent="demo">
+            <!-- trim修饰符，这个就不说了 -->
+            <label for="username"> 账号：</label><input type="text" id="username" v-model.trim="userInfo.account">
+            <br><br>
+            <label for="passwd"> 密码：</label><input type="text" id="passwd" v-model.trim="userInfo.password">
+            <br><br> 性别： 男
+            <input type="radio" name="sex" value="男" v-model="userInfo.sex"> 女<input type="radio" name="sex" value="女" v-model="userInfo.sex">
+            <br><br> 年龄
+            <!-- v-model也是有修饰符的，这里可以使用修饰符使传入的数据为数字类型 -->
+            <input type="number" name="age" value="男" v-model.number="userInfo.age">
+            <br><br> 爱好： 唱
+            <input type="checkbox" v-model="userInfo.hobby" value="唱"> 跳
+            <input type="checkbox" v-model="userInfo.hobby" value="跳"> rap
+            <input type="checkbox" v-model="userInfo.hobby" value="rap"> 篮球
+            <input type="checkbox" v-model="userInfo.hobby" value="篮球">
+            <br><br> 所属校区
+            <!-- 下拉框的v-model需要配置在select上而不是option上 -->
+            <select name="scholl" v-model="userInfo.city">
+                <option value="">请选择校区</option>
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+                <option value="shenzhen">深圳</option>
+                <option value="wuhan">武汉</option>
+            </select> 其他信息
+            <br><br>
+            <!-- lazy修饰符可以让用户输入完成之后再做出数据捕获的动作，节省资源 -->
+            <textarea cols="30" rows="10" v-model.lazy="userInfo.other"></textarea>
+            <br>
+            <input type="checkbox" v-model="userInfo.accept">阅读并接受<a href="//kanokano.cn">用户协议</a>
+            <br><br>
+            <button>提交</button>
+        </form>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                userInfo: {
+                    account: '',
+                    password: '',
+                    //这里面要是有值的话，因为model的双向绑定，渲染的时候就会选中填入的值
+                    //sex由于是radio，需要手动配置标签的value属性
+                    sex: '',
+                    age: '',
+                    //hobby 是复选框，所以也需要手动配置value属性
+                    //复选框需要的属性，必须是数组类型的
+                    hobby: [],
+                    city: 'beijing',
+                    other: '',
+                    accept: false
+                }
+            },
+            methods: {
+                demo() {
+                    console.log(JSON.stringify(this.userInfo));
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

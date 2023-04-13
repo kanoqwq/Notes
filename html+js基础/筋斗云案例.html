@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>筋斗云案例</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            box-sizing: border-box;
+            text-decoration: none;
+            color: #000;
+        }
+        
+        li {
+            height: 50px;
+            width: 100px;
+            text-align: center;
+            float: left;
+            padding: 0 10px;
+            line-height: 50px;
+        }
+        
+        .c_nav {
+            position: relative;
+            height: 50px;
+        }
+        
+        .cloud {
+            position: absolute;
+            z-index: -1;
+            left: 0;
+            background-color: skyblue;
+            height: 50px;
+            width: 100px;
+            transition: all .2s;
+        }
+        
+        .current {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="c_nav" class="c-nav">
+        <span class="cloud"></span>
+        <ul>
+            <li class="current"><a href="#">首页新闻</a></li>
+            <li><a href="#">师资力量</a></li>
+            <li><a href="#">活动策划</a></li>
+            <li><a href="#">企业文化</a></li>
+            <li><a href="#">招聘信息</a></li>
+            <li><a href="#">公司简介</a></li>
+            <li><a href="#">啥</a></li>
+            <li><a href="#">啥来着</a></li>
+        </ul>
+        <script>
+            //获取元素
+            var cloud = document.querySelector(".cloud");
+            var c_nav = document.querySelector(".c_nav");
+            var lis = document.querySelectorAll("li");
+            var current = 0;
+            //给所有的li添加事件
+            for (var i = 0; i < lis.length; i++) {
+                lis[i].addEventListener("mouseenter", function() {
+                    cloud.style.left = this.offsetLeft + "px";
+                })
+                lis[i].addEventListener("mouseleave", function() {
+                    cloud.style.left = current + "px";
+                });
+                //鼠标点击后就将当前位置设为目标值
+                lis[i].addEventListener("click", function() {
+                    //排他
+                    for (var i = 0; i < lis.length; i++) {
+                        lis[i].children[0].removeAttribute("class");
+                    }
+                    this.children[0].setAttribute("class", "current");
+                    current = this.offsetLeft
+
+                })
+            }
+        </script>
+    </div>
+</body>
+
+</html>

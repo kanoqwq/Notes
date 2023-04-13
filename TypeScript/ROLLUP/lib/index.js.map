@@ -1,0 +1,1 @@
+{"version":3,"file":"index.js","sources":["../src/index.ts"],"sourcesContent":["const a: string = 'kano111'\r\nconsole.log(a);\r\nconsole.log(process.env.NODE_ENV);\r\n"],"names":["console","log"],"mappings":"gXACAA,QAAQC,IADU,WAElBD,QAAQC,IAAI"}

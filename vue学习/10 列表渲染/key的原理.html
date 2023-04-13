@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>人员列表</h2>
+        <ul>
+            <button @click="add">点我添加老六</button>
+            <!-- 使用v-for进行遍历输出 -->
+            <!-- 只要你使用了遍历语法，你就必须要使用key这个关键字,给每一个li设定唯一的标识 -->
+            <!-- 错误的，渲染会错位 -->
+            <!-- <li v-for="(i,index) in persons" :key="index">{{i.name}}-{{i.id}}
+                <input type="text">
+            </li> -->
+            <!-- 正确的 -->
+            <li v-for="(i,index) in persons" :key="i.id">{{i.name}}-{{i.id}}
+                <input type="text">
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                persons: [{
+                    id: '001',
+                    name: '张三',
+                    age: '18'
+                }, {
+                    id: '002',
+                    name: '李四',
+                    age: '19'
+                }, {
+                    id: '003',
+                    name: '王五',
+                    age: '20'
+                }]
+            },
+            methods: {
+                add() {
+                    let p = {
+                        id: '004',
+                        name: '老六',
+                        age: 21
+                    };
+                    //往数组第一个写入数据
+                    this.persons.unshift(p);
+
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .father {
+            position: relative;
+            display: inline-block;
+            top: 100px;
+            left: 100px;
+            box-sizing: border-box;
+        }
+        
+        .son {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(0, 0, 0, .4);
+        }
+        
+        .kano_img {
+            width: 400px;
+        }
+        
+        .view {
+            display: none;
+            position: relative;
+            left: 600px;
+            top: -400px;
+            height: 400px;
+            width: 400px;
+            background-image: url(https://image.kanokano.cn/2022/03/20220309042745594-scaled-e1646800439490.jpg);
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="father">
+        <div class="son"></div>
+        <img class="kano_img" src="https://image.kanokano.cn/2022/03/20220309042745594-scaled-e1646800439490.jpg" alt="">
+    </div>
+    <div class="view"></div>
+    <script>
+        window.addEventListener("load", function() {
+            //获取鼠标在盒子内的坐标其实很简单，只需要先获取鼠标距离窗口的距离，再减去窗口距离盒子的距离就行了
+            var son = document.querySelector(".son");
+            var father = document.querySelector(".father");
+            var view = document.querySelector(".view");
+            //获取预览框的长宽
+            var view_w = view.offsetWidth;
+            var view_h = view.offsetHeight;
+            //添加侦听器
+            father.addEventListener("mouseenter", function() {
+                father.addEventListener("mousemove", function(e) {
+                    view.style.display = "block";
+                    //鼠标相对于页面的距离e.pageX; e.pageY;
+                    var x = e.pageX - this.offsetLeft;
+                    var y = e.pageY - this.offsetTop;
+
+                    //限定鼠标在父盒子中的坐标显示
+                    if ((x <= this.offsetWidth - son.offsetWidth / 2) && (y <= this.offsetHeight - son.offsetHeight / 2) && x >= son.offsetWidth / 2 && y >= son.offsetHeight / 2) {
+
+                        //子盒子鼠标跟随
+                        son.style.top = y - son.offsetHeight / 2 + "px";
+                        son.style.left = x - son.offsetWidth / 2 + "px";
+                    }
+                    //同步鼠标框和预览框背景的位置
+                    //盒子相对于页面的距离son.offsetLeft;son.offsetTop;
+                    var son_x = son.offsetLeft;
+                    var son_y = son.offsetTop;
+                    view.style.backgroundPositionX = "-" + (son_x * 4 + son_x / 2) + "px";
+                    view.style.backgroundPositionY = "-" + (son_y * 4 + son_y / 2) + "px";
+
+                });
+            });
+            father.addEventListener("mouseout", function() {
+                view.style.display = "none";
+            });
+        });
+    </script>
+</body>
+
+</html>

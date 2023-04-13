@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 2000px;
+        }
+        
+        div {
+            height: 200px;
+            width: 200px;
+            background-color: red;
+            overflow: scroll;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 元素滚动scroll系列 -->
+    <div>
+        dddddd dddddd ddd dddddd dddddd ddd ddd ddd ddd ddd ddd ddddddddd dddddd ddd dddddd dddddd ddd ddd ddd ddd ddd ddd ddddddddd dddddd ddd dddddd dddddd ddd ddd ddd ddd ddd ddd ddddddddd dddddd ddd dddddd dddddd ddd ddd ddd ddd ddd ddd ddd
+
+    </div>
+    <script>
+        var div = document.querySelector("div");
+        // scrollHeight 包含溢出文字的高度
+        console.log(div.scrollHeight);
+        console.log(div.clientHeight);
+
+        div.addEventListener("scroll", function() {
+            //scrollTop返回超出内容上半部分的高度
+            console.log(div.scrollTop);
+
+            //如果需要操作的元素是整个页面，则用pageYOffset
+            console.log(window.pageYOffset)
+        });
+    </script>
+
+</body>
+
+</html>

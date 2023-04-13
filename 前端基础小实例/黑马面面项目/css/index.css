@@ -1,0 +1,217 @@
+body {
+  min-width: 320px;
+  max-width: 750px;
+  margin: 0 auto;
+  background-color: #f2f4f7;
+}
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 37.5px !important;
+  }
+}
+a {
+  text-decoration: none;
+  color: #707070;
+  font-size: 0.6667rem;
+}
+.header {
+  height: 2.1333rem;
+  border: 0.0267rem solid #eaeaea;
+  text-align: center;
+  line-height: 2.1333rem;
+  font-size: 0.9333rem;
+  color: #1c1c1c;
+}
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+.nav a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33.33%;
+  font-size: 0.6667rem;
+  margin-top: 0.4rem;
+}
+.nav a:nth-child( n - 3 ) {
+  margin-bottom: 1.6533rem;
+}
+.nav img {
+  width: 3.7067rem;
+  height: 3.7067rem;
+}
+.go {
+  margin: 0 14px;
+}
+.block1 {
+  background-color: #fff;
+  padding-bottom: 1.1467rem;
+  padding-top: 0.5333rem;
+}
+.content {
+  padding: 1.0667rem 0.64rem;
+  background-color: #fff;
+  margin-top: 0.2667rem;
+}
+.content .con-hd {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.6667rem;
+  height: 1.0133rem;
+  line-height: 1.0133rem;
+}
+.content .con-hd h4 {
+  margin: 0;
+  font-size: 0.7467rem;
+  color: #333;
+}
+.content .con-hd h4::before {
+  content: "";
+  display: inline-block;
+  vertical-align: bottom;
+  width: 1.0133rem;
+  height: 1.0133rem;
+  padding-right: 0.3733rem;
+}
+.content .con-hd .job::before {
+  background: url(../icons/i2.png) no-repeat;
+  background-size: 1.0133rem;
+}
+.content .con-hd .more {
+  font-size: 0.5867rem;
+  color: #999;
+}
+.lbt {
+  position: relative;
+  margin: 1.28rem 1.6rem;
+}
+.lbt .swiper-button-prev,
+.lbt .swiper-button-next {
+  position: absolute;
+  transform: scale(0.6);
+}
+.lbt .swiper-button-prev {
+  left: -2rem;
+}
+.lbt .swiper-button-next {
+  right: -2rem;
+}
+.lbt .swiper-container {
+  width: 100%;
+  height: 100%;
+}
+.lbt .swiper-slide {
+  opacity: 0.3;
+  text-align: center;
+  background: #fff;
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  transition: 300ms;
+  transform: scale(0.8);
+}
+.lbt .swiper-slide a {
+  width: 9.0133rem;
+  height: 10.0267rem;
+}
+.lbt .swiper-slide a img {
+  width: 100%;
+  height: 100%;
+}
+.lbt .swiper-slide-active {
+  z-index: 999;
+  opacity: 1;
+}
+.lbt .swiper-slide-active span {
+  display: block;
+}
+.lbt span {
+  display: none;
+  font-size: 0.48rem;
+  margin-top: 0.64rem;
+  white-space: nowrap;
+}
+.lbt .swiper-slide-active,
+.lbt .swiper-slide-duplicate-active {
+  transform: scale(1);
+}
+.charge {
+  background: url(../icons/i1.png) no-repeat;
+  background-size: 1.0133rem;
+}
+.study {
+  padding-bottom: 3.7333rem;
+}
+.study .swiper-container1 {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 0.2667rem;
+  padding-top: 0.8rem;
+}
+.study .swiper-wrapper {
+  width: 100%;
+}
+.study .swiper-slide {
+  width: 7.7333rem;
+  height: 9.0667rem;
+  border-radius: 0.2667rem;
+  box-shadow: 0 0 0 0.0533rem rgba(0, 0, 0, 0.1);
+  font-size: 18px;
+  background: #fff;
+}
+.study .swiper-slide h5 {
+  margin: 0;
+  margin-top: 0.2667rem;
+  font-size: 0.7467rem;
+  font-weight: normal;
+  padding: 0 0.2667rem;
+  margin-bottom: 0.5333rem;
+}
+.study .swiper-slide p {
+  text-align: left;
+  margin: 0;
+  font-size: 0.6933rem;
+}
+.study .swiper-slide p span {
+  color: #D07C57;
+}
+footer {
+  display: flex;
+  position: fixed;
+  height: 2.9333rem;
+  width: 100%;
+  padding: 0.5333rem;
+  border-top: 0.0267rem solid #ccc;
+  z-index: 999;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+}
+footer a {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+footer a img {
+  width: 1.04rem;
+  height: 1.0933rem;
+  padding-bottom: 0.2933rem;
+}
+footer a p {
+  font-size: 0.5867rem;
+}

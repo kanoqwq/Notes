@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 适配器模式，举一个小例子
+        class AC220 {
+            use220() {
+                console.log('使用220v交流电');
+            }
+        }
+        class AC120 {
+            use120() {
+                console.log('使用120v交流电');
+            }
+        }
+        //封装一个交流电源适配器,去适配220v电压
+        class JP2CH_Adapter extends AC120 {
+            constructor() {
+                super()
+            }
+            use220() {
+                // 变压操作
+                this.use120()
+            }
+        }
+
+        //在中国，只有220v电压
+        function useElec(elec) {
+            elec.use220()
+        }
+        //使用适配转换器
+        useElec(new JP2CH_Adapter())
+        //正常插电
+        useElec(new AC220())
+    </script>
+</body>
+
+</html>

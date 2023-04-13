@@ -1,0 +1,105 @@
+
+* {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.lbt-main {
+	position: absolute;
+	height: 100%;
+	left: 0;
+	transition: all ease .4s;
+}
+
+.lbt-main li {
+	height: 100%;
+	float: left;
+}
+
+.w {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.lbt {
+	position: relative;
+	width: 600px;
+	height: 360px;
+	overflow: hidden;
+}
+
+.forward,
+.next {
+	position: absolute;
+	width: 50px;
+	height: 40px;
+	transition: all .3s;
+	background-color: rgba(0, 0, 0, .5);
+	border-radius: 40%;
+	line-height: 40px;
+	color: #fff;
+	font-size: 40px;
+}
+
+.hidden {
+	background-color: transparent;
+	color: transparent;
+	visibility: hidden;
+}
+
+.forward {
+	top: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+	text-indent: 15px;
+	text-align: right;
+}
+
+.next {
+	top: 50%;
+	right: 0;
+	transform: translate(50%, -50%);
+	z-index: 10;
+	text-indent: -4px;
+	text-align: left;
+}
+
+.forward:hover,
+.next:hover {
+	color: #ffa500;
+	background-color: rgba(0, 0, 0, .7);
+}
+
+.dot ul {
+	position: absolute;
+	height: 20px;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	border-radius: 10px;
+	background-color: rgba(255, 255, 255, .5);
+}
+
+.dot ul li {
+	float: left;
+	width: 12px;
+	height: 12px;
+	margin: 4px;
+	transition: all .5s;
+	background-color: rgb(255, 255, 255, 1);
+	border-radius: 50%;
+}
+
+.dot ul .selected {
+	background-color: rgb(255, 165, 0, .8);
+}
+
+li img {
+	width: 100%;
+}
+
+.noanimation {
+	transition: none;
+}

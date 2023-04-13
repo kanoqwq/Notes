@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机方块</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .bigbox {
+            position: relative;
+            background-color: #313131;
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        .bigbox .square {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            border-radius: 50%;
+            overflow: hidden;
+            transition: left 1s, top 1s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bigbox">
+    </div>
+    <!-- tools.js -->
+    <script>
+        var Tools = {
+            getRandom: function(min, max) {
+                //min和max都能取到
+                return Math.floor(Math.random() * (Math.floor(max) - Math.ceil(min) + 1)) + min
+            }
+
+        };
+    </script>
+    <!-- box.js -->
+    <script>
+        function Box(parent, options) {
+            //防止空值
+            options = options || {};
+            this.color = options.color || 'transparent';
+            this.width = options.width || 20;
+            this.height = options.height || 20;
+            //默认在屏幕上随机创建
+            this.x = options.x || Tools.getRandom(0, parent.offsetWidth - (options.width || 20));
+            this.y = options.y || Tools.getRandom(0, parent.offsetHeight - (options.height || 20));
+            this.parent = parent;
+            //创建span
+            this.span = document.createElement('span');
+            parent.appendChild(this.span);
+
+            //初始化
+            this.init(this.span);
+        }
+        //公共的方法，用原型比较省空间
+        //初始化span的样式
+        Box.prototype.init = function(element) {
+            //获取每个对象的span
+            let span = this.span;
+            span.style.backgroundColor = this.color;
+            span.style.width = this.width + 'px';
+            span.style.height = this.height + 'px';
+            span.style.top = this.y + 'px';
+            span.style.left = this.x + 'px';
+            span.classList.add('square');
+        };
+        //随机方块位置
+        Box.prototype.random = function() {
+            let x = Tools.getRandom(0, this.parent.offsetWidth / this.width - 1) * this.width
+            let y = Tools.getRandom(0, this.parent.offsetHeight / this.height - 1) * this.height
+            this.span.style.left = x + 'px';
+            this.span.style.top = y + 'px';
+        }
+    </script>
+    <!-- 主方法 -->
+    <script>
+        var ele = document.querySelector('.bigbox');
+        var box = [];
+        for (let i = 0; i < 1081; i++) {
+            box.push(new Box(ele, {
+                height: 5,
+                width: 5,
+                color: `rgba(${Tools.getRandom(0,255)},${Tools.getRandom(0,255)},${Tools.getRandom(0,255)},1)`,
+            }));
+        }
+        //设置随机位置
+        function pos() {
+            box[Tools.getRandom(0, 1080)].random();
+        }
+        pos();
+        setInterval(pos, 1);
+    </script>
+</body>
+
+</html>

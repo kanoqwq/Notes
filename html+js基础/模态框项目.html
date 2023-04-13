@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模态框</title>
+    <style>
+        * {
+            outline: none;
+        }
+        
+        body,
+        html {
+            height: 100%;
+            margin: 0;
+        }
+        
+        a {
+            text-decoration: none;
+            color: black;
+        }
+        
+        .login-header {
+            font-size: 20px;
+            text-align: center;
+        }
+        
+        .login {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            background-color: #fff;
+            /* 让一个盒子在页面居中的方法 */
+            /* 设置盒子为固定定位 */
+            /* 让盒子 translate往页面外移动自身的一半位置 */
+            /* 再用定位来移动页面的百分之五十就行了 */
+            transform: translate(-50%, -50%) scale(0);
+            transition: transform .5s;
+            left: 50%;
+            top: 50%;
+            width: 700px;
+            height: 300px;
+            box-shadow: 1px 1px 12px #ddd;
+        }
+        
+        .login-bg {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(3, 3, 3, .25);
+        }
+        
+        .login-title {
+            text-align: center;
+            font-size: 20px;
+            padding: 20px 0;
+        }
+        
+        .login-title .close-login {
+            position: absolute;
+            right: -25px;
+            top: -25px;
+            height: 40px;
+            width: 40px;
+            border-radius: 50%;
+            background-color: #fff;
+            line-height: 40px;
+            font-size: 14px;
+            box-shadow: 1px 1px 10px #eee;
+        }
+        
+        .login-input-content {
+            text-align: right;
+            padding-right: 80px;
+        }
+        
+        .login-input-content .login-input:nth-child(2) {
+            margin-top: 20px;
+        }
+        
+        .login-input-content .login-input label {
+            text-align: right;
+        }
+        
+        .username,
+        .password {
+            width: 500px;
+            height: 40px;
+            border: 1px solid #eee;
+        }
+        
+        .sumbit {
+            position: fixed;
+            display: inline-block;
+            width: 300px;
+            height: 50px;
+            margin-top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 1px solid #eee;
+            background-color: #fff;
+            line-height: 50px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="login-header">
+        <a href="javascript:;" id="link">点我</a>
+    </div>
+    <div id="login" class="login">
+        <div id="title" class="login-title">登了个录
+            <span><a href="javascript:;" class="close-login" id="closeBtn">关</a></span>
+        </div>
+        <div class="login-input-content">
+            <div class="login-input">
+                <label>用户名：</label>
+                <input type="text" placeholder="请输入用户名" name="info[username]" id="username" class="username">
+            </div>
+            <div class="login-input">
+                <label>密码：</label>
+                <input type="password" class="password" id="password" placeholder="请输入登录密码">
+            </div>
+            <div id="loginBtn" class="login-button">
+                <a href="javascript:void(0);" id="login-button-submit" class="sumbit">登录</a>
+            </div>
+        </div>
+    </div>
+    <!-- 遮盖层 -->
+    <div class="login-bg" id="bg"></div>
+    <script>
+        var openBox = document.querySelector("#link");
+        var loginBox = document.querySelector(".login");
+        var closeBtn = document.querySelector("#closeBtn");
+        var bg = document.querySelector("#bg");
+        var title = document.querySelector("#title");
+        var username = document.querySelector("#username");
+        var password = document.querySelector("#password");
+        openBox.addEventListener("click", function() {
+
+            //显示登录弹框
+            loginBox.style.display = "block";
+
+            //延迟显示
+            setTimeout(() => {
+
+                //显示遮罩
+                bg.style.display = "block";
+
+                //弹出动画
+                loginBox.style.transform = "translate(-50%, -50%)" + "scale(1)";
+            }, 50)
+
+        });
+
+        //给背景和关闭按钮绑定上关闭侦听器
+        closeBtn.addEventListener("click", CloseBtn);
+        bg.addEventListener("click", CloseBtn);
+
+        function CloseBtn() {
+
+            //清除输入框内容（安全）
+            username.value = "";
+            password.value = "";
+
+            //延迟隐藏
+            setTimeout(() => {
+
+                //隐藏遮罩
+                bg.style.display = "none";
+
+                //关闭动画
+                loginBox.style.transform = "translate(-50%, -50%)" + "scale(0)";
+            }, 50);
+
+            //隐藏登录弹框(延迟，快速中断动画)
+            setTimeout(() => {
+                loginBox.style.display = "none";
+            }, 100);
+
+            //清空样式,以便下次打开
+            setTimeout(() => {
+                loginBox.style = "";
+            }, 101);
+        }
+
+        //当鼠标经过标题栏时
+        title.addEventListener("mouseover", function() {
+            this.style.cursor = "move";
+        });
+
+        //当鼠标按下时
+        title.addEventListener("mousedown", function(e) {
+
+            //获取鼠标相对于页面的位置
+            e.pageX;
+            e.pageY;
+
+            //防止选中标题文本
+            this.style.userSelect = "none";
+
+            //获取鼠标相对于标题盒子的位置 由于使用了translate定位法，盒子获取到的零坐标移到了中间，所以需要减去一半的盒子长度
+            var boxX = e.pageX - (loginBox.offsetLeft - loginBox.offsetWidth / 2);
+            var boxY = e.pageY - (loginBox.offsetTop - loginBox.offsetHeight / 2);
+
+            //主移动方法
+            function move(e) {
+                //限制移动区域，防止移动到窗口外
+                if (e.pageX >= 0 && e.pageY >= 0 && window.innerWidth >= e.pageX && window.innerHeight >= e.pageY) {
+
+                    //由于使用了translate定位法，盒子获取到的零坐标移到了中间，所以需要加上一半的盒子长度
+                    loginBox.style.left = (e.pageX + (loginBox.offsetWidth / 2) - boxX) + "px";
+                    loginBox.style.top = (e.pageY + (loginBox.offsetHeight / 2) - boxY) + "px";
+                }
+                console.log(e.pageX, e.pageY, boxX, boxY);
+            }
+
+            //当鼠标移动时
+            document.addEventListener("mousemove", move);
+
+            //当鼠标松开时取消移动
+            document.addEventListener("mouseup", () => {
+                document.removeEventListener("mousemove", move);
+            });
+
+
+        });
+    </script>
+</body>
+
+</html>

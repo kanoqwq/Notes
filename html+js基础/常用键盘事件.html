@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var i = 0;
+        //Keycode已经被弃用 请使用code方法
+        //常用键盘事件 执行顺序 
+        //keydown - keypress - keyup
+        //keydown - keypress - keyup
+        // keyup 按键弹起时触发
+        document.onkeyup = function() {
+            console.log("我起了" + i);
+        }
+
+        // keydown 按键按下时触发
+        document.onkeydown = function() {
+            console.log("我下了" + i++);
+        }
+
+        //keypress 按键按下时候触发（不含ctrl shift 方向键等功能键）
+        document.onkeypress = function() {
+            console.log("我下了(无功能键)" + i++);
+        }
+
+        //可以通过keyCode来获取对应按键的ASCII码值
+        //keyup 和 key down事件不区分字母的大小写
+        document.onkeydown = function(e) {
+            console.log(e.keyCode);
+        }
+        document.onkeypress = function(e) {
+                console.log(e.keyCode);
+            }
+            //替代方法
+        document.onkeypress = function(e) {
+            console.log('新方法' + e.code);
+        }
+    </script>
+</body>
+
+</html>

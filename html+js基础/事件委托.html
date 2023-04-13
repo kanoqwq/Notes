@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>我是第一个</li>
+        <li>我是第二个</li>
+        <li>我是第三个</li>
+        <li>我是第四个</li>
+        <li>我是第五个</li>
+    </ul>
+    <script>
+        // 事件委托的核心原理，就是给父节点添加侦听器，利用事件冒泡的传递方式，影响父节点下的每一个子节点
+        var ul = document.querySelector("ul");
+        ul.addEventListener("click", function(e) {
+            //排他思想，清空原有样式
+            for (var i = 0; i < ul.children.length; i++) {
+                ul.children[i].style.backgroundColor = '';
+            }
+            //获取当前点击的父元素内的子元素
+            e.target.style.backgroundColor = 'skyblue';
+            //注意：事件代理可能带来的隐患，当页面非常复杂的情况下，非常容易引起混乱，特别是当多种（个）事件通过事件委托绑定到同一个元素上时。
+            //例如本例子，当点击ul本体（左侧）时，列表子元素全部变蓝，显然不符合设计初衷，除非让子元素全部覆盖父元素
+        });
+    </script>
+</body>
+
+</html>

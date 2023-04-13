@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>题库脚本</title>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="exercise-item"><pre class="item-desc">1.根据不同社会制度国家国防政策和国防目标的不同，目前世界上的国防类型主要有（）</pre>
+        <div class="answers " item-id="168943">
+            <div class="answer" onclick="">
+                <div class="alpha true-option-class alpha-right">A</div>
+                <div class="desc">扩张型</div>
+            </div>
+            <div class="answer" onclick="">
+                <div class="alpha  ">B</div>
+                <div class="desc">友好型</div>
+            </div>
+            <div class="answer" onclick="">
+                <div class="alpha true-option-class alpha-right">C</div>
+                <div class="desc">中立型</div>
+            </div>
+            <div class="answer" onclick="">
+                <div class="alpha true-option-class alpha-right">D</div>
+                <div class="desc">自卫型</div>
+            </div>
+        </div>
+        <div class="item-analysis">
+            <div class="analysis-detail my-answer">我的答案：<span class="my-answer-168943">-</span></div>
+            <div class="analysis-detail ti-mu-zhong-yao hidden">
+                <div class="analysis-title">
+                    <div class="blue-line"></div>
+                    <div class="module-text">重要度</div>
+                </div>
+                <div class="analysis-star-show"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $('.exercise-item').each(function() {
+            var question = $(this).find('.item-desc').html();
+            console.log(question + '\n' + '答案是： ');
+
+            $(this).find('.alpha-right + .desc').each(function() {
+                console.log($(this).html());
+            });
+            console.log('\n \n')
+        });
+    </script>
+
+    <script>
+        $('.exercise-item').each(function() {
+            var question = $(this).find('.item-desc').html();
+            console.log(question + '\n');
+            $(this).find('.answer').each(function() {
+                $(this).find('.alpha').each(function() {
+                    var ht = $(this).html() + ' ' + $(this).next('.desc').html();
+                    if ($(this).hasClass('alpha-right'))
+                        ht += ' √'
+                    console.log(ht);
+                });
+            });
+            console.log('\n')
+        });
+    </script>
+</body>
+
+</html>

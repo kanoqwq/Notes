@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @keyframes move {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate( 800px, 0);
+            }
+        }
+        
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: pink;
+            /* //动画名称 */
+            animation-name: move;
+            /* 持续时间 */
+            animation-duration: .3s;
+            /* 速度曲线*/
+            animation-timing-function: linear;
+            /* 何时开始 */
+            animation-delay: 0s;
+            /* 播放次数  infinite 无限*/
+            animation-iteration-count: infinite;
+            /* 动画在下一周期 播放方向 默认normal 反方向是alternate */
+            animation-direction: alternate;
+            /* 动画是否暂停 running 和paused */
+            animation-play-state: running;
+            /* 动画结束后的状态,是在原地还是在目的地 */
+            /* animation-fill-mode: forwards; */
+            /* 简写 */
+            /* animation: 动画名称 持续时间 运动曲线 何时开始 播放次数 是否反方向 动画起始或者结束状态; 不包括暂停状态 */
+        }
+        
+        div:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes identifier {
+            from {
+                width: 0;
+            }
+            to {
+                width: 180px;
+            }
+        }
+        
+        .jdt {
+            display: block;
+            height: 100px;
+            font-size: 20px;
+            /* background-color: pink; */
+            animation: identifier 2.5s;
+            /* 规定动画步长 */
+            animation-timing-function: steps(9);
+            animation-fill-mode: forwards;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <span class="jdt">团长，你就是歌姬吧</span>
+</body>
+
+</html>

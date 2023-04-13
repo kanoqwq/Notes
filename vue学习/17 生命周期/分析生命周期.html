@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 准备好一个容器 -->
+        
+    </div>
+    <script>
+        const vm = new Vue({
+            //如果没有el的话，Vue的生命周期就会暂停在created函数
+            //直到遇到vm.$mount(el)调用
+            el: '#root',
+            //模板还可以写在这
+            //这样写只能有一个根元素，这个根元素就是Vue渲染区域
+            template:`<div>
+            <h2>当前的n值是:{{n}}</h2>
+            <button @click="add">点我n+1</button>
+            <button @click="bye">点我销毁容器</button>
+            </div>`,
+            data: {
+                n:1
+            },
+            methods: {
+                add(){
+                    console.log('add()');
+                    this.n++;
+                },
+                bye(){
+                    //调用destroy会销毁Vue实例，解绑它的全部指令以及事件监听器
+                    //这里有个问题，虽然指令监听器等被清除了，但原生DOM属性还是能用的
+                    //还有定时器
+                    console.log('destroy()');
+                    this.$destroy()
+                }
+            },
+            //在这个阶段，无法通过vm访问倒data中的数据，method中的方法
+            beforeCreate() {
+                console.log('beforeCreate');
+                // console.log(this.n);
+                //此时this里面没有n
+                // debugger;
+            },
+            //在这个阶段，可以通过vm访问倒data中的数据，methods中的方法
+            created() {
+                console.log('created');
+                // console.log(this.n);
+            },
+            //在这个阶段，页面呈现的是未经Vue编译的DOM结构，故而在这期间，所有对dom的操作最终都是无效的
+            beforeMount() {
+                console.log('BeforeMount');
+                //此时会发现，页面的基本结构已经渲染到页面上了，但是插值语法的{{n}}并没有解析成数字
+                // debugger;
+            },
+            //此时页面中呈现的是经过VUe编译的ODM，对DOM的操作均有效（但不推荐）
+            //至此初始化的过程就结束了
+            //这里一般可以进行：开启定时器，发送网络请求，订阅消息，绑定自定义事件，等其他初始化操作
+            mounted(){
+                console.log('mounted');
+                // debugger;
+            },
+            //此时，数据是新的，但页面是旧的
+            //即：页面尚未和数据保持同步
+            beforeUpdate() {
+                console.log('beforeUpdate');
+                console.log(this.n);
+                // debugger;
+            },
+            //此时，数据是新的，页面也是新的
+            //数据和页面保持同步
+            updated() {
+                console.log('updated');
+                // this.n++;//别整活儿，会不停的触发数据更新操作
+            },
+            //此时，vm中所有的 data,method 指令等等都处于可用状态，马上要执行销毁作业，
+            //但是在这里所有的对this的操作都不会触发页面更新了
+            //一般在这个阶段可以做：关闭定时器，取消订阅消息，解绑自定义事件等操作
+            beforeDestroy() {
+                console.log('beforeDestroy');
+                this.n++;//不起作用
+            },
+            //此时vm已经销毁
+            destroyed() {
+                console.log('destroyed');
+            },
+        });
+    </script>
+</body>
+
+</html>

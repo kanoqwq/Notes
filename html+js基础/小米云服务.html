@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <title>仿写小米云服务</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            color: white;
+        }
+        
+        a {
+            text-decoration: none;
+        }
+        
+        .mi_bg {
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            background-image: linear-gradient(#1851D7, #3766D5);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        
+        .banner {
+            display: flex;
+            position: relative;
+            height: 58px;
+            padding: 5px 20px 0px 30px;
+            align-items: baseline;
+            /* flex */
+            justify-content: space-between;
+        }
+        
+        .cloud-logo {
+            display: inline-block;
+            height: 100%;
+            padding-left: 60px;
+            line-height: 57px;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFwAAABcCAMAAADUMSJqAAAB71BMVEUAAAAxsP8qr/81sP89q/8qff8qg/8qsv8qi/8qh/8qsf//ogAqsf8qsf8rdP8srv8tlf8vqP//mwD/mwD/hgApn/8ob///lAAqqP//iQArr/8qlf8rtP8rsP8qnv8rtP//mAArr/8pcf//mQAqcf8sq///owD/cgD/jwD/kQAqqf//agD/oQApb/8qsP8qmf8qk/8qoP8qpf//aQApkP//oAAqsP//iwD/agAqsv//ogAqkf//dwAqtP8rc/8rsv//ogD/bgD/owD/eAD/mwD/hAArpP//nAD/lgApj///ewArrf8qsP8obv8rjv8pdf//mAD/dQAqlv//iAD/hAAqb///gAArnf8qmf//lgArkf//aAApcP8pb/8rcP8rrf//gAApnP8po/8obv8pmf8plv8pp/8pqf8poP8plP8pj/8pjf8pi/8pf/8pif8ph/8qrv8phf//fAD/jQAqsf8pgf8pg///dAD/fwApn/8pk///kAAprP8pfP8peP8pov8pnv8pmP8pkv//mgAppf8ppv//kwApm/8pkf8pev8ocf//igApq///eQApsP//hgD/hAD/dwD/iAD/ggD/agD/cQD/lQD/bwApr/8pdf//bAAqs///lwD/nQD/oAAodv//aAD/gwD/bgAoc///dgBvn5cgAAAAYXRSTlMAC+gFCPX00fT03tnMsjsoHxb88/LMvauimYeEfHRvaGFaV1BIQTAvGfn39PLx7uzp4t7Y0crGwsG9vbesqKKgg2BaUEE8NS0O/fr5+Pft7Ojo59vb18O+r6OQhIJ8clQOhvW13wAABLNJREFUaN7tmPdXE0EQxzeJiiIo2Hvvvffee+89RY0JxkRjSYiaIBCJgAVEIAK2P9TZ2ezO3l3u6fPibzd/wOd932fmZvYdc8stt9xyyy23/lPVzayt8R731tTOHFtp9NyqZGdvPJ5pv3//3r11s3wVRC+sKgK7t8Rubg6sm1sx9oxiMZnsjMfjkv36dXjKsIqgh9UCm5y0NAcCr8Op7MT6SsB3JqG4kwyyA4FAOBzOZv0TPc7Z05KQG5yU2OgklfL78/krznvJdXPf5ATZ/lAoN8sh2wdzgsLb2xUbhCP77mqHYmZj7kyZ3KG7dx9MdwavEbnR9z3KnQc2wNc4+pjGcjbkVmxyAux000In8JmcncEBJ3Y+H8rlkP32mhP47l7IrbOzkJvYke1O4Ful7xaT7wfAbopENjiBV8s5aSHfyMbckegpJ3CvXCgBgMvcwgnAo9GRjuA2M5hO89zRBmdwnruFC1dOcuDkgcjd8O/wYR6Px0u+w6ZeRoAd+xf42Bm1Vavicr7FIlQzCPC3IncsNoox9q27+8eXz89/fex4/PjFi64P7ydsnjrniN2uml0tFiGxwUkKcyMblJTYjwS8n8OfI7wL4J/ePXmydPLBsqe4mh+1XsxNA57V2AhHtoT3q+Rd3wW8sbHn6hKL6N3FpOGoAdo4g8oJsBOW5C8UvLVn/AEju34Tj50UbDpqOpv3UrITIzj8Wxktja2tPV/HzTHkroHcyCbf5ET2ktjPRlBDAd6ByQn+ZmC+4RYXBdvOd1r5jnE2wtG5VQuHvxl/WDs7eDB1tmlOmtScIPupDfydhA9slGyPF+Fx0yL0A9yYu0GyJZzmnJwL+OA+eljhnMRNu8qveglzotiAfvpwuHCuJRdwlXxgtFwkSX7UkH1fOFFHLYe5IyQFcz9EuHUU9eSDi5B9SPqmR4TuG3OrXiaQ/XK47vwjaiHnAr6n9LTqLB16YotBIXZU+UY2wrvlKJZ1PrhNnDRgG2cQ2FpudBIjNsJttJDzQSG9Cg89+iY2woGdJvYjYre1+VRDf9k4X4HwVcIJsY2HHoUjO0HsV3WMLVdz3qFpaTTCT2Qku5l8i8NDvjH3M8UeGsPYevM+p+SkpRofm7aHHgeFfCP71at5jG0h5+bk1NBNGckmJ39gD/XtYux6mX1uGcUp8tAHYFfJ3PiIUL4T4sNUufv6TvvYYvtpoY/oNvVS952m3EbfPPjPApfebzvnUjnzLMNHBDkRvbRlDwH7Z2ESY3ut+5waKhfXFFxWxBZOiE1OXgo2BC/w6Fts9zmt3Lpl6oES0r6diGFXQSknwA4GIfri5Xb7fDwax5pGuamX1tzIxtwcHrzB2H6bfT5OO3OeiQY2wLUZxOA6u4BsqAWg3brPLQe6fm2KlpXYJ7SsAI2+KXdQ1ErQfvCsdZ+fOWB6x631E9tw6HXfQ8TGOgnf6ZIdHaZ9PtnyKKq/jEfNZoGjFHKiqnDTB23dcUx/zh1m1vLNWk2PTX2BY259BoN6XQTx7M7+qZcuTJhwfvPU+XYPUc/0c/JgNpgWShvmJrZek+b95U+SQ9O3b1hzVO+lcKLPoLVW7rq1oI655ZZbbrnlllsVq9/VNWoQAI/o7wAAAABJRU5ErkJggg==) no-repeat 0 0px;
+            background-size: 36%;
+        }
+        
+        .right {
+            display: inline-block;
+            font-size: 14px;
+        }
+        
+        .split {
+            display: inline-block;
+            vertical-align: middle;
+            height: 12px;
+            width: 1px;
+            margin: 0 11px 2px 11px;
+            background-color: #A3B9EF;
+        }
+        
+        .main-box {
+            position: relative;
+            /* 使用flex布局解决图片缩放问题 */
+            display: flex;
+            height: 80%;
+            width: 100%;
+            align-items: center;
+        }
+        
+        .main-left {
+            padding: 0 18% 5% 20%;
+        }
+        
+        .main-box .main-title {
+            font-size: 58px;
+        }
+        
+        .main-left .login span:hover {
+            color: #1890FF;
+        }
+        
+        .main-left .login span {
+            width: 180px;
+            font-size: 18px;
+            color: #1851DF;
+        }
+        
+        .main-left .login {
+            display: inline-block;
+            height: 56px;
+            width: 320px;
+            border-radius: 100px;
+            background-color: #FFFFFF;
+        }
+        
+        .main-left .sub-title {
+            margin: 22px 0 52px 0;
+            font-size: 20px;
+            color: #d2ddf6;
+        }
+        
+        .main-left .mi-logo {
+            display: inline-block;
+            margin: 8px 7px 12px 11px;
+            vertical-align: middle;
+            height: 24px;
+            width: 24px;
+            background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAMNSURBVHgB7ZqxctNAEIb/UzyTOJVDSpixKKiTktKuwww8AZgGAg32E8R5AicN0MXwAoYXwCpT2jUFygyUgGkCYUiO3bNkS7Isy4oU6TL5ZqSz7mR7V7t3t3crgSWRTVTwB9u4oGMFVaoyIeiQVD/GXPATdqAc4BwnMKhcw0AcYIQlEHFuUkKfokECP6TLbToqyA6LHsY7LsXbiZJziVRACf4Xr+gHm8hW6DDYEl3678MoReYqIHdRo9YjLHaJrLHpaIk3+BDWaIRVypfYI+H7yF94xqSjp2QKYcYC6kaJNoqIQFu8xr6/yoN8gUdU9FBkJOrUJyz3cqIA+bxZILeJYoRV3HWHW28fYB8zUXx4Hmq6F8oCztP/An2YWMG1QA16UcEZTaxwXUjgCfSDowIINdue4Sd0ZBUbhgrMdIVkLzlRZTTrFAbdXlLPH/a4/E2j3WmMAPNezX/92Vr4FXJ9UsCIMXTWadTa2UNiWAEW6JiCzGFISMPCt/r+uk59sRICWwafkDVswS2a5J/3LvcgglxwH7hqdtqz7pIUgWoJSWff4250+6YJ3DLHZZAHZIWOhRSolJCU90/j3Xe/ATw+8tfdSW/gYxcykSVsqU+H/roy9YnNKlLATG4BL9xJy4EV53d7+vnrYPY75Q06neCypKNA2DDrHQa9yriU01liX/0olDI3CuTNjQJ5wwrY0Bf7Wlhgqd3ggmHr7kJkAYlf0BWJoZDPaJNoBZ3IG93Q2IWXid74JtjOBFdTwTXAt4F/qbmoPZyWcLbR+9AR2ic1OK0DXSHZDWeT1IJ+WNOtxXN8hG6M82hOKLFOuSj95gOLT0oB5UaUTIMuCHTdxN80lFjDAfSwgk37QZM000QBpzPH3GrIEYl9b9rVF8ypVKb0J9EKxVj4rrcqNE9Mk1ubWlLcA0yBsfDtYHVUorvhKGEiX5RrL5XoZpSpaKp2x9scGCl35lzYHOGZeC977Cor1JxUVA3ZYqmJleamOG+uxFLAi+91G0NlN93teTNQzsN2ypH6LKj8h2HS123+Ax5k2JhlsVzoAAAAAElFTkSuQmCC) no-repeat;
+            background-size: contain;
+        }
+        
+        .login div {
+            width: 200px;
+            margin: 8px auto;
+        }
+        
+        .main-right {
+            width: 90%;
+        }
+        
+        .main-right img {
+            width: 95%;
+        }
+        
+        .footer {
+            height: 114px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0px;
+        }
+        
+        .lang,
+        .links,
+        .rights {
+            font-size: 12px;
+        }
+        
+        .lang {
+            margin-bottom: 24px;
+        }
+        
+        .links {
+            margin-bottom: 4px;
+        }
+        
+        .lang a,
+        .lang span {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0 1px 0 1px;
+        }
+        
+        .links a,
+        .rights {
+            padding: 0 1px 0 1px;
+            color: #9ab3ea;
+        }
+        
+        .lang .earth {
+            width: 15px;
+            height: 15px;
+            vertical-align: middle;
+            margin-right: 4px;
+        }
+    </style>
+</head>
+
+<body class="mi_bg">
+    <div class="banner">
+        <!-- 此处最好为button -->
+        <div class="cloud-logo">小米云服务</div>
+        <div class="right">
+            <a href="https://i.mi.com/static2?filename=MicloudWebStatic/res/home/mi-lab.htm&locale=zh_CN#3" target="_blank">客户端</a>
+            <div class="split"></div>
+            <a href="https://i.mi.com/guide/zh-CN/welcome" target="_blank">了解云服务</a>
+        </div>
+    </div>
+    <div class="main-box">
+        <div class="main-left">
+            <div class="main-title">小米云服务</div>
+            <div class="sub-title">随时随地，管理你的所有设备和数据</div>
+            <a class="login" href="https://account.xiaomi.com" target="_blank">
+                <div>
+                    <div class="mi-logo"></div>
+                    <span>使用小米帐号登录</span>
+                </div>
+            </a>
+        </div>
+        <div class="main-right">
+            <img src="https://land.xiaomi.net/mcfe/micloud-web-home/cover-1.50ca28f8.png" alt="小米云服务" class="main-photo">
+        </div>
+    </div>
+    <div class="footer">
+        <div class="lang">
+            <svg t="1632543857692" class="earth" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1443" width="200" height="200"><path d="M1024 512c0-281.6-230.4-512-512-512S0 230.4 0 512c0 260.288 196.288 477.888 448 507.712 12.8 4.288 29.888 4.288 51.2 4.288h17.088c281.6-4.288 507.712-230.4 507.712-512z m-72.512 8.512c0-25.6-4.288-51.2-8.576-76.8v-25.6c4.288 29.888 8.576 59.776 8.576 93.888v8.512zM72.512 512c0-29.888 4.288-59.712 8.576-89.6 17.024 21.312 64 21.312 72.512-8.512 21.312 12.8 46.912 12.8 46.912 38.4 0 76.8 4.288 157.824 72.576 157.824 0 0 29.824 12.8 46.912 59.776 4.288 17.024 46.912 0 46.912 0 46.976 0 0 21.312 0 72.512 0 46.912 110.976 119.488 110.976 119.488 0 29.824 4.224 55.424 8.512 76.8-21.312 0-42.688 4.224-55.488 8.512-204.8-38.4-358.4-217.6-358.4-435.2z m546.176 426.688c0-12.8-12.8-17.088-29.888-12.8 12.8-59.776 21.312-98.176 51.2-123.776 42.688-38.4 4.288-81.024-29.888-76.8-25.6 4.288-8.512-34.112-34.112-34.112s-55.488-46.912-85.312-64c-17.088-8.512-34.176-29.888-64-34.112-25.6 0-59.776 21.312-59.776 4.224 0-55.424-4.224-89.6-8.512-106.624 0-12.8-8.512-4.288 25.6-4.288 17.088 0 8.512-34.112 25.6-38.4 17.088 0 59.712 17.088 68.288 8.512C486.4 448 550.4 622.912 550.4 486.4c0-17.088-8.512-42.688 0-59.712 34.112-59.776 64-110.976 59.712-115.2 0-4.288-34.112-8.576-59.712 0-8.512 4.224 4.288 17.024-8.512 21.312-46.976 12.8-89.6-12.8-72.576-34.112C486.4 277.312 537.6 290.112 541.888 243.2c8.512-25.6 12.8-55.488 12.8-76.8 64 8.512 55.424-81.088-38.4-89.6 187.712 0 349.824 123.712 409.6 294.4-4.288-4.288-8.576-4.288-8.576-4.288C887.488 294.4 819.2 345.6 844.8 409.6c-123.712 98.112-93.888 162.112-51.2 200.512 21.312 21.376 42.688 51.2 55.488 72.576-17.088 42.624 55.424 25.6 85.312-46.976a443.84 443.84 0 0 1-315.712 302.976z" p-id="1444" fill="#e6e6e6"></path></svg>
+            <span>语言：</span>
+            <a class="zh-cn" href="https://i.mi.com/?_locale=zh_CN">中文</a>
+            <a class="en" href="https://i.mi.com/?_locale=en">English</a>
+            <a class="more-lang" href="#">更多语言</a>
+        </div>
+        <div class="links">
+            <a href="https://i.mi.com/find/device/activationlock?_locale=zh_CN">手机申诉解锁</a>
+            <div class="split"></div>
+            <a href="https://privacy.mi.com/xiaomicloud/zh_CN">隐私政策</a>
+            <div class="split"></div>
+            <a href="https://i.mi.com/static?filename=res/useragreement/ToS.html" target="_blank">用户协议</a>
+            <div class="split"></div>
+            <a href="https://www.mi.com/" target="_blank">小米网</a>
+        </div>
+        <div class="rights">
+            ©2021 MIUI . All rights reserved 京ICP备114514号 京公网安备1145141919810
+        </div>
+    </div>
+</body>
+
+</html>

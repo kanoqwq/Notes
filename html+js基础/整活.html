@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .border {
+            width: 1380px;
+            height: 800px;
+            border: #66ccff solid;
+        }
+        
+        .tuiqian {
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            background-color: transparent;
+            color: transparent;
+            border-radius: 5px;
+            user-select: none;
+            text-align: center;
+            line-height: 100px;
+        }
+        
+        .tuiqian {
+            background-color: #66ccff;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="border">
+        <div class="tuiqian" onclick="tuiqian()">RNM,退钱!</div>
+    </div>
+    <script>
+        var tq = document.getElementsByClassName("tuiqian")[0];
+        var x = 0;
+
+        function random(min, max) {
+
+            return Math.floor(Math.random() * (max - min)) + min;
+
+        }
+
+        function tuiqian() {
+            tq.style.top = random(0, 700) + "px";
+            tq.style.left = random(0, 1280) + "px";
+        }
+    </script>
+</body>
+
+</html>

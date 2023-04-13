@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <school></school>
+        <hello></hello>
+    </div>
+    <script>
+        //school组件
+        const school = Vue.extend({
+            //可以使用name属性强制指定组件在开发者工具中呈现的组件名
+            name: 'school',
+            // student是school的子组件,所以要写在school的模板里面
+            template: `
+            <div>
+                <h2>学校名称 {{name}}</h2>
+                <h2>学校地址 {{address}}</h2>
+                <button @click="ShowName">点我提示</button>
+            </div>
+            `,
+            data() {
+                return {
+                    name: 'MIT',
+                    address: 'USA'
+                }
+            },
+            methods: {
+                ShowName() {
+                    //这里的this是VueComponent的实例对象
+                    //不过在没渲染的时候，VueComponent并没有执行，所以这个this其实就是构造函数中的this
+                    alert(this.name)
+                }
+            },
+        })
+
+        //school其实就是个构造函数，是Vue.extend调用的，名叫VueComponent的构造函数
+        //每次渲染页面的时候，遇到要渲染的组件标签就会调用new VueComponent(options)
+        //所以每个标签组件就可以复用，因为他们都是独立的个体对象
+        console.log('@', school);
+
+
+        //子组件test
+        const test = Vue.extend({
+            template: `<h2>test</h2>`
+        })
+
+        //定义hello组件
+        const hello = Vue.extend({
+            template: `
+            <div>
+                <h1>{{msg}}</h1>
+                <test></test>
+            </div>
+            `,
+            data() {
+                return {
+                    msg: 'hello world'
+                }
+            },
+            components: {
+                test
+            }
+        })
+
+        //这个返回的也是一个名叫VueComponent的构造函数
+        //但是，从Vue.extend的源码来看，这两个VueComponent并不是同一个函数
+        //因为Vue.extend源码是这样写的:
+        /*
+        Vue.extend = function (extendOptions) {
+          //省略。。。
+          var Sub = function VueComponent(options) {
+              this._init(options);
+          };
+          //省略。。。
+          return Sub;
+        };
+        */
+        //每次调用Vue.extend的时候，都会创建一个新变量用于接收新构造函数
+        //所以每个组件的VueComponent都成为了独立的个体
+        //直到渲染到页面时候，会执行这个构造函数
+        console.log('#', hello);
+
+        //创建vm
+        vm = new Vue({
+            el: '#root',
+            components: {
+                school,
+                hello
+            }
+        });
+        //如何获取Vue所管理的组件实例对象
+        //可以使用`vm.$children`属性获取
+        console.log(vm.$children);
+        //嵌套组件调用
+        console.log(vm.$children[1].$children[0]);
+    </script>
+</body>
+
+</html>

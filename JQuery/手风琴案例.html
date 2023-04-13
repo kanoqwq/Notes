@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        a{
+            display: block;
+        }
+        ul{
+            overflow: hidden;
+        }
+        li{
+            position: relative;
+            float: left;
+            margin: 20px;
+            list-style: none;
+            height: 100px;
+            overflow: hidden;
+        }
+        li::after,ul::after{
+            content: " ";
+            display: block;
+            clear: both;
+        }
+        .link {
+            position: relative;
+        }
+        li .small{
+            width: 100px;
+        }
+        li .big{
+            display: none;
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <a href="#" class="link">
+            <img src="./img/鹿乃_打call.png" alt="" class="small">
+            <img src="./img/kano-2d-08.png" alt="" class="big">
+            </a>
+        </li>
+        <li>
+            <a href="#">
+            <img src="./img/鹿乃_打call.png" alt="" class="small">
+            <img src="./img/kano-2d-08.png" alt="" class="big">
+            </a>
+        </li>
+        <li>
+            <a href="#">
+            <img src="./img/鹿乃_打call.png" alt="" class="small">
+            <img src="./img/kano-2d-08.png" alt="" class="big">
+            </a>
+        </li>
+        <li>
+            <a href="#">
+            <img src="./img/鹿乃_打call.png" alt="" class="small">
+            <img src="./img/kano-2d-08.png" alt="" class="big">
+            </a>
+        </li>
+    </ul>
+    <script>
+        $(function(){
+            $('li').hover(function(){
+                //淡出小图，显示大图，变宽
+                $(this).stop().animate({
+                    width: 200
+                },200).find('.small').stop().fadeOut(100).siblings('.big').stop().fadeIn(300);
+
+
+            },function(){
+                $(this).stop().animate({
+                    width: 100
+                },200).find('.small').stop().fadeIn(100).siblings('.big').stop().fadeOut(300);
+            })
+        })
+    </script>
+</body>
+</html>

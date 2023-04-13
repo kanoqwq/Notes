@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        
+        body {
+            height: 6000px;
+            width: 6000px;
+        }
+        
+        span {
+            position: fixed;
+            width: 400px;
+            height: 200px;
+            background-color: #66ccff;
+            color: red;
+            font-size: 16px;
+            box-sizing: border-box;
+            padding: 10px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>这是一段文字</p>
+    <p>这段文字不可选中</p>
+    <p>此页面无法右键</p>
+    <p>此页面也没法f12</p>
+    <span></span>
+    <script>
+        //静止网页内右键
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        //禁止选中文字
+        document.addEventListener('selectstart', function(e) {
+            e.preventDefault();
+        });
+
+        //禁止f12
+        document.addEventListener('keydown', function(e) {
+            if (e.keyCode == 123) {
+                e.preventDefault();
+            }
+            //ctrl+shift+I
+            if (e.ctrlKey && e.shiftKey && e.keyCode == 73) {
+                e.preventDefault();
+            }
+        });
+        // /鼠标事件对象 MouseEvent
+        document.addEventListener('mousemove', function(e) {
+            var span = document.querySelector("span");
+            // 获取可视区域的鼠标坐标（与页面是否滚动无关）
+            console.log(span.innerHTML = '可视区域X：' + e.clientX + ' px' + '  可视区域Y：' + e.clientY + ' px' + '<br>');
+
+            //获取鼠标在页面文档的坐标（即文档页面顶部距离鼠标的坐标）
+            console.log(span.innerHTML += '页面文档X：' + e.pageX + ' px' + '  页面文档Y：' + e.pageY + ' px' + '<br>');
+
+            //获取鼠标相对于电脑屏幕的XY坐标
+            console.log(span.innerHTML += '电脑屏幕X：' + e.screenX + ' px' + '  电脑屏幕Y：' + e.screenY + ' px' + '<br>');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <p>{{text}}</p>
+    </div>
+    <script>
+        //el的两种写法
+        const v = new Vue({
+            // el: '#root',
+            data: {
+                text: "你好呀"
+            }
+        });
+        console.log(v);
+        //使用实例对象的原型对象上的$mount方法挂载元素
+        v.$mount('#root')
+
+        //data 的两种写法
+
+        //对象式
+        new Vue({
+            //el: '#root',
+            data: {
+                text: "你好呀"
+            }
+        });
+
+
+        //函数式
+        //函数式适用于vue组件
+        new Vue({
+            el: '#root',
+            data: function() {
+                //此处的this是Vue的实例对象
+                console.log(this)
+                return {
+                    name: '你好呀'
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

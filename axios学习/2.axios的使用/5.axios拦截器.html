@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+
+<body>
+    <script>
+        //创建实例对象 
+        const duanzi = axios.create({
+            baseURL: 'http://v1.hitokoto.cn',
+            timeout: 200,
+            method: 'get'
+        })
+
+        // 设置请求拦截器 config就是配置对象
+        duanzi.interceptors.request.use(function(config) {
+            console.log(config);
+            console.log('请求拦截器成功');
+            return config
+        }, function(error) {
+            console.log('请求拦截器失败');
+            return Promise.reject(error)
+        })
+
+        //设置响应拦截器
+        duanzi.interceptors.response.use(function(response) {
+            console.log('响应拦截器成功');
+            console.log(response);
+            return response
+        }, function(error) {
+            console.log('响应拦截器失败');
+            return Promise.reject(error)
+        })
+
+        duanzi({
+            params: {
+                c: 'a'
+            }
+        }).then(
+            res => {
+                console.log(res);
+            },
+            reason => {
+                console.warn(reason.message);
+            }
+        )
+    </script>
+</body>
+
+</html>

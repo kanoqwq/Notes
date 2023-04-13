@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>显示隐藏密码案例</title>
+</head>
+
+<body>
+    <input type="password"><input type="checkbox" id="cb" name="">显示/隐藏密码
+    <script>
+        var pwd = document.getElementsByTagName("input")[0];
+        var cb = document.querySelector("#cb")
+        cb.onclick = function() {
+            if (this.checked === true) {
+                pwd.type = 'text';
+            } else {
+                pwd.type = 'password';
+            }
+        }
+    </script>
+</body>
+
+</html>

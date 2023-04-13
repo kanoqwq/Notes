@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2 :style="{opacity}">Vue</h2>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                opacity: 1
+            },
+            //挂载完毕（真实DOM放入到页面）执行的函数
+            //Vue完成模板解析并吧真实DOM元素放入页面后（完成挂载）调用mounted
+            //整个生命周期中mounted只调用一次
+            mounted() {
+                setInterval(() => {
+                    this.opacity -= 0.01;
+                    if (this.opacity <= 0) {
+                        this.opacity = 1;
+                    }
+                }, 16);
+            },
+        });
+        //写在外面不太好，不推荐
+        // setInterval(function(){
+        //     vm.opacity -=0.01;
+        //     if(vm.opacity <=0 ){
+        //         vm.opacity = 1;
+        //     }
+        // },16);
+    </script>
+</body>
+
+</html>

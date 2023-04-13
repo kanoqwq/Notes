@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>人员列表</h2>
+        <ul>
+            <!-- 使用v-for进行遍历输出 -->
+            <!-- 只要你使用了遍历语法，你就必须要使用key这个关键字,给每一个li设定唯一的标识 -->
+            <li v-for="p in persons" :key="p.id">{{p.name}}</li>
+        </ul>
+        <ul>
+            <!-- key的另一种写法 -->
+            <!-- a就相当于item，b就相当于index -->
+            <li v-for="(a,b) in persons" :key="b">A:{{a}} B:{{b}} </li>
+
+
+        </ul>
+        <ul>
+            <!-- 也可以使用of 遍历对象（in也可以） 这样a就是value b就是key了 -->
+            <li v-for="(a,b) of car" :key="b">key: {{b}} ---- value :{{a}}</li>
+        </ul>
+        <ul>
+            <!-- 甚至还能遍历字符串 -->
+            <li v-for="(a,b) in str" :key="b">key: {{b}} ---- value :{{a}}</li>
+        </ul>
+        <ul>
+            <!-- 甚至还能遍历输出数字 -->
+            <li v-for="(a,b) in 10" :key="b">key: {{b}} ---- value :{{a}}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                persons: [{
+                    id: '001',
+                    name: '张三',
+                    age: '18'
+                }, {
+                    id: '002',
+                    name: '李四',
+                    age: '19'
+                }, {
+                    id: '003',
+                    name: '王五',
+                    age: '20'
+                }],
+                car: {
+                    name: '马自达',
+                    price: '114514'
+                },
+                str: 'kanokano123'
+            }
+        });
+    </script>
+</body>
+
+</html>

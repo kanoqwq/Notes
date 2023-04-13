@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul>
+        <li>abc1</li>
+        <li>abc2</li>
+        <li>abc3</li>
+    </ul>
+    <script>
+        var ul = document.querySelector("ul");
+        var li = document.querySelector("li");
+        ul.onclick = function(event) {
+            //this指向的是绑定onclick事件的元素
+            console.log("这是this\n", this);
+            //event.target指向的是鼠标点击触发事件的标签元素(事件源)
+            console.log("这是event\n", event.target);
+            //和this相似的属性
+            console.log(event.currentTarget)
+        }
+    </script>
+</body>
+
+</html>

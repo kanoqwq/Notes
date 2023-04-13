@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登了个录</title>
+</head>
+
+<body>
+    <form action="/api/login" method="post">
+        <p>用户名：<input type="text" name="username" id="username"></p>
+        <p>密码：<input type="password" name="password" id="password"></p>
+        <p><input type="submit" value="登录"></p>
+    </form>
+    <a href="./api/username">查看登录结果</a>
+    <a href="./api/logout">退出登录</a>
+</body>
+
+</html>

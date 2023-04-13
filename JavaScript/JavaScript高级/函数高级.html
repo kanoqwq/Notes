@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>获取验证码</button>
+    <button>获取验证码</button>
+    <button>获取验证码</button>
+    <button>获取验证码</button>
+    <script>
+        {
+            //严格模式
+            'use strict'
+            //函数的定义的三种方式
+            //定义方式
+            function fn() {};
+            fn();
+            //声明方式（匿名函数）
+            var func = function() {};
+            func();
+            //new Function()方式（不常用）
+            var f = new Function('a', 'b', 'console.log(a+b)'); //a,b 为形参 Function参数都为字符串格式,效率低
+            f(1, 2);
+            //所有的函数都是 Function 的实例（对象）
+            //函数也属于对象
+            console.log(fn instanceof Object);
+            console.log(fn.__proto__.constructor); //函数的原型对象的构造函数就是Function
+
+
+            //函数的调用方式
+            fn(); //常规调用方式
+            fn.call(); //使用call调用
+
+            //对象的方法
+            var o = {
+                fnfn: function() {
+                    console.log('ddd');
+                }
+            };
+            o.fnfn();
+            //构造函数
+            function Star() {}
+            new Star();
+            //绑定事件函数
+            document.onclick = function() {};
+            //定时器函数
+            setInterval(function() {}, );
+            //立即执行函数
+            (function() {})();
+
+        };
+
+        {
+            //函数的this指向
+
+            //普通函数
+            function fn11() {
+                console.log('普通函数的this' + this) //指向window
+            }
+            fn11();
+            //对象方法
+            var o = {
+                fnfn: function() {
+                    console.log('对象方法this', this); //指向对象本身
+                }
+            };
+            //构造函数 this 指向实例对象 指向kano这个实例对象 
+            function Star() {}
+            Star.prototype.sing = function() {
+                console.log(this);
+            }; //原型对象的this指向的也是kano这个实例对象
+            var kano = new Star();
+            kano.sing();
+            //绑定事件函数 this指向的是函数的调用者 document这个对象
+            document.onclick = function() {
+                console.log('绑定事件函数的this' + this);
+            };
+            //定时器函数
+            setTimeout(function() {
+                console.log("定时器的this" + this); //还是指向window
+            }, 1000);
+            //立即执行函数
+            (function() {
+                console.log('立即执行函数this' + this) //也是指向window
+            })()
+            /*
+            总结：this指向，是当我们调用函数的时候决定的，调用方式的不同决定了this指向不同
+            一般是指向我们的调用者
+            调用方式       this指向
+            普通函数的调用  window
+            构造函数的调用  实例对象，原型对象里面的方法也指向实例对象
+            对象方法调用    该方法所属对象
+            事件绑定方法    绑定事件对象
+            定时器函数      window
+            立即执行函数    window
+            */
+
+            //改变函数内部的指向
+            {
+                //call方法 调用一个对象，简单理解为调用函数的方式，但是它可以改变这个函数的this指向
+                var o = {
+                    name: 'kano'
+                }
+
+                function fn(a, b) {
+                    console.log(this)
+                    console.log(a + b);
+                }
+                fn.call(o, 1, 2);
+                //call的主要作用可以实现继承
+                function Father(name, age, sex) {
+                    this.name = name;
+                    this.age = age;
+                    this.sex = sex;
+                }
+
+                function Son(name, age, sex) {
+                    Father.call(this, name, age, sex)
+                }
+                var son = new Son("kano", 18, '女');
+                console.log(son);
+                //apply方法
+                var o1 = {
+                    name: 'kano'
+                };
+
+                function fn(arr) {
+                    console.log(this);
+                    console.log(arr);
+                }
+                fn.apply(o1, ['我是字符串']);
+                //1. 也是调用函数 第二个可以改函数内部的this指向
+                //2. 但是他的参数必须是数组或者伪数组
+                //下面的方法使用 apply 方法寻找一个数值数组中的最大元素。 Math.max.apply([1, 2, 3]) 等价于 Math.max(1, 2, 3)， 但是你可以使用 Math.max.apply 作用于任意长度的数组上。
+                var max = Math.max.apply(null, [1, 2, 2, 1, 2, 1, 4, 23, 14, 32, 15, 43, 512, 43, 16, 32, 6, 32, 5, 43, 25]); //这里不需要传递对象进去就可以写null，但是这里推荐写Math，具体原因参考后面的严格模式
+                //最小值同理
+                //注意：虽然apply传递的是一个数组的形式，但是他进入函数时候会把数组依次转换成我们想要的格式
+                console.log("最大值是：" + max);
+                //高效率的push方法
+                var arr1 = [1, 2, 3, 4, 5];
+                var arr2 = [6, 7, 8, 9, 10];
+                arr1.push.apply(arr1, arr2);
+                console.info(arr1);
+
+                //bind方法
+                //bind方法不会调用函数，但是能改变函数内部的this指向
+                //fun.bind(thisArg, arg1, arg2, arg3.....)
+                //thisArg:在fun函数运行时指定的this值
+                //argx ：传递的其他参数
+                //返回由指定的this和初始化参数改造的 原函数拷贝 
+                //就相当于我用自己的参数绑定了那个函数，由于是先拷贝后改变，所以原函数其实是不变的
+                function fn2(a, b) {
+                    console.log("bind:" + this + (a + b));
+                }
+                var fncp = fn2.bind(o, 2, 3);
+                console.log(fncp);
+                fncp(1, 2); //bind:[object Object]5 //因为bind中使用参数之后就变成了被预置入绑定函数的参数列表，因此无法再次进行修改
+                fn2(1, 2); //bind:[object window]3
+                //bind方法不会调用原来的函数 可以改变原来函数内部的this指向
+                //返回的是原函数改变this之后产生的新函数
+                //例子：我们有一个按钮，当我们点击之后，就禁用这个按钮，3秒之后再开启这个按钮
+                var btns = document.querySelectorAll('button');
+                for (var i = 0; i < btns.length; i++) {
+                    btns[i].onclick = function() {
+                        this.disabled = true;
+                        setInterval(function() {
+                            this.disabled = false;
+                        }.bind(this), 3000); //这个this指向的是btn这个对象 在函数外面绑定一个bind，指向btn，就能解决定时器里面this指向问题
+                    }
+                }
+                ////call apply bind 总结：
+                ////相同点：都可以改变函数内部的this的指向
+                ////不同点
+                ////1.call 和apply都会调用函数，但是他们传递的参数不一样，call传递参数arg1，arg2...形式 apply必须是数组形式[arg]
+                ////主要应用场景：
+                // call经常做继承
+                // apply和数组有关系
+                // bind 不调用函数，但是想改变函数内部this指向
+            }
+        };
+    </script>
+</body>
+
+</html>

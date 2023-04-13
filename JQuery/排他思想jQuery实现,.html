@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.min.js"></script>
+    <style>
+        #btnlst li {
+            width: 200px;
+            height: 50px;
+            background-color: pink;
+            text-align: center;
+            line-height: 50px;
+        }
+        
+        ul {
+            display: flex;
+            align-items: center;
+        }
+        
+        li {
+            list-style: none;
+            border: 1px solid #ccc;
+            font-size: 0;
+        }
+        
+        #img li {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+        <input type="checkbox">
+    </div>
+    <div>
+        <ul id="btnlst">
+            <li>1</li>
+            <li>2</li>
+        </ul>
+    </div>
+    <div>
+        <ul id="img">
+            <li><img src="./d.gif" alt=""></li>
+            <li><img src="./1.gif" alt=""></li>
+        </ul>
+    </div>
+    <script>
+        $($('div input').hover(function() {
+            $(this).prop("checked", true).siblings("input").prop("checked", false);
+        }));
+        $(
+            $('#btnlst li').mouseover(
+                function() {
+                    var index = $(this).index();
+                    console.log(index);
+                    $("#img li").eq(index).show();
+
+                }
+            )
+        );
+        $(
+            $('#btnlst li').mouseout(
+                function() {
+                    var index = $(this).index();
+                    $("#img li").eq(index).hide();
+                }
+            )
+        );
+    </script>
+</body>
+
+</html>

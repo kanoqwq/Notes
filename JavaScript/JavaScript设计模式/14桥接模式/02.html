@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //桥接模式实现之动画效果框架
+
+        //动画类型具体实现
+        const Animations = {
+            bounce: {
+                show(ele) {
+                    console.log(ele, "弹跳显示");
+                },
+                hide(ele) {
+                    console.log(ele, "弹跳隐藏");
+                }
+            },
+            slide: {
+                show(ele) {
+                    console.log(ele, "滑动显示");
+                },
+                hide(ele) {
+                    console.log(ele, "滑动隐藏");
+                }
+            },
+            rotate: {
+                show(ele) {
+                    console.log(ele, "旋转显示");
+                },
+                hide(ele) {
+                    console.log(ele, "旋转隐藏");
+                }
+            }
+        }
+
+        //弹出框类型
+        function Toast(ele, animation) {
+            this.ele = ele
+            this.animation = animation
+        }
+        Toast.prototype.show = function (ele) {
+            //抽象
+            this.animation.show(ele)
+        }
+        Toast.prototype.hide = function (ele) {
+            //抽象
+            this.animation.hide(ele)
+        }
+
+        let tt = new Toast('div1',Animations.bounce)
+        tt.show('div')
+        setTimeout(()=>{
+            tt.hide('div')
+        },1000)
+    </script>
+</body>
+
+</html>

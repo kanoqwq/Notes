@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script type="module">
+        /*引入 上面的js文件内模块的内容*/ /*通用的导入模组的方式*/ import * as kanoMOD from "./kano.js"; import * as kanoMOD1 from "./kano1.js"; import * as kanoMOD2 from "./kano2.js"; console.log(kanoMOD); console.log(kanoMOD1); console.log(kanoMOD2); console.log("---------------");
+        /*使用解构赋值的形式*/ import {name ,sing} from "./kano.js"; import {name as name1 ,sing as sing1} from "./kano1.js"; import {default as kano} from "./kano2.js"; console.log(name); console.log(name1); console.log(kano); console.log('---------------');
+        /*简便形式，针对于默认暴露*/ import kanoMOD3 from "./kano2.js"; console.log(kanoMOD3);
+    </script>
+</body>
+
+</html>

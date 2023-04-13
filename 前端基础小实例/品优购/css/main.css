@@ -1,0 +1,105 @@
+/* 主页内容 start */
+
+* {
+    box-sizing: border-box;
+}
+
+.main_item {
+    height: 1800px;
+    /* background-color: lightblue; */
+}
+
+.main_item .w {
+    height: 100%;
+    background-color: #fff;
+}
+
+.main_item .w .top_widget {
+    height: 455px;
+    /* background-color: pink; */
+}
+
+.main_item .w .top_widget .topimg {
+    margin-left: 220px;
+}
+
+.main_item .w .right_box {
+    float: right;
+    width: 251px;
+    height: 100%;
+    /* background-color: #66ccff; */
+}
+
+.main_item .w .right_box .news {
+    height: 165px;
+    border: 1px solid #e4e4e4;
+    border-bottom: none;
+    /* background-color: pink; */
+}
+
+.main_item .w .right_box .life_service {
+    height: 210px;
+    width: 251px;
+    /* border-right: 1px solid #e4e4e4; */
+    border-left: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    /* background-color: cyan; */
+}
+
+.main_item .w .right_box .tj {
+    height: 80px;
+    /* background-color: red; */
+}
+
+.main_item .w .right_box .news .title {
+    padding: 0 10px;
+    border-bottom: 1px solid #e4e4e4;
+}
+
+.main_item .w .right_box .news .title span {
+    font-size: 14px;
+}
+
+.main_item .w .right_box .news .title a {
+    float: right;
+}
+
+.main_item .w .right_box .news .title a::after {
+    content: '\e607';
+    font-family: "iconfont";
+}
+
+.main_item .w .right_box .news .item {
+    float: left;
+    margin-left: 10px;
+    line-height: 26px;
+}
+
+.main_item .w .right_box .life_service ul li {
+    float: left;
+    /* 这里使用25%的目的是因为每个小盒子有边框存在，导致实际宽度会略大于期望宽度，所以使用百分比更为精确 */
+    width: 25%;
+    height: 70px;
+    /* line-height: 70px; */
+    border: 1px solid #e4e4e4;
+    border-bottom: none;
+    border-left: none;
+    text-align: center;
+}
+
+.main_item .w .right_box .life_service ul li a::before {
+    content: '\e66f';
+    display: block;
+    margin-top: 5px;
+    color: #E60012;
+    font-family: "iconfont";
+    font-size: 25px;
+}
+
+.main_item .w .right_box .tj {
+    border: none;
+    padding-top: 5px;
+}
+
+
+/* 主页内容 end */

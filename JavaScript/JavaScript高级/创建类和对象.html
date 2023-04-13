@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>dd</button>
+    <script>
+        // 在ES6中类没有变量提升，所以要先定义类，再实例化
+        //类中的共有的属性和方法一定要加this使用
+        //注意类的this指向问题
+        // 创建一个类
+        //谁调用了this，this就指向谁
+        class Star {
+            //构造器
+            constructor(name, age, song) {
+                    //这个this指向的是创建的实例对象
+                    this.name = name;
+                    this.age = age;
+                    //在构造器中实例化后也可以调用sing方法
+                    this.sing(song)
+                    this.btn = document.querySelector('button');
+                    this.btn.onclick = this.sing;
+                }
+                //方法
+            sing(song) {
+                // 这个sing方法里面的this指向的是btn这个按钮， 因为这个按钮调用了这个函数
+                console.log(this);
+                console.log(song ? song : this.song);
+            }
+        }
+
+        var star = new Star("no", 22, "hello/how are you");
+        star.name = "kano";
+        console.log(star.name, star.age);
+        star.sing("コバルトメモリーズ");
+    </script>
+</body>
+
+</html>

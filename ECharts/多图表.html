@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- echarts -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.0/echarts.common.js"></script>
+    <style>
+        .main,
+        .main2 {
+            height: 600px;
+            width: 600px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 显示图表的容器 -->
+    <div class="main"></div>
+    <div class="main2"></div>
+    <script>
+        let dom1 = document.querySelector('.main')
+        let dom2 = document.querySelector('.main2')
+        // 初始化eharts实例
+        let myCharts1 = echarts.init(dom1)
+        let myCharts2 = echarts.init(dom2)
+        // console.log(myCharts);
+        //指定图表的配置项与数据
+        let option = {
+            //图表标题
+            title: {
+                //主标题
+                text: '数据可视化',
+                //子标题
+                subtext: 'echarts的基本使用',
+                //主标题的颜色
+                textStyle: {
+                    color: '#66ccff'
+                },
+                //标题的位置
+                left: 'center'
+            },
+            //x轴配置项
+            xAxis: {
+                //数据
+                data: ['衣服', '直播', '游戏', '电影']
+            },
+            //y轴配置项
+            yAxis: {
+                // 显示Y轴的线
+                axisLine: {
+                    show: true
+                },
+                //显示y轴的刻度
+                axisTick: {
+                    show: true
+                }
+            },
+            //系列的设置(绘制什么样类型的图表，数据的展示在这里设置)
+            series: [
+                {
+                    //图标类型的设置{line是折线图，pie是饼图，bar是柱状图}
+                    type: 'bar',
+                    //图表的数据
+                    data: [1, 2, 3, 4],
+                    color: 'pink',
+
+                }
+            ]
+        }
+        myCharts1.setOption({
+            title:{
+                text:'折线图',
+                subtext:'echarts的基本使用',
+                left:'center',
+                textStyle:{
+                    color:'#66ccff'
+                },
+                subtextStyle:{
+                    color:'green'
+                }
+            },
+            xAxis:{
+                data:['星期一','星期二','星期三','星期四','星期五','星期六','星期日']
+            },
+            yAxis:{
+                axisLine:{
+                    show:true
+                }
+            },
+            //图标类型设置
+            series:[{
+                type:'line',
+                data:[10,20,15,44,2,19,100]
+            }]
+        })
+        myCharts2.setOption(option)
+    </script>
+</body>
+
+</html>

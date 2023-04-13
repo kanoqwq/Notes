@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>名字：{{name}}</h2>
+        <h2>年龄：{{age}}</h2>
+    </div>
+    <script>
+        let data = {
+            name: 'kano',
+            age: 10
+        }
+        var vm = new Vue({
+            el: '#root',
+            data
+        });
+        console.log(data === vm._data); //true
+        vm.name = "kanokano"
+        console.log(data.name, vm._data.name); //一致
+    </script>
+</body>
+
+</html>

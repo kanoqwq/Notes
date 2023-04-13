@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 3.编写组件标签 -->
+        <school></school>
+        <!-- 复用,事件对象互相独立 -->
+        <school></school>
+        <h1>{{msg}}</h1>
+        <student></student>
+        <hr>
+        <!-- 全局组件 -->
+        <hello></hello>
+    </div>
+    <script>
+        Vue.config.productionTip = false;
+
+        //1.注册组件
+        //创建一个school组件
+        const school = Vue.extend({
+            //不要写el配置项，因为左右组件最终都有vm实例管理
+            //写template
+            template: `
+            <div>
+                <h2>学校名称 {{name}}</h2>
+                <h2>学校地址 {{address}}</h2>
+                <button @click="ChangeName">点我修改学校名为加里顿</button>
+            </div>
+            `,
+            //     el: '#root',
+            //data必须写为函数式，因为对象式为引用类型，会造成一些问题
+            //使用函数形式，其中的return可以自动复制对象（深拷贝）
+            data() {
+                return {
+                    name: 'MIT',
+                    address: 'USA'
+                }
+            },
+            methods: {
+                ChangeName() {
+                    this.name = "加里顿"
+                }
+            },
+        })
+
+        //创建一个student组件
+        const student = Vue.extend({
+            //写template
+            template: `
+            <div>
+                <h2>学生姓名 {{name}}</h2>
+                <h2>学生年龄 {{age}}</h2>
+            </div>
+            `,
+            data() {
+                return {
+                    name: 'kano',
+                    age: 19
+                }
+            }
+        })
+
+        //全局组件
+        const globalHello = Vue.extend({
+            template: `
+            <div>
+                hello1234
+            </div>
+            `,
+            data() {
+                return {
+                    name: 'TOM'
+                }
+            }
+        })
+
+        //全局注册组件
+        Vue.component('hello', globalHello)
+
+        //2.注册组件（局部注册）
+
+        //创建vm
+        new Vue({
+            el: '#root',
+            //填入组件
+            components: {
+                //es6缩写
+                school,
+                student
+            },
+            data: {
+                msg: 'hello'
+            }
+        });
+    </script>
+</body>
+
+</html>

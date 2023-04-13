@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        ul {
+            height: 400px;
+            overflow: auto;
+        }
+        
+        ul li {
+            height: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{hello}}</h1>
+        <!-- .prevent就可以阻止默认行为 -->
+        <!-- .prevent就是事件修饰符 -->
+        <a href="//baidu.com" @click.prevent="showInfo">点我</a>
+
+        <!-- 阻止事件冒泡（常用） -->
+        <div @click="showInfo" style="background-color:skyblue">
+            <button @click.stop="showInfo">点点点</button>
+        </div>
+
+        <!-- 一次性事件 -->
+        <button @click.once="showInfo">我是一次性的</button>
+
+        <!-- 事件捕获模式 -->
+        <!-- 点击紫色盒子，先输出1再输出2 -->
+        <div @click.capture="show(1)" style="background-color:skyblue;padding: 10px;">1
+            <div @click.capture="show(2)" style="background-color:blueviolet;">2</div>
+        </div>
+
+        <!-- 只有event.target 是当前操作的元素才会触发事件，点击紫色盒子的时候会触发事件，此时e.target是点击的那个button，然后会触发事件冒泡 -->
+        <!-- 事件冒泡到上层绑定事件的元素时，由于加了.self修饰，发现了触发事件的event不是自己，就不会触发事件操作 -->
+        <div @click.self="show(1)" style="background-color:skyblue;padding: 10px;">1
+            <button @click="show(2)" style="background-color:blueviolet;">2</button>
+        </div>
+
+        <!-- 事件的默认行为是立即执行，无需等待事件回调即可执行完毕 -->
+        <!-- wheel是鼠标滚轮事件 -->
+        <ul @wheel.passive="scrollbig">
+            <li>1111</li>
+            <li>2222</li>
+            <li>3333</li>
+            <li>4444</li>
+        </ul>
+
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                hello: '你好！'
+            },
+            methods: { //methods内的方法不做数据代理
+                showInfo(e) {
+                    alert('okk')
+                    console.log(this); //这里的this是vm
+                    console.log(e.target.innerText);
+                },
+                show(s) {
+                    console.log(s);
+                },
+                scrollbig() {
+                    for (var i = 0; i < 999; i++) {
+                        console.log('dddd');
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

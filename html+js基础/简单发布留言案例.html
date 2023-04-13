@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <textarea cols="30" rows="10"></textarea>
+    <button id="submit">提交</button>
+    <ul>
+
+    </ul>
+    <script>
+        var btn = document.querySelector("#submit");
+        var text = document.querySelector("textarea");
+        var ul = document.querySelector("ul");
+        btn.onclick = function() {
+            //创建元素
+            var li = document.createElement("li");
+
+            if (text.value == "")
+            ;
+            else {
+                //添加元素
+                ul.appendChild(li);
+                li.setAttribute("style", "background-color:pink;margin:5px;padding:2px");
+                //填充文本
+                li.innerText = text.value;
+                //在留言末尾添加删除按钮
+                var delbtn = document.createElement("a");
+                delbtn.href = "javascript:;";
+                delbtn.setAttribute("style", "padding-left:50px");
+                delbtn.innerText = "删除";
+                li.appendChild(delbtn);
+                //可直接在事件里面嵌套绑定点击事件
+                delbtn.onclick = function() {
+                    //直接删除掉当前delbtn标签的父级标签
+                    this.parentElement.remove()
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

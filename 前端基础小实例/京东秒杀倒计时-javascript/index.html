@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>京东秒杀倒计时DEMO</title>
+    <style>
+        * {
+            margin: 0;
+            border: 0;
+            box-sizing: border-box;
+        }
+        
+        .miaosha {
+            width: 200px;
+            height: 300px;
+            padding-top: 30px;
+            /* padding: 30px 35px 0 35px; */
+            text-align: center;
+            color: white;
+            background-color: #F6472D;
+        }
+        
+        .miaosha h3 {
+            color: #F5F5F5;
+            font-weight: 500;
+        }
+        
+        .timebox {
+            position: relative;
+            display: inline-block;
+            padding-top: 20px;
+        }
+        
+        .timebox .h,
+        .timebox .m,
+        .timebox .s {
+            float: left;
+            width: 40px;
+            height: 40px;
+            margin: 0 2px;
+            line-height: 40px;
+            background-color: #353832;
+        }
+        
+        .timebox::before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 40px;
+            height: 1px;
+            width: 100%;
+            background-color: #F6472D;
+        }
+        
+        .timebox span {
+            position: relative;
+            font-size: 700;
+            z-index: 10;
+        }
+    </style>
+    <script>
+        window.onload = function() {
+            let h, m, s;
+            h = document.getElementsByClassName('h')[0];
+            m = document.getElementsByClassName('m')[0];
+            s = document.getElementsByClassName('s')[0];
+            let timeSet = 60 * 60 * 59;
+            // 先调用一次函数， 避免出现88 88 88
+            cd();
+            setInterval(cd, 1000);
+
+            function cd() {
+                if (timeSet > 0) {
+                    let hour, minute, second;
+                    hour = ((timeSet / 3600) < 10) ? '0' + Math.floor(timeSet / 3600) : Math.floor(timeSet / 3600);
+                    minute = ((timeSet / 60 % 60) < 10) ? '0' + Math.floor(timeSet / 60 % 60) : Math.floor(timeSet / 60 % 60);
+                    second = ((timeSet % 60) < 10) ? '0' + Math.floor(timeSet % 60) : Math.floor(timeSet % 60);
+
+                    h.innerHTML = "<span>" + hour + "<span>";
+
+                    if (timeSet / 60 != 60)
+                        m.innerHTML = "<span>" + minute + "<span>";
+                    else
+                        m.innerHTML = "<span>" + '00' + "<span>";
+
+                    s.innerHTML = "<span>" + second + "<span>";
+                    timeSet--;
+                    console.log(timeSet)
+                }
+            }
+
+        };
+    </script>
+</head>
+
+<body>
+    <div class="miaosha">
+        <h1>京东秒杀</h1>
+        <h3>FLASH DEALS</h3>
+        <svg t="1636778271636" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3499" width="48" height="48"><path d="M753.152 479.4368H613.376c-12.5952 0-22.2208-11.3664-20.1728-23.7568l49.7664-304.8448c3.2768-19.968-21.4016-32.0512-35.2256-17.3056L255.8976 510.0544c-12.1856 13.1072-2.9696 34.5088 14.9504 34.5088H410.624c12.5952 0 22.2208 11.3664 20.1728 23.7568l-49.7664 304.8448c-3.2768 19.968 21.4016 32.0512 35.2256 17.3056l351.8464-376.5248c12.288-13.1072 2.9696-34.5088-14.9504-34.5088z" p-id="3500" data-spm-anchor-id="a313x.7781069.0.i4" class="selected" fill="#ffffff"></path></svg>
+        <p>本场距离结束还剩</p>
+        <div class="timebox">
+            <div class="h">
+                <span>88</span>
+            </div>
+            <div class="m">
+                <span>88</span>
+            </div>
+            <div class="s">
+                <span>88</span>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

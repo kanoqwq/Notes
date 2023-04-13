@@ -1,0 +1,3395 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "mall后台相关接口文档",
+        "version": "1.0",
+        "title": "mall后台系统",
+        "contact": {
+            "name": "macro"
+        }
+    },
+    "host": "120.24.64.5:82",
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "CmsPrefrenceAreaController",
+            "description": "商品优选管理"
+        },
+        {
+            "name": "CmsSubjectController",
+            "description": "商品专题管理"
+        },
+        {
+            "name": "MinioController",
+            "description": "MinIO对象存储管理"
+        },
+        {
+            "name": "OmsCompanyAddressController",
+            "description": "收货地址管理"
+        },
+        {
+            "name": "OmsOrderController",
+            "description": "订单管理"
+        },
+        {
+            "name": "OmsOrderReturnApplyController",
+            "description": "订单退货申请管理"
+        },
+        {
+            "name": "OmsOrderReturnReasonController",
+            "description": "退货原因管理"
+        },
+        {
+            "name": "OmsOrderSettingController",
+            "description": "订单设置管理"
+        },
+        {
+            "name": "OssController",
+            "description": "Oss管理"
+        },
+        {
+            "name": "PmsBrandController",
+            "description": "商品品牌管理"
+        },
+        {
+            "name": "PmsProductAttributeCategoryController",
+            "description": "商品属性分类管理"
+        },
+        {
+            "name": "PmsProductAttributeController",
+            "description": "商品属性管理"
+        },
+        {
+            "name": "PmsProductCategoryController",
+            "description": "商品分类管理"
+        },
+        {
+            "name": "PmsProductController",
+            "description": "商品管理"
+        },
+        {
+            "name": "PmsSkuStockController",
+            "description": "sku商品库存管理"
+        },
+        {
+            "name": "SmsCouponController",
+            "description": "优惠券管理"
+        },
+        {
+            "name": "SmsCouponHistoryController",
+            "description": "优惠券领取记录管理"
+        },
+        {
+            "name": "SmsFlashPromotionController",
+            "description": "限时购活动管理"
+        },
+        {
+            "name": "SmsFlashPromotionProductRelationController",
+            "description": "限时购和商品关系管理"
+        },
+        {
+            "name": "SmsFlashPromotionSessionController",
+            "description": "限时购场次管理"
+        },
+        {
+            "name": "SmsHomeAdvertiseController",
+            "description": "首页轮播广告管理"
+        },
+        {
+            "name": "SmsHomeBrandController",
+            "description": "首页品牌管理"
+        },
+        {
+            "name": "SmsHomeNewProductController",
+            "description": "首页新品管理"
+        },
+        {
+            "name": "SmsHomeRecommendProductController",
+            "description": "首页人气推荐管理"
+        },
+        {
+            "name": "SmsHomeRecommendSubjectController",
+            "description": "首页专题推荐管理"
+        },
+        {
+            "name": "UmsAdminController",
+            "description": "后台用户管理"
+        },
+        {
+            "name": "UmsMemberLevelController",
+            "description": "会员等级管理"
+        },
+        {
+            "name": "UmsMenuController",
+            "description": "后台菜单管理"
+        },
+        {
+            "name": "UmsResourceCategoryController",
+            "description": "后台资源分类管理"
+        },
+        {
+            "name": "UmsResourceController",
+            "description": "后台资源管理"
+        },
+        {
+            "name": "UmsRoleController",
+            "description": "后台用户角色管理"
+        }
+    ],
+    "paths": {
+        "/mall-admin/admin/delete/{id}": {
+            "post": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "删除指定用户信息",
+                "operationId": "deleteUsingPOST_15",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/info": {
+            "get": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "获取当前登录用户信息",
+                "operationId": "getAdminInfoUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/list": {
+            "get": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "根据用户名或姓名分页获取用户列表",
+                "operationId": "listUsingGET_13",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "keyword",
+                        "in": "query",
+                        "description": "keyword",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "pageNum",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 5,
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«CommonPage«UmsAdmin»»",
+                            "$ref": "#/definitions/CommonResult«CommonPage«UmsAdmin»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/login": {
+            "post": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "登录以后返回token",
+                "operationId": "loginUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "umsAdminLoginParam",
+                        "description": "umsAdminLoginParam",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "UmsAdminLoginParam",
+                            "$ref": "#/definitions/UmsAdminLoginParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/logout": {
+            "post": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "登出功能",
+                "operationId": "logoutUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/refreshToken": {
+            "get": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "刷新token",
+                "operationId": "refreshTokenUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/register": {
+            "post": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "用户注册",
+                "operationId": "registerUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "umsAdminParam",
+                        "description": "umsAdminParam",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "UmsAdminParam",
+                            "$ref": "#/definitions/UmsAdminParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«UmsAdmin»",
+                            "$ref": "#/definitions/CommonResult«UmsAdmin»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/role/update": {
+            "post": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "给用户分配角色",
+                "operationId": "updateRoleUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "adminId",
+                        "in": "query",
+                        "description": "adminId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "roleIds",
+                        "in": "query",
+                        "description": "roleIds",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/role/{adminId}": {
+            "get": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "获取指定用户的角色",
+                "operationId": "getRoleListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "adminId",
+                        "in": "path",
+                        "description": "adminId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«List«UmsRole»»",
+                            "$ref": "#/definitions/CommonResult«List«UmsRole»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/update/{id}": {
+            "post": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "修改指定用户信息",
+                "operationId": "updateUsingPOST_14",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "admin",
+                        "description": "admin",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "UmsAdmin",
+                            "$ref": "#/definitions/UmsAdmin"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/updatePassword": {
+            "post": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "修改指定用户密码",
+                "operationId": "updatePasswordUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "updatePasswordParam",
+                        "description": "updatePasswordParam",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "UpdateAdminPasswordParam",
+                            "$ref": "#/definitions/UpdateAdminPasswordParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/updateStatus/{id}": {
+            "post": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "修改帐号状态",
+                "operationId": "updateStatusUsingPOST_4",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "status",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/admin/{id}": {
+            "get": {
+                "tags": [
+                    "UmsAdminController"
+                ],
+                "summary": "获取指定用户信息",
+                "operationId": "getItemUsingGET_13",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«UmsAdmin»",
+                            "$ref": "#/definitions/CommonResult«UmsAdmin»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/aliyun/oss/callback": {
+            "post": {
+                "tags": [
+                    "OssController"
+                ],
+                "summary": "Oss上传成功回调",
+                "operationId": "callbackUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«OssCallbackResult»",
+                            "$ref": "#/definitions/CommonResult«OssCallbackResult»"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/aliyun/oss/policy": {
+            "get": {
+                "tags": [
+                    "OssController"
+                ],
+                "summary": "Oss上传签名生成",
+                "operationId": "policyUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«OssPolicyResult»",
+                            "$ref": "#/definitions/CommonResult«OssPolicyResult»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/brand/create": {
+            "post": {
+                "tags": [
+                    "PmsBrandController"
+                ],
+                "summary": "添加品牌",
+                "operationId": "createUsingPOST_1",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "pmsBrand",
+                        "description": "pmsBrand",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "PmsBrandParam",
+                            "$ref": "#/definitions/PmsBrandParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/brand/delete/batch": {
+            "post": {
+                "tags": [
+                    "PmsBrandController"
+                ],
+                "summary": "批量删除品牌",
+                "operationId": "deleteBatchUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "ids",
+                        "in": "query",
+                        "description": "ids",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/brand/delete/{id}": {
+            "get": {
+                "tags": [
+                    "PmsBrandController"
+                ],
+                "summary": "删除品牌",
+                "operationId": "deleteUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/brand/list": {
+            "get": {
+                "tags": [
+                    "PmsBrandController"
+                ],
+                "summary": "根据品牌名称分页获取品牌列表",
+                "operationId": "getListUsingGET_2",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "keyword",
+                        "in": "query",
+                        "description": "keyword",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "pageNum",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 5,
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«CommonPage«PmsBrand»»",
+                            "$ref": "#/definitions/CommonResult«CommonPage«PmsBrand»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/brand/listAll": {
+            "get": {
+                "tags": [
+                    "PmsBrandController"
+                ],
+                "summary": "获取全部品牌列表",
+                "operationId": "getListUsingGET_1",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«List«PmsBrand»»",
+                            "$ref": "#/definitions/CommonResult«List«PmsBrand»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/brand/update/factoryStatus": {
+            "post": {
+                "tags": [
+                    "PmsBrandController"
+                ],
+                "summary": "批量更新厂家制造商状态",
+                "operationId": "updateFactoryStatusUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "factoryStatus",
+                        "in": "query",
+                        "description": "factoryStatus",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "ids",
+                        "in": "query",
+                        "description": "ids",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/brand/update/showStatus": {
+            "post": {
+                "tags": [
+                    "PmsBrandController"
+                ],
+                "summary": "批量更新显示状态",
+                "operationId": "updateShowStatusUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "ids",
+                        "in": "query",
+                        "description": "ids",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "collectionFormat": "multi"
+                    },
+                    {
+                        "name": "showStatus",
+                        "in": "query",
+                        "description": "showStatus",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/brand/update/{id}": {
+            "post": {
+                "tags": [
+                    "PmsBrandController"
+                ],
+                "summary": "更新品牌",
+                "operationId": "updateUsingPOST_2",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name": "pmsBrandParam",
+                        "description": "pmsBrandParam",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "PmsBrandParam",
+                            "$ref": "#/definitions/PmsBrandParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/brand/{id}": {
+            "get": {
+                "tags": [
+                    "PmsBrandController"
+                ],
+                "summary": "根据编号查询品牌信息",
+                "operationId": "getItemUsingGET_3",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«PmsBrand»",
+                            "$ref": "#/definitions/CommonResult«PmsBrand»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/companyAddress/list": {
+            "get": {
+                "tags": [
+                    "OmsCompanyAddressController"
+                ],
+                "summary": "获取所有收货地址",
+                "operationId": "listUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«List«OmsCompanyAddress»»",
+                            "$ref": "#/definitions/CommonResult«List«OmsCompanyAddress»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/coupon/create": {
+            "post": {
+                "tags": [
+                    "SmsCouponController"
+                ],
+                "summary": "添加优惠券",
+                "operationId": "addUsingPOST",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "couponParam",
+                        "description": "couponParam",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "SmsCouponParam",
+                            "$ref": "#/definitions/SmsCouponParam"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/coupon/delete/{id}": {
+            "post": {
+                "tags": [
+                    "SmsCouponController"
+                ],
+                "summary": "删除优惠券",
+                "operationId": "deleteUsingPOST_6",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/coupon/list": {
+            "get": {
+                "tags": [
+                    "SmsCouponController"
+                ],
+                "summary": "根据优惠券名称和类型分页获取优惠券列表",
+                "operationId": "listUsingGET_4",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "pageNum",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 5,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "type",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«CommonPage«SmsCoupon»»",
+                            "$ref": "#/definitions/CommonResult«CommonPage«SmsCoupon»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/coupon/update/{id}": {
+            "post": {
+                "tags": [
+                    "SmsCouponController"
+                ],
+                "summary": "修改优惠券",
+                "operationId": "updateUsingPOST_8",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "couponParam",
+                        "description": "couponParam",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "SmsCouponParam",
+                            "$ref": "#/definitions/SmsCouponParam"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/coupon/{id}": {
+            "get": {
+                "tags": [
+                    "SmsCouponController"
+                ],
+                "summary": "获取单个优惠券的详细信息",
+                "operationId": "getItemUsingGET_7",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«SmsCouponParam»",
+                            "$ref": "#/definitions/CommonResult«SmsCouponParam»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/couponHistory/list": {
+            "get": {
+                "tags": [
+                    "SmsCouponHistoryController"
+                ],
+                "summary": "根据优惠券id，使用状态，订单编号分页获取领取记录",
+                "operationId": "listUsingGET_5",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "couponId",
+                        "in": "query",
+                        "description": "couponId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "orderSn",
+                        "in": "query",
+                        "description": "orderSn",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "pageNum",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 5,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "useStatus",
+                        "in": "query",
+                        "description": "useStatus",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«CommonPage«SmsCouponHistory»»",
+                            "$ref": "#/definitions/CommonResult«CommonPage«SmsCouponHistory»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flash/create": {
+            "post": {
+                "tags": [
+                    "SmsFlashPromotionController"
+                ],
+                "summary": "添加活动",
+                "operationId": "createUsingPOST_6",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "flashPromotion",
+                        "description": "flashPromotion",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "SmsFlashPromotion",
+                            "$ref": "#/definitions/SmsFlashPromotion"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flash/delete/{id}": {
+            "post": {
+                "tags": [
+                    "SmsFlashPromotionController"
+                ],
+                "summary": "删除活动",
+                "operationId": "deleteUsingPOST_7",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flash/list": {
+            "get": {
+                "tags": [
+                    "SmsFlashPromotionController"
+                ],
+                "summary": "根据活动名称分页查询",
+                "operationId": "getItemUsingGET_8",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "keyword",
+                        "in": "query",
+                        "description": "keyword",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "pageNum",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 5,
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flash/update/status/{id}": {
+            "post": {
+                "tags": [
+                    "SmsFlashPromotionController"
+                ],
+                "summary": "修改上下线状态",
+                "operationId": "updateUsingPOST_9",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "status",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flash/update/{id}": {
+            "post": {
+                "tags": [
+                    "SmsFlashPromotionController"
+                ],
+                "summary": "编辑活动",
+                "operationId": "updateUsingPOST_10",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "flashPromotion",
+                        "description": "flashPromotion",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "SmsFlashPromotion",
+                            "$ref": "#/definitions/SmsFlashPromotion"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flash/{id}": {
+            "get": {
+                "tags": [
+                    "SmsFlashPromotionController"
+                ],
+                "summary": "获取活动详情",
+                "operationId": "getItemUsingGET_9",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "object"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashProductRelation/create": {
+            "post": {
+                "tags": [
+                    "SmsFlashPromotionProductRelationController"
+                ],
+                "summary": "批量选择商品添加关联",
+                "operationId": "createUsingPOST_7",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "relationList",
+                        "description": "relationList",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "originalRef": "SmsFlashPromotionProductRelation",
+                                "$ref": "#/definitions/SmsFlashPromotionProductRelation"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashProductRelation/delete/{id}": {
+            "post": {
+                "tags": [
+                    "SmsFlashPromotionProductRelationController"
+                ],
+                "summary": "删除关联",
+                "operationId": "deleteUsingPOST_8",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashProductRelation/list": {
+            "get": {
+                "tags": [
+                    "SmsFlashPromotionProductRelationController"
+                ],
+                "summary": "分页查询不同场次关联及商品信息",
+                "operationId": "listUsingGET_6",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "flashPromotionId",
+                        "in": "query",
+                        "description": "flashPromotionId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "flashPromotionSessionId",
+                        "in": "query",
+                        "description": "flashPromotionSessionId",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "pageNum",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 5,
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«CommonPage«SmsFlashPromotionProduct»»",
+                            "$ref": "#/definitions/CommonResult«CommonPage«SmsFlashPromotionProduct»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashProductRelation/update/{id}": {
+            "post": {
+                "tags": [
+                    "SmsFlashPromotionProductRelationController"
+                ],
+                "summary": "修改关联信息",
+                "operationId": "updateUsingPOST_11",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name": "relation",
+                        "description": "relation",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "SmsFlashPromotionProductRelation",
+                            "$ref": "#/definitions/SmsFlashPromotionProductRelation"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashProductRelation/{id}": {
+            "get": {
+                "tags": [
+                    "SmsFlashPromotionProductRelationController"
+                ],
+                "summary": "获取管理商品促销信息",
+                "operationId": "getItemUsingGET_10",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«SmsFlashPromotionProductRelation»",
+                            "$ref": "#/definitions/CommonResult«SmsFlashPromotionProductRelation»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashSession/create": {
+            "post": {
+                "tags": [
+                    "SmsFlashPromotionSessionController"
+                ],
+                "summary": "添加场次",
+                "operationId": "createUsingPOST_8",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "promotionSession",
+                        "description": "promotionSession",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "SmsFlashPromotionSession",
+                            "$ref": "#/definitions/SmsFlashPromotionSession"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashSession/delete/{id}": {
+            "post": {
+                "tags": [
+                    "SmsFlashPromotionSessionController"
+                ],
+                "summary": "删除场次",
+                "operationId": "deleteUsingPOST_9",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashSession/list": {
+            "get": {
+                "tags": [
+                    "SmsFlashPromotionSessionController"
+                ],
+                "summary": "获取全部场次",
+                "operationId": "listUsingGET_7",
+                "produces": [
+                    "*/*"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«List«SmsFlashPromotionSession»»",
+                            "$ref": "#/definitions/CommonResult«List«SmsFlashPromotionSession»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashSession/selectList": {
+            "get": {
+                "tags": [
+                    "SmsFlashPromotionSessionController"
+                ],
+                "summary": "获取全部可选场次及其数量",
+                "operationId": "selectListUsingGET",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "flashPromotionId",
+                        "in": "query",
+                        "description": "flashPromotionId",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«List«SmsFlashPromotionSessionDetail»»",
+                            "$ref": "#/definitions/CommonResult«List«SmsFlashPromotionSessionDetail»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashSession/update/status/{id}": {
+            "post": {
+                "tags": [
+                    "SmsFlashPromotionSessionController"
+                ],
+                "summary": "修改启用状态",
+                "operationId": "updateStatusUsingPOST_2",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "status",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashSession/update/{id}": {
+            "post": {
+                "tags": [
+                    "SmsFlashPromotionSessionController"
+                ],
+                "summary": "修改场次",
+                "operationId": "updateUsingPOST_12",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "body",
+                        "name": "promotionSession",
+                        "description": "promotionSession",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "SmsFlashPromotionSession",
+                            "$ref": "#/definitions/SmsFlashPromotionSession"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/flashSession/{id}": {
+            "get": {
+                "tags": [
+                    "SmsFlashPromotionSessionController"
+                ],
+                "summary": "获取场次详情",
+                "operationId": "getItemUsingGET_11",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«SmsFlashPromotionSession»",
+                            "$ref": "#/definitions/CommonResult«SmsFlashPromotionSession»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/home/advertise/create": {
+            "post": {
+                "tags": [
+                    "SmsHomeAdvertiseController"
+                ],
+                "summary": "添加广告",
+                "operationId": "createUsingPOST_9",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "advertise",
+                        "description": "advertise",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "SmsHomeAdvertise",
+                            "$ref": "#/definitions/SmsHomeAdvertise"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/home/advertise/delete": {
+            "post": {
+                "tags": [
+                    "SmsHomeAdvertiseController"
+                ],
+                "summary": "删除广告",
+                "operationId": "deleteUsingPOST_10",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "ids",
+                        "in": "query",
+                        "description": "ids",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/home/advertise/list": {
+            "get": {
+                "tags": [
+                    "SmsHomeAdvertiseController"
+                ],
+                "summary": "分页查询广告",
+                "operationId": "listUsingGET_8",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "endTime",
+                        "in": "query",
+                        "description": "endTime",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "name",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "pageNum",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 5,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "type",
+                        "in": "query",
+                        "description": "type",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«CommonPage«SmsHomeAdvertise»»",
+                            "$ref": "#/definitions/CommonResult«CommonPage«SmsHomeAdvertise»»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/home/advertise/update/status/{id}": {
+            "post": {
+                "tags": [
+                    "SmsHomeAdvertiseController"
+                ],
+                "summary": "修改上下线状态",
+                "operationId": "updateStatusUsingPOST_3",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "name": "status",
+                        "in": "query",
+                        "description": "status",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/home/advertise/update/{id}": {
+            "post": {
+                "tags": [
+                    "SmsHomeAdvertiseController"
+                ],
+                "summary": "修改广告",
+                "operationId": "updateUsingPOST_13",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "advertise",
+                        "description": "advertise",
+                        "required": true,
+                        "schema": {
+                            "originalRef": "SmsHomeAdvertise",
+                            "$ref": "#/definitions/SmsHomeAdvertise"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/home/advertise/{id}": {
+            "get": {
+                "tags": [
+                    "SmsHomeAdvertiseController"
+                ],
+                "summary": "获取广告详情",
+                "operationId": "getItemUsingGET_12",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«SmsHomeAdvertise»",
+                            "$ref": "#/definitions/CommonResult«SmsHomeAdvertise»"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/home/brand/create": {
+            "post": {
+                "tags": [
+                    "SmsHomeBrandController"
+                ],
+                "summary": "添加首页推荐品牌",
+                "operationId": "createUsingPOST_10",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "homeBrandList",
+                        "description": "homeBrandList",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "originalRef": "SmsHomeBrand",
+                                "$ref": "#/definitions/SmsHomeBrand"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/home/brand/delete": {
+            "post": {
+                "tags": [
+                    "SmsHomeBrandController"
+                ],
+                "summary": "批量删除推荐品牌",
+                "operationId": "deleteUsingPOST_11",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "ids",
+                        "in": "query",
+                        "description": "ids",
+                        "required": true,
+                        "type": "array",
+                        "items": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "collectionFormat": "multi"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult",
+                            "$ref": "#/definitions/CommonResult"
+                        }
+                    },
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "security": [
+                    {
+                        "Authorization": [
+                            "global"
+                        ]
+                    }
+                ],
+                "deprecated": false
+            }
+        },
+        "/mall-admin/home/brand/list": {
+            "get": {
+                "tags": [
+                    "SmsHomeBrandController"
+                ],
+                "summary": "分页查询推荐品牌",
+                "operationId": "listUsingGET_9",
+                "produces": [
+                    "*/*"
+                ],
+                "parameters": [
+                    {
+                        "name": "brandName",
+                        "in": "query",
+                        "description": "brandName",
+                        "required": false,
+                        "type": "string"
+                    },
+                    {
+                        "name": "pageNum",
+                        "in": "query",
+                        "description": "pageNum",
+                        "required": false,
+                        "type": "integer",
+                        "default": 1,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "description": "pageSize",
+                        "required": false,
+                        "type": "integer",
+                        "default": 5,
+                        "format": "int32"
+                    },
+                    {
+                        "name": "recommendStatus",
+                        "in": "query",
+                        "description": "recommendStatus",
+                        "required": false,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "originalRef": "CommonResult«CommonPage

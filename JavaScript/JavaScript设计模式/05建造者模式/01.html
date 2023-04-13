@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        class Navbar {
+            init() {
+                console.log('navbar初始化');
+            }
+            getData() {
+                console.log('navbar-getData');
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve('resolved-Navbar-getData')
+                    }, 1000);
+                })
+            }
+            render() {
+                console.log('navbar-render')
+            }
+        }
+        class List {
+            init() {
+                console.log('List初始化');
+            }
+            getData() {
+                console.log('List-getData');
+                return new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve('resolved-List-getData')
+                    }, 1000);
+                })
+            }
+            render() {
+                console.log('List-render')
+            }
+        }
+        // 建造者
+        class Operator {
+            static async startBuild(builder) {
+                await builder.init()
+                await builder.getData()
+                await builder.render()
+            }
+        }
+        const navbar = new Navbar()
+        const list = new List()
+        Operator.startBuild(navbar)
+        Operator.startBuild(list)
+    </script>
+</body>
+
+</html>

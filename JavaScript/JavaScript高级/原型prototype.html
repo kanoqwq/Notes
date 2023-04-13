@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //构造函数虽然很好用 但是存在浪费内存的问题
+        //如果构造函数内的复杂数据类型很多的话，反复使用就会重复定义构造函数内的相同的方法，就会造成内存浪费
+        //构造函数通过原型（prototype）来分配函数，分配的函数是所有对象所共享的
+        function Star(name, age) {
+            this.name = name;
+            this.age = age;
+        }
+        //原型可以共享方法
+        //原型具有链式传导的特点，因为每个原型对象都会有一个__proto__属性，链接到这个原型对象的原型对象
+        Star.prototype.sing = function() {
+            console.log(this.name);
+            return this.name;
+        }
+        var n1 = new Star("kano", 14);
+        var n2 = new Star("kanokano", 21);
+        console.log(n1.sing === n2.sing);
+        console.log(n1.sing() + "和" + n2.sing() + "贴贴");
+    </script>
+</body>
+
+</html>

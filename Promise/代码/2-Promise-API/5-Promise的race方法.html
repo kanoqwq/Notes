@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        let p1 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('OK')
+            }, 100)
+        })
+        let p2 = new Promise((resolve, reject) => {
+            resolve('Success')
+        })
+        let p3 = new Promise((resolve, reject) => {
+            resolve('OKK')
+        })
+
+        //race本来就有比赛的意思
+        const result = Promise.race([p1, p2, p3]) //这三个谁先改变状态,返回的结果就是先改变状态的promise生成的结果
+        console.log(result); //这里因为p1有定时器,慢了一点,所以是success先完活儿,所以返回的是p2的promise结果'Success'
+    </script>
+</body>
+
+</html>

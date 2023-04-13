@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="passwd"><button id="submit">提交</button>
+    <script>
+        submit.onclick = () => {
+            checks.check()
+        }
+        //职责链测试
+        const checkEmpty = () => {
+            if (passwd.value == '') {
+                console.log('不能为空');
+                return 'err'
+            } else {
+                return 'ok'
+            }
+        }
+        const checkNum = () => {
+            if (Number.isNaN(+passwd.value)) {
+                console.log('请输入数字！');
+                return 'err'
+            } else {
+                return 'ok'
+            }
+        }
+        const checkLength = () => {
+            if (passwd.value.length < 6) {
+                console.log('输入必须大于六位！');
+                return 'err'
+            } else {
+                return 'ok'
+            }
+        }
+
+        class Chain {
+            constructor(fn) {
+                this.checkRule = fn
+                this.nextRule = null
+            }
+            addRule(nextRule) {
+                this.nextRule = new Chain(nextRule)
+                //return出去，构成链式调用
+                return this.nextRule
+            }
+            check() {
+                this.checkRule() == 'ok' ? this.nextRule.check() : false
+            }
+        }
+
+        const checks = new Chain(checkEmpty)
+        checks.addRule(checkNum).addRule(checkLength).addRule(() => 'end')
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const p = new Promise((resolve, reject) => {
+            //创建对象
+            const xhr = new XMLHttpRequest();
+            //初始化
+            xhr.open("GET", "https://api.apiopen.top/api/sentences");
+            //发送
+            xhr.send();
+            //绑定事件，处理响应结果
+            xhr.onreadystatechange = function() {
+                //判断请求处于哪个阶段
+                if (xhr.readyState === 4) {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        //成功
+                        resolve(xhr);
+
+
+                    } else {
+                        //失败
+                        reject(xhr)
+
+                    }
+                }
+            }
+        });
+        //实现resolve和reject方法
+        p.then((value) => {
+            console.log(value.response);
+            const p = document.createElement('p');
+            p.innerHTML = (JSON.parse(value.response)).result.name + '<br/>' + (JSON.parse(value.response)).result.from;
+            document.querySelector('body').appendChild(p);
+        }, (reason) => {
+            console.error(reason.status);
+        })
+    </script>
+</body>
+
+</html>

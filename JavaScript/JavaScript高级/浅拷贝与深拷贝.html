@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var obj = {
+            name: 'kano',
+            age: 18,
+            dd: {
+                name: "kano1",
+                age: 10
+            }
+        };
+        var o = {};
+        Object.assign(o, obj); //浅拷贝
+        obj.age = 19; //改变原来的对象属性
+        console.log(o); //原来的对象属性不会跟着改变
+        console.log(obj);
+        //封装一个深拷贝函数
+        function deepCopy(newobj, oldobj) {
+            for (var k in oldobj) {
+                //判断属性值是否属于引用类型
+                //获取属性值
+                var item = oldobj[k];
+                //判断这个值是否属于数组
+                if (item instanceof Array) {
+                    newobj[k] = [];
+                    deepCopy(newobj[k], item);
+                } else
+                if (item instanceof Object) {
+                    newobj[k] = {};
+                    deepCopy(newobj[k], item);
+                } else {
+                    //简单数据类型直接赋值
+                    newobj[k] = item;
+                }
+            }
+        }
+        deepCopy(o, obj)
+        obj.dd.name = 'ddddd';
+        console.log(o);
+        console.log(obj);
+    </script>
+</body>
+
+</html>

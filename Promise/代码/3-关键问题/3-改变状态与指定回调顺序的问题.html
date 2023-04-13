@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 改变 promise 状态和指定回调函数谁先谁后?
+        // 都有可能, 正常情况下是先指定回调再改变状态, 但也可以先改状态再指定回调
+        // promise构造函数中通常都是异步的，所以then方法往往都先于resolve和reject方法执行
+        let p = new Promise((resolve, reject) => {
+
+            //如果里面直接就是一个同步代码,就是先改变promise状态,再执行then
+            //或者给p.then也设置一个定时器,比promise内的1秒大即可
+            //改变状态-指定,并执行回调
+            resolve('ok');
+
+
+            //异步任务的时候,是先指定回调,后改变状态
+            //但是回调的执行时机,是在resolve执行后,才执行
+            //指定回调-改变状态-执行回调
+            setTimeout(() => {
+                resolve('ok')
+            }, 1000)
+        })
+        p.then(
+            value => {
+                console.log(value);
+                console.log('kano');
+            },
+            reason => {
+                console.log(reason);
+            }
+        )
+    </script>
+</body>
+
+</html>

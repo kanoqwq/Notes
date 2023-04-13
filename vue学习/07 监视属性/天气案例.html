@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>今天天气很{{Info}}</h1>
+        <button v-on:click="changeWeather">切换天气</button>
+        <!-- 如果函数功能很简单，可以直接在click里面写语句 -->
+        <button v-on:click="isHot = !isHot;">切换天气</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                isHot: true
+            },
+            methods: {
+                changeWeather() {
+                    this.isHot = !this.isHot;
+                }
+            },
+            computed: {
+                Info() {
+                    return this.isHot ? '炎热' : '凉爽';
+                }
+            },
+        });
+        //注意：当模板里不使用info变量的时候，点击切换天气，vue开发者工具里的变量显示可能不会更新，但vm内属性实际是更新了的
+    </script>
+</body>
+
+</html>

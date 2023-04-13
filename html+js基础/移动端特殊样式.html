@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        a {
+            /* 设置移动端点击高亮为透明 */
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        input {
+            /* 取消浏览器自带的按钮 默认外观 */
+            -webkit-appearance: none;
+            /* 禁用长按页面时弹出的菜单 */
+            -webkit-touch-callout: none;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="javascript:;">我是一个链接</a>
+    <input type="button" value="dd">
+    <script>
+        var t = [0, 1, -1, 0, -2, 1, 0, 1, -1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 1, -1, 1, 0, -1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 2, 0, 0];
+        var t2 = [2, 6, 9, 14, 17, 21, 27, 31, 36, 38, 42, 48, 50, 54, 58];
+        var t3 = [4, 8, 11, 16, 19, 23, 25, 29, 34, 40, 44, 46, 52, 56, 60];
+        var t4 = [1, 7, 10, 13, 13, 22, 26, 30, 33, 39, 43, 45, 49, 55, 57];
+        var t5 = [3, 5, 12, 15, 20, 24, 28, 32, 35, 37, 41, 47, 51, 53, 59];
+        var s2, s3, s4, s5;
+        s2 = s3 = s4 = s5 = 0;
+        for (var i = 0; i < t2.length; i++) {
+            s2 += t[t2[i] - 1];
+        }
+        console.log(s2);
+        for (var i = 0; i < t3.length; i++) {
+            s2 += t[t3[i] - 1];
+        }
+        console.log(s3);
+        for (var i = 0; i < t4.length; i++) {
+            s2 += t[t4[i] - 1];
+        }
+        console.log(s4);
+        for (var i = 0; i < t5.length; i++) {
+            s2 += t[t5[i] - 1];
+        }
+        console.log(s5);
+    </script>
+</body>
+
+</html>

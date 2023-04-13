@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .setu-box {
+            position: relative;
+            min-height: 500px;
+            min-width: 354px;
+            margin-left: 20px;
+        }
+        
+        .setu-box .foreimg {
+            z-index: 998;
+        }
+        
+        .setu-box .foreimg,
+        .setu-box .backimg {
+            position: absolute;
+            transition: opacity .5s;
+            opacity: 1;
+        }
+        
+        .setu-box .foreimg:hover {
+            opacity: 0;
+        }
+        
+        .main {
+            display: flex;
+        }
+        
+        .right {
+            width: 500px;
+        }
+        
+        @media (max-width:640px) {
+            .main {
+                flex-direction: column-reverse;
+            }
+            .setu-box {
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <!-- <div class="article"> -->
+        大家好，我是莉沫酱，欢迎来到我的个人演唱会。因为黄巍去写小说了，所以我来介绍一下这里都有什么。 工程repo: 【Librian】简明强大的Galgame引擎 【sese-engine】新时代的搜索引擎！ 【幼盾】个性化图片徽章服务！ 算法repo: 【教程】从零开始的的自制Vtuber 【Night Beam】去除文本马赛克的随机算法 【not translator】不会翻译机 搞笑repo: 【您配吗】配你吗 【yinglish】淫语翻译机！ 【幼女Code】反和谐超级武器！ 【steal piano】GitHub偷情分析工具！
+        色图网站！ 许可证: 莉沫酱革命协议！ 剩下的……感觉不好玩就不推荐了。就这样，88，我回去睡觉了。 如果你是莉沫酱的粉丝，也可以来 Librian幼女娱乐中心(https://t.me/+cUxoC89bN0llYjM1) 一起睡觉。
+        <!-- </div> -->
+        <div class="right">
+            <div class="setu-box">
+                <div class="foreimg">
+                    <img src="https://img.moegirl.org.cn/common/thumb/d/d3/%E5%8F%8B%E5%88%A9%E5%A5%88%E7%BB%AA%E4%BE%A7%E9%9D%A2%E6%AD%A3%E5%B8%B8.jpg/354px-%E5%8F%8B%E5%88%A9%E5%A5%88%E7%BB%AA%E4%BE%A7%E9%9D%A2%E6%AD%A3%E5%B8%B8.jpg" alt="">
+                </div>
+                <div class="backimg">
+                    <img src="https://img.moegirl.org.cn/common/thumb/3/36/%E5%8F%8B%E5%88%A9%E5%A5%88%E7%BB%AA%E4%BE%A7%E9%9D%A2%E5%86%85%E8%A1%A3.jpg/354px-%E5%8F%8B%E5%88%A9%E5%A5%88%E7%BB%AA%E4%BE%A7%E9%9D%A2%E5%86%85%E8%A1%A3.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //commonJs
+        let Singleton1 = (function () {
+            //闭包
+            let instance
+            function User(name, age) {
+                this.name = name
+                this.age = age
+            }
+            return function (name, age) {
+                if (!instance) {
+                    //创建实例
+                    instance = new User(name, age)
+                }
+                return instance
+            }
+        })()
+        //true
+        console.log(new Singleton1('kano', 11) === new Singleton1('kano1', 12));
+        
+        //es6
+        class Singleton {
+            constructor(name, age) {
+                if (!Singleton.instance) {
+                    this.name = name
+                    this.age = age
+                    Singleton.instance = this
+                }
+                // 构造器里返回的是对象实例，那new的时候接收的就是返回的实例
+                // 构造器里返回的是其他的值，默认返回构造器所在的类实例
+                return Singleton.instance
+            }
+        }
+        //true
+        //创建过一次就第二次就不会再执行实例化操作了，节省很多内存
+        console.log(new Singleton('kano', 11) === new Singleton('kano1', 12));
+    </script>
+</body>
+
+</html>

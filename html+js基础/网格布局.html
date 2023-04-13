@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            height: 600px;
+            width: 600px;
+            border: 5px solid gray;
+            /* 设置为网格布局 */
+            display: grid;
+            /* 设置网格的行列数 行row 列colums*/
+            /* 固定值方式 */
+            /* grid-template-columns: 200px 200px 200px;
+            grid-template-rows: 200px 200px 200px; */
+            /* 百分比方式 */
+            /* grid-template-columns: 25% 25% 25%;
+            grid-template-rows: 25% 25% 25%; */
+            /* repeat函数 */
+            /* grid-template-columns: repeat(4, 25%);
+            grid-template-rows: repeat(4, 25%); */
+            /* repeat函数-自动填充 */
+            /* grid-template-columns: repeat(auto-fill, 33.3%);
+            grid-template-rows: repeat(auto-fill, 33.3%); */
+            /* fr片段 相当于flex：1*/
+            /* grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(3, 1fr); */
+            /* fr片段 圣杯布局 */
+            /* fr是一个单位 */
+            /* 不用fr的话也可以用auto */
+            /* text-align: center;
+            grid-template-columns: 100px 1fr 100px;
+            grid-template-rows: 100px 1fr 100px; */
+            /* minmax */
+            /*第一列最小为100px 最大为200px*/
+            grid-template-columns: minmax(100px, 200px) 200px 150px;
+            grid-template-rows: repeat(3, 200px);
+            /* 列间距和行间距 */
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+        <span>4</span>
+        <span>5</span>
+        <span>6</span>
+        <span>7</span>
+        <span>8</span>
+        <span>9</span>
+    </div>
+</body>
+
+</html>

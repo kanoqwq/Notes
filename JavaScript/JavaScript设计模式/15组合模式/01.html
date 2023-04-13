@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //文件夹
+        function Folder(folder) {
+            this.folder = folder
+            this.list = []
+        }
+        Folder.prototype.add = function (res) {
+            this.list.push(res)
+        }
+        Folder.prototype.scan = function (deep = "    ") {
+            console.log(deep + '扫描文件夹：', this.folder);
+            for (let i = 0; i < this.list.length; i++) {
+                this.list[i].scan(deep + "    ")
+            }
+        }
+        //文件
+        function File(file) {
+            this.file = file
+            this.list = []
+        }
+        File.prototype.add = function (res) {
+            this.list.push(res)
+        }
+        File.prototype.scan = function (deep = "    ") {
+            console.log(deep + '扫描文件：', this.file);
+            for (let i = 0; i < this.list.length; i++) {
+                this.list[i].scan(deep + "    ")
+            }
+        }
+        //文件夹
+        let rootFolder = new Folder('rootFolder')
+        let htmlFolder = new Folder('htmlFolder')
+        let cssFolder = new Folder('cssFolder')
+        let jsFolder = new Folder('jsFolder')
+        let jsFolderInter = new Folder('jsFolderInter')
+        //文件
+        let html1 = new File('html1')
+        let html2 = new File('html2')
+        let css = new File('css')
+        let js = new File('js')
+
+        rootFolder.add(htmlFolder)
+        rootFolder.add(cssFolder)
+        rootFolder.add(jsFolder)
+        jsFolder.add(jsFolderInter)
+
+        htmlFolder.add(html1)
+        htmlFolder.add(html2)
+        cssFolder.add(css)
+        jsFolder.add(js)
+        jsFolderInter.add(js)
+        jsFolderInter.add(html1)
+
+        rootFolder.scan()
+
+        // 扫描文件夹： rootFolder 
+        // 扫描文件夹： htmlFolder
+        //     扫描文件： html1
+        //     扫描文件： html2
+        // 扫描文件夹： cssFolder
+        //     扫描文件： css
+        // 扫描文件夹： jsFolder
+        //     扫描文件夹： jsFolderInter
+        //         扫描文件： js
+        //         扫描文件： html1
+        //     扫描文件： js
+    </script>
+</body>
+
+</html>

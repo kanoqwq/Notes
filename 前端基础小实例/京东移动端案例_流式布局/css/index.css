@@ -1,0 +1,221 @@
+body {
+    width: 100%;
+    min-width: 320px;
+    max-width: 640px;
+    margin: 0 auto;
+    font-family: Helvetica, sans-serif;
+    color: #666;
+    line-height: 1.5;
+    /* background-color: #666; */
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+input {
+    -webkit-appearance: none;
+}
+
+img,
+a {
+    -webkit-touch-callout: none;
+}
+
+a {
+    text-decoration: none;
+    color: #eee;
+}
+
+ul {
+    height: 45px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+img {
+    /* 去除掉img和父盒子之间底部缝隙 */
+    vertical-align: top;
+}
+
+.app ul li {
+    float: left;
+    height: 45px;
+    text-align: center;
+    line-height: 45px;
+    background-color: #333;
+    color: #eee;
+}
+
+.app ul li:nth-child(1) {
+    width: 8%;
+}
+
+.app ul li:nth-child(1) img {
+    vertical-align: middle;
+    width: 10px;
+}
+
+.app ul li:nth-child(2) {
+    width: 10%;
+}
+
+.app ul li:nth-child(2) img {
+    width: 30px;
+    vertical-align: middle;
+}
+
+.app ul li:nth-child(3) {
+    width: 57%;
+}
+
+.app ul li:nth-child(4) {
+    width: 25%;
+    background-color: #f63515;
+}
+
+
+/* 搜索 */
+
+.search-wrap {
+    position: fixed;
+    overflow: hidden;
+    height: 44px;
+    min-width: 320px;
+    max-width: 640px;
+    width: 100%;
+}
+
+.search-btn {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 44px;
+    background-color: #C82519;
+}
+
+.search-login {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 40px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    background-color: #C82519;
+}
+
+.search {
+    position: relative;
+    height: 30px;
+    background-color: white;
+    margin: 0 50px;
+    margin-top: 7px;
+    border-radius: 15px;
+    /* overflow: scroll; */
+}
+
+.search-btn::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 18px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-image: url("../images/menu.png");
+}
+
+.jd-icon {
+    width: 20px;
+    height: 15px;
+    position: absolute;
+    top: 8px;
+    left: 13px;
+    background: url("../images/JD.png") no-repeat;
+    background-size: 20px 15px;
+}
+
+.jd-icon::after {
+    content: "";
+    position: absolute;
+    display: block;
+    right: -8px;
+    top: 0;
+    width: 1px;
+    height: 15px;
+    background-color: #ccc;
+}
+
+.sou {
+    position: absolute;
+    top: 8px;
+    left: 50px;
+    width: 18px;
+    height: 15px;
+    overflow: hidden;
+    background: url("../images/jd-sprites.png") no-repeat -81px 0;
+    /* 二倍精灵图 */
+    background-size: 200px;
+}
+
+.search input {
+    /* position: absolute; */
+    right: 0;
+    height: 28px;
+    outline: none;
+    border: none;
+    width: 70%;
+    margin-left: 70px;
+    border-radius: 0 15px 15px 0;
+    background-color: transparent;
+}
+
+.slider img {
+    width: 100%;
+}
+
+.brand {
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+}
+
+.brand div {
+    float: left;
+    width: 33.33%;
+}
+
+.brand div img {
+    width: 100%;
+}
+
+nav a {
+    float: left;
+    width: 20%;
+    text-align: center;
+    color: #333;
+}
+
+nav a img {
+    width: 40px;
+    margin: 10px 0;
+}
+
+nav a span {
+    display: block;
+}
+
+.news img {
+    width: 100%;
+}
+
+.news a {
+    width: 25%;
+    float: left;
+}
+
+.news a:nth-child(1) {
+    width: 50%;
+}

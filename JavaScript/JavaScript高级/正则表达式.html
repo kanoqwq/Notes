@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 正则表达式也是对象
+        //当前阶段我们使用正则表达式主要是用来做表单验证
+
+        // 利用RegEXP创建正则表达式
+        var reg = new RegExp(/123/);
+        console.log(reg);
+
+        //利用字面量创建正则表达式
+        var rg = /123/;
+        //测试正则表达式
+        console.log(/123/.test('123')); //true
+        console.log(/123/.test('12d3')); //false
+        console.log(/123/.test('ddd123ddd')); //true
+        console.log('----------------------------');
+
+        // 边界符号 ^ $
+        //^ 是开头
+        //$ 是结尾
+        //正则表达式不需要加引号
+        var r = /^abc/; //必须以abc开头
+        console.log(r.test('aabc')); //false
+        console.log(r.test('abcd')); //true
+        console.log('----------------------------');
+
+        //精确匹配
+        var r = /^abc$/; //必须是abc
+        console.log(r.test('aabc')); //false
+        console.log(r.test('abcd')); //false
+        console.log(r.test('abc')); //true
+        console.log('----------------------------');
+
+
+        //字符类 [] 表示有一系列字符可供选择，只要匹配其中一个就可以，匹配方括号中的任意字符
+        var rr = /[abc]/;
+        console.log(rr.test('abc')); //true
+        console.log(rr.test('aabbcc')); //true
+        console.log(rr.test('a12')); //true
+        console.log(rr.test('123')); //false
+        console.log('----------------------------');
+        //三选一 只能包含这三个字母中的其中一个
+        var rr1 = /^[abc]$/ //true
+        console.log(rr1.test("abc")); //false
+        console.log(rr1.test("a")); //true
+        console.log(rr1.test("b")); //true
+        console.log(rr1.test("c")); //true
+        console.log(rr1.test("a111")); //false
+        console.log('----------------------------');
+
+        //方括号内的范围符 [-] 
+        var rr2 = /^[a-z]$/ //26个英文字母中的任意一个
+        console.log(rr2.test("a")); //true
+        console.log(rr2.test("a")); //true
+        console.log(rr2.test("f")); //true
+        console.log(rr2.test("A")); //false
+        console.log(rr2.test("Aaads")); //false
+        console.log('----------------------------');
+
+        //字符组合
+        var reg1 = /^[a-zA-Z0-9_-]$/; //26个大小写英文字母和数字，下划线，短横中任何一个
+        //zA之间有没有空格无所谓
+        console.log(reg1.test("A")); //true
+        console.log(reg1.test("_")); //true
+        console.log(reg1.test("2")); //true
+        console.log(reg1.test("-")); //true
+        console.log(reg1.test("f")); //true
+        console.log(reg1.test("Aa")); //false
+        console.log('----------------------------');
+        //如果中括号里面有^ 表示取反的意思 不要和边界符弄混了
+        var reg1 = /^[^a-zA-Z0-9_-]$/; //不能包含26个大小写英文字母和数字，下划线，短横中任何一个
+        console.log(reg1.test("A")); //false
+        console.log(reg1.test("_")); //false
+        console.log(reg1.test("2")); //false
+        console.log(reg1.test("-")); //false
+        console.log(reg1.test("f")); //false
+        console.log(reg1.test("@a")); //false
+        console.log(reg1.test("@")); //true
+        console.log('----------------------------');
+        //量词符
+        //量词符用来设定某个模式出现的次数
+
+        // * 相当于 >=0 可以出现0次或者很多次，匹配前一个表达式 0 次或多次
+        var reg111 = /^a*$/; //必须都要是以a开头，a结尾，0个或者任意多个a 的字符串
+        console.log(reg111.test('')); //true
+        console.log(reg111.test('a')); //true
+        console.log(reg111.test('aaaaaa')); //true
+        console.log(reg111.test('aaaaada')); //false
+        console.log('----------------------------');
+
+        // + 相当于 >=1 可以出现1次或者很多次，匹配前一个表达式 1 次或多次
+        var reg111 = /^a+$/; //必须都要是以a开头，a结尾，1个或者任意多个a 的字符串
+        console.log(reg111.test('')); //false
+        console.log(reg111.test('a')); //true
+        console.log(reg111.test('aaaaaa')); //true
+        console.log(reg111.test('aaaaada')); //false
+        console.log('----------------------------');
+
+        // ？ 相当于 0<=x<=1
+        var reg111 = /^a?$/; //必须都要是以a开头，a结尾，a出现0次或者一次
+        console.log(reg111.test('')); //true
+        console.log(reg111.test('a')); //true
+        console.log(reg111.test('aa')); //false
+        console.log(reg111.test('ad')); //false
+        console.log('----------------------------');
+
+        // {n} 匹配了前面一个字符刚好出现了 n 次情况。
+        var reg111 = /^a{3}$/; //必须都要是以a开头，a结尾，a出现刚好3次
+        console.log(reg111.test('')); //false
+        console.log(reg111.test('a')); //false
+        console.log(reg111.test('aa')); //false
+        console.log(reg111.test('aaa')); //true
+        console.log(reg111.test('aaaaaaa')); //false
+        console.log('----------------------------');
+
+        //{n,} 相当于>=n 匹配了前面一个字符三次或三次以上的情况
+        var reg111 = /^a{3,}$/; //必须都要是以a开头，a结尾，a出现3次或以上
+        console.log(reg111.test('')); //false
+        console.log(reg111.test('a')); //false
+        console.log(reg111.test('aa')); //false
+        console.log(reg111.test('aaa')); //true
+        console.log(reg111.test('aaaaaaa')); //true
+        console.log('----------------------------');
+
+        //{n,m} 相当于 n<=x<=m 匹配了前面一个字符个数在n和m之间的情况,如果 n 或者 m 的值是0， 这个值被忽略。
+        var reg111 = /^a{3,6}$/; //必须都要是以a开头，a结尾，a出现3-6次
+        console.log(reg111.test('')); //false
+        console.log(reg111.test('a')); //false
+        console.log(reg111.test('aa')); //false
+        console.log(reg111.test('aaa')); //true
+        console.log(reg111.test('aaaaaa')); //true
+        console.log(reg111.test('aaaaaaaa')); //false
+        console.log('----------------------------');
+
+        //量词符用来设定某个模式出现的次数
+        var reg = /^[a-zA-z0-9]$/; // 这个模式用户只能数组英文的数字，但是有边界符 和 [] 这就限定了只能多选1
+        //这时候就需要设置量词了
+        var reg = /^[a-zA-z0-9]{8,16}$/; //这样就限定为8-16位英文和数字
+        //表达式中间不要出现空格
+        console.log(reg.test('a')); //false
+        console.log(reg.test('asdfg3')); //false
+        console.log(reg.test('asdfgasd312')); //true
+        console.log(reg.test('asdfgasd31!')); //false
+        console.log(reg.test('asdfhjjklasd4h4k51')); //false
+
+        // () 单纯的括号
+        var reg = /^(abc){3}$/ //表示abc出现3次 即 abcabcabc
+
+        //replace替换
+        var str = 'andy你妈死了，妈死了，妈死了，妈死了，nmsl NMSL';
+        console.log(str.replace(/妈死了|nmsl/gi, "***"));
+        //正则表达式后面可以接匹配模式
+        // g 全局匹配
+        // i 忽略大小写
+        // gi 两者结合
+
+
+        // | 表示或者
+
+        //正则表达式的预定义类
+        //  \d 表示匹配任意一个数字 相当于[0-9]
+        // \D 匹配数字以外的一个字符 [^0-9]
+        // \w 匹配数字，字母，下划线 [A-Za-z0-9_]
+        // \W 上面的取反
+        // \s 匹配空格，包括制表符tab和换行符等，相当于 [\t\r\n\v\f]
+        // \S 上面的取反
+        //https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Regular_Expressions
+    </script>
+</body>
+
+</html>

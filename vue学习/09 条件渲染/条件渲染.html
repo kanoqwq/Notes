@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- 条件渲染 相当于css的display -->
+        <h2 v-show="true">{{a}}</h2>
+        <h2 v-show="1===1">{{a}}</h2>
+        <h2 v-show="aa">{{a}}</h2>
+
+        <hr>
+
+        <!-- 使用v-if做条件渲染 影响结构-->
+        <h2 v-if="aa" @click="n++">{{n}}</h2>
+        <h2 v-if="true">{{a}}</h2>
+        <h2 v-if="1===1">{{a}}</h2>
+
+        <!-- v-else-if -->
+        <!-- if和elseif 中间不能有元素打断 -->
+        <div v-if="n===1">1111</div>
+        <div v-else-if="n===2">2222</div>
+        <div v-else-if="n===3">3333</div>
+        <!-- v-else 不用写参数，是上面条件都不符合的情况 -->
+        <div v-else>好</div>
+
+        <!-- 使用template模板配合if渲染多个元素 -->
+        <!-- 使用template模板只能配合if，不能配合show -->
+        <template v-if="n===4">
+            <h2 v-show="true">template{{a}}</h2>
+            <h2 v-show="1===1">template{{a}}</h2>
+            <h2 v-show="aa">template{{a}}</h2>
+        </template>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                a: 'hello',
+                n: 1,
+                aa: true
+            }
+        });
+    </script>
+</body>
+
+</html>

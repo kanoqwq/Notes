@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <table>
+        <thead>
+            <input type="checkbox" name="" id="head">头
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">1
+                </td>
+
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">2
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">3
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">4
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="checkbox" name="" id="">5
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        var chkHead = document.getElementById("head");
+        var chkbox = document.getElementsByTagName("tbody")[0].getElementsByTagName("input");
+        chkHead.onclick = function() {
+            //全选
+            for (var i = 0; i < chkbox.length; i++) {
+                chkbox[i].checked = this.checked;
+            }
+        }
+        for (var i = 0; i < chkbox.length; i++) {
+            chkbox[i].onclick = function() {
+                for (var i = 0; i < chkbox.length; i++) {
+                    //只要有一个不是选中的状态，全选按钮就设为false
+                    if (chkbox[i].checked != true) {
+                        chkHead.checked = false;
+                        break;
+                    }
+                    //如无以上情况，全选按钮维持选中状态
+                    chkHead.checked = true;
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

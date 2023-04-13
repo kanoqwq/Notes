@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .box {
+            display: flex;
+            width: 500px;
+            height: 500px;
+            background-color: pink;
+            overflow: hidden;
+        }
+
+        .menu ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .menu ul li {
+            width: 100px;
+            text-align: center;
+            background-color: #fff;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+
+    </header>
+    <div class="box">
+        <div class="menu">
+            <ul class="left">
+                <li>首页</li>
+                <li>用户</li>
+                <li>系统</li>
+            </ul>
+        </div>
+        <div class="bread">
+        </div>
+    </div>
+    <script>
+        class Subject {
+            constructor() {
+                this.observers = []
+            }
+            add(observer) {
+                this.observers.push(observer)
+            }
+            off(observer) {
+                this.observers = this.observers.filter(item => item != observer)
+            }
+            notify(text) {
+                this.observers.forEach(item => {
+                    item.update(text)
+                })
+            }
+        }
+        //观察者
+        class Observer {
+            constructor(name) {
+                this.element = document.querySelector(name)
+                this.items = []
+            }
+            update(text) {
+                if (this.items.includes(text)) {
+                    let index = this.items.indexOf(text)
+                    this.items.splice(index, this.items.length - index)
+                }
+                this.items.push(text)
+                this.element.innerHTML = this.items.join('=>')
+            }
+        }
+        const subject = new Subject()
+
+        //bread和head作为观察者
+        const observer = new Observer('.bread')
+        const observer2 = new Observer('.header')
+
+        subject.add(observer)
+        subject.add(observer2)
+
+        let ol = document.querySelectorAll('.left li')
+        for (let i = 0; i < ol.length; i++) {
+            ol[i].onclick = function (e) {
+                subject.notify(e.target.innerText)
+            }
+        }
+    </script>
+</body>
+
+</html>

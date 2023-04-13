@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX请求器</title>
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+
+<body>
+    <button id="BTNGET">GET</button>
+    <button id="BTNPOST">POST</button>
+    <button id="BTNJSONP">JSONP</button>
+    <div id="result"></div>
+    <script>
+        $('#BTNGET').on('click', () => {
+            $.ajax({
+                type: 'GET',
+                url: 'http://127.0.0.1:88/api/get',
+                data: {
+                    name: 'kanoGET',
+                    age: 31
+                },
+                success: (res) => {
+                    console.log(res);
+                    $('#result').empty();
+                    $('#result').html(JSON.stringify(res));
+                }
+            })
+        });
+        $('#BTNPOST').on('click', () => {
+            $.ajax({
+                type: 'POST',
+                url: 'http://127.0.0.1:88/api/POST',
+                data: {
+                    name: 'kanoPOST',
+                    age: 31
+                },
+                success: (res) => {
+                    console.log(res);
+                    $('#result').empty();
+                    $('#result').html(JSON.stringify(res));
+                }
+            })
+        });
+        $('#BTNJSONP').on('click', () => {
+            $.ajax({
+                type: 'GET',
+                url: 'http://127.0.0.1:88/api/jsonp',
+                dataType: 'jsonp', //原来jQuery是自带jsonp请求功能的，差点就要自己写了
+                success: (res) => {
+                    console.log(res);
+                    $('#result').empty();
+                    $('#result').html(JSON.stringify(res));
+                }
+            })
+        });
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>set数据结构常用的算法</title>
+</head>
+
+<body>
+    <script>
+        //创建一个数组
+        let arr = [1, 2, 3, 2, 4, 3, 23, 2, 4, 12, 4, 1];
+        //数组去重
+        let result = [...new Set(arr)];
+        console.log(result);
+        //两个数组取交集
+        let arr2 = [1, 21, 1, 4, 12, 45, 32];
+        let res2 = [...new Set(arr)].filter(item => new Set(arr2).has(item));
+        console.log(res2);
+        //并集
+        // let res3 = [...new Set([...arr, ...arr2])]; 
+        res3 = [...new Set(arr.concat(arr2))]; //也可以使用contact运算符
+        console.log(res3);
+    </script>
+</body>
+
+</html>

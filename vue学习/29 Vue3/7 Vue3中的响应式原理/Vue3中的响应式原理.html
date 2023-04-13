@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1 id="a"></h1>
+    <script>
+        //源数据
+        let person = {
+            name: ''
+        }
+
+        //模拟vue2中实现响应式
+        //代理对象
+        // let p = {}
+        // Object.defineProperty(p, 'name', {
+        //     configurable: true, //可删除的属性
+        //     get() {
+        //         return person.name;
+        //     },
+        //     set(value) {
+        //         person.name = value
+
+        //         //简易响应式
+        //         console.log('源数据被修改了');
+        //         document.getElementById('a').innerHTML = person.name
+        //     }
+        // })
+
+        //模拟Vue3中实现响应式
+        const p = new Proxy(person, {
+            //target是p propname是操作的p中的属性名字
+            //捕获读取的动作
+            get(target, propName) {
+                console.log(`有人读取了p身上的${propName}属性`);
+                return Reflect.get(target, propName)
+            },
+            //捕获修改、添加的动作
+            set(target, propName, value) {
+                console.log(`有人修改了p身上的${propName}属性`)
+                Reflect.set(target, propName, value)
+            },
+            //捕获删除的动作
+            deleteProperty(target, propName) {
+                console.log(`有人删除了p身上的${propName}属性`);
+                //删除一个对象，返回删除的状态
+                return Reflect.deleteProperty(target, propName)
+            }
+        });
+
+        //Reflect反射
+        // let obj = {
+        //     a: 1,
+        //     b: 2
+        // };
+        // Reflect.defineProperty(obj, 'c', {
+        //     configurable: true,
+        //     get() {
+        //         return 3
+        //     }
+        // })
+        // console.log(obj);
+
+
+        console.log(p);
+    </script>
+</body>
+
+</html>

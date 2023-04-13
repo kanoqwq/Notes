@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="get">
+        <p>用户名：<input type="text" name="username" id="uname"><span class="vaild"></span></p>
+        <p>手机号：<input type="text" name="phone" id="phone"><span class="vaild"></span></p>
+        <p>QQ号<input type="text" name="qq" id="qq"><span class="vaild"></span></p>
+        <p>密码：<input type="password" name="pwd" id="pwd"><span class="vaild"></span></p>
+        <p>确认密码：<input type="password" name="pwdc" id="pwdc"><span class="vaild"></span></p>
+    </form>
+    <script>
+        var tel = /^1[3|4|5|7|8]\d{9}$/;
+        var pwd = /^[a-zA-Z]\w{5,17}$/;
+        var qq = /[1-9][0-9]{4,}/;
+        var name1 = /^[\u4e00-\u9fa5]{2,8}|[a-zA-Z]{2,8}$/; //中文,英文
+        function regexp(ele, reg, msg) {
+            ele.onblur = function() {
+                if (reg.test(this.value) === false) {
+                    //错误的
+                    this.nextElementSibling.style.color = "red";
+                    this.nextElementSibling.innerHTML = msg + "不正确";
+                } else {
+                    //正确的
+                    this.nextElementSibling.style.color = "transparent";
+                    this.nextElementSibling.innerHTML = "";
+                }
+            }
+        }
+        regexp(document.querySelector("#uname"), name1, '用户名');
+        regexp(document.querySelector("#phone"), tel, '手机号');
+        regexp(document.querySelector("#qq"), qq, 'qq号');
+        regexp(document.querySelector("#pwd"), pwd, '密码');
+        document.querySelector('#pwdc').onblur = function() {
+            if (this.value != document.querySelector("#pwd").value) {
+                this.nextElementSibling.style.color = "red";
+                this.nextElementSibling.innerHTML = '两次密码输入不一致';
+            } else {
+                //正确的
+                this.nextElementSibling.style.color = "transparent";
+                this.nextElementSibling.innerHTML = "";
+            }
+        }
+    </script>
+</body>
+
+</html>

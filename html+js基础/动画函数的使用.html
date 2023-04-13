@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            text-align: center;
+        }
+        
+        .icon {
+            position: fixed;
+            width: 100px;
+            height: 100px;
+            right: 0;
+            background-color: #D62626;
+            line-height: 100px;
+        }
+        
+        .swp {
+            position: absolute;
+            display: none;
+            top: 0;
+            width: 200px;
+            height: 101px;
+            margin-top: -1px;
+            background-color: #D62626;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="icon">
+        <span>⬅</span>
+        <div class="swp">点击查看详情</div>
+    </div>
+    <script>
+        var icon = document.querySelector(".icon");
+        var swp = document.querySelector(".swp");
+        icon.addEventListener("mouseenter", function() {
+            swp.style.display = "block";
+            moveEase(swp, -200);
+            icon.children[0].innerHTML = "➡";
+        });
+        icon.addEventListener("mouseleave", function() {
+            moveEase(swp, 100, function() {
+                // swp.style.display = "none";
+                icon.children[0].innerHTML = "⬅";
+                console.log(111);
+            });
+        });
+    </script>
+    <script src="./封装的动画函数.js"></script>
+</body>
+
+</html>

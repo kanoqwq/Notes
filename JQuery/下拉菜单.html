@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.min.js"></script>
+    <style>
+        body>ul>li {
+            float: left;
+        }
+        
+        body>ul>li>p {
+            box-sizing: border-box;
+            padding: 20px;
+            margin: 0;
+            background-color: red;
+        }
+        
+        li {
+            list-style: none;
+        }
+        
+        li>ul {
+            display: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        li>ul>li {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>
+            <p>下拉菜单</p>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </li>
+        <li>
+            <p>下拉菜单</p>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </li>
+        <li>
+            <p>下拉菜单</p>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </li>
+        <li>
+            <p>下拉菜单</p>
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        $(function() {
+            //隐式迭代，不需要循环了
+            $("body>ul>li").mouseover(function() {
+                $(this).children("ul").show();
+            });
+            $("body>ul>li").mouseleave(function() {
+                $(this).children('ul').hide();
+            });
+        });
+    </script>
+</body>
+
+</html>

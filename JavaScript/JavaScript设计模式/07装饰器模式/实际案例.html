@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button id="pv">访问量++</button>
+    <script>
+        // 装饰器模式
+        Function.prototype.before = function (beforeFn) {
+            let _this = this
+            return function () {
+                //先进行前置函数调用
+                beforeFn.apply(this, arguments)
+                //再执行原来的函数
+                return _this.apply(this, arguments)
+            }
+        }
+        Function.prototype.after = function (afterFn) {
+            let _this = this
+            return function () {
+                //先执行原来的函数
+                let result = _this.apply(this, arguments)
+                //再进行后置函数调用
+                afterFn.apply(this, arguments)
+                return result
+            }
+        }
+
+        //uv上传的例子
+        function log() {
+            console.log('上传pvuv数据');
+        }
+        function render() {
+            console.log('页面处理逻辑');
+        }
+        //前置装饰器
+        render = render.before(log)
+        pv.onclick = function () {
+            //......
+            render()
+            //......
+        }
+
+        //axios的拦截器其实就是利用了装饰器模式
+
+        //假如这是原装的ajax
+        function ajax(url, method, params) {
+            console.log(url, method, params);
+        }
+        //这是带token前置的ajax
+        let ajax1 = ajax.before((url, method, params) => {
+            params.token = '1dsfkjhsfj';
+        })
+
+
+        ajax1('/api', 'post', {
+            name: 'kano'
+        })
+        ajax('/api', 'post', {
+            name: 'kano'
+        })
+    </script>
+</body>
+
+</html>

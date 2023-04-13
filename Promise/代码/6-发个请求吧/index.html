@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <p></p>
+    <script>
+        function AJAX_GET(url) {
+            return new Promise((resolve, reject) => {
+                //创建对象
+                const xhr = new XMLHttpRequest();
+                //2.init xhr
+                xhr.open('GET', url);
+                //3.send
+                xhr.send();
+                //4.handle request
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            //成功
+                            resolve(xhr.response);
+                        } else {
+                            //失败
+                            reject(xhr.status)
+                        }
+                    }
+                }
+            }).then(
+                (value) => {
+                    value = JSON.parse(value)
+                    return value.hitokoto + '——' + value.from
+                },
+                (reason) => {
+                    console.warn(reason);
+                    return '请求太快'
+                }
+            )
+        }
+
+        async function asyncFun() {
+            let text = await AJAX_GET('https://v1.hitokoto.cn/?c=a')
+            console.log(text);
+            document.getElementsByTagName('p')[0].innerHTML = text
+        }
+        asyncFun();
+    </script>
+</body>
+
+</html>

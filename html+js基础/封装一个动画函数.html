@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        
+        div {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            left: 100px;
+            top: 0;
+            background-color: red;
+        }
+        
+        .box {
+            position: relative;
+            background-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    x: <input type="number" name="" id="numberx"><br>
+    <button>点击瞬移</button>
+    <button id="rand">随机瞬移</button>
+    <div class="box">
+        <div id="one">
+        </div>
+        <div id='two'>
+        </div>
+    </div>
+
+    <script>
+        var div1 = document.querySelector("#one");
+        var div2 = document.querySelector("#two");
+        var numberx = document.querySelector("#numberx");
+        var btn = document.querySelector("button");
+        var rand = document.querySelector("#rand");
+
+        btn.onclick = function() {
+            moveAni(div1, numberx.value, function() {
+                div1.style.backgroundColor = "green";
+                div1.style.zIndex = 1;
+            });
+            moveEase(div2, numberx.value);
+        }
+        rand.addEventListener("click", function() {
+            this.tt = setInterval(() => {
+                var r = Math.floor(Math.random() * window.screen.availWidth);
+                console.log(window.clientHeight);
+                moveEase(div2, r);
+                moveAni(div1, r, function() {
+                    div1.style.backgroundColor = "green";
+                    div1.style.zIndex = 1;
+                });
+            }, 100);
+            this.disabled = true;
+        });
+    </script>
+    <script src="./封装的动画函数.js"></script>
+</body>
+
+</html>

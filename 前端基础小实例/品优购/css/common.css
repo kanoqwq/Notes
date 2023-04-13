@@ -1,0 +1,360 @@
+/*公共样式*/
+
+@font-face {
+    font-family: 'iconfont';
+    /* Project id 2920575 */
+    src: url('https://at.alicdn.com/t/font_2920575_b9enbhbqdkm.woff2?t=1636714634614') format('woff2'), url('https://at.alicdn.com/t/font_2920575_b9enbhbqdkm.woff?t=1636714634614') format('woff'), url('https://at.alicdn.com/t/font_2920575_b9enbhbqdkm.ttf?t=1636714634614') format('truetype');
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.font_red {
+    color: #C81623;
+}
+
+.arrow_down::after {
+    content: '\e665';
+    font-weight: 500;
+    margin-left: 5px;
+    font-family: 'iconfont';
+}
+
+
+/*版心*/
+
+.shortcut {
+    height: 31px;
+    background-color: #f1f1f1;
+}
+
+.w {
+    width: 1200px;
+    margin: 0 auto;
+    height: 31px;
+    line-height: 31px;
+    background-color: #f1f1f1;
+}
+
+.w .fr ul li {
+    display: inline-block;
+}
+
+.w .fr ul li:nth-child(even) {
+    width: 1px;
+    height: 10px;
+    margin: 0 10px;
+    border-right: 1px solid #666;
+}
+
+.header .w {
+    position: relative;
+    height: 106px;
+    background-color: #fff;
+}
+
+
+/* logo部分 begin */
+
+.header .logo h1 a {
+    position: absolute;
+    display: block;
+    top: 27px;
+    height: 55px;
+    width: 180px;
+    background: url(../img/logo.png) no-repeat;
+    font-size: 0;
+}
+
+
+/* logo部分 end */
+
+
+/* 搜索框部分 begin */
+
+.header .w .search_box {
+    position: absolute;
+    width: 540px;
+    height: 35px;
+    top: 30px;
+    left: 350px;
+    border: 2px solid #C81623;
+}
+
+.header .w .search_box input {
+    width: 455px;
+    height: 31px;
+    margin-left: 5px;
+    color: #6C6C6C;
+    outline: none;
+    border: none;
+}
+
+.header .w .search_box button {
+    float: right;
+    height: 31px;
+    width: 72px;
+    border: none;
+    border: 1px solid #C81623;
+    vertical-align: bottom;
+    font-size: 16px;
+    background-color: #C81623;
+    color: white;
+}
+
+.header .w .search_box .keywords ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+
+/* 搜索框部分 end */
+
+
+/* 购物车按钮 begin */
+
+.header .w .cart {
+    position: absolute;
+    display: block;
+    right: 60px;
+    top: 30px;
+    width: 140px;
+    height: 35px;
+    line-height: 33px;
+    border: 1px solid #E6E6E6;
+    background-color: #F7F7F7;
+}
+
+.header .w .cart::before {
+    content: '\e623';
+    margin-left: 15px;
+    font-family: 'iconfont';
+    font-size: 20px;
+    color: #C81623;
+    vertical-align: bottom;
+}
+
+.header .w .cart::after {
+    content: '\e607';
+    margin-left: 5px;
+    vertical-align: bottom;
+    font-family: 'iconfont';
+    color: #C4C4C4;
+    font-size: 20px;
+}
+
+.header .w .cart span {
+    position: relative;
+}
+
+.header .w .cart span .red_dot {
+    position: absolute;
+    top: -15px;
+    height: 15px;
+    color: white;
+    line-height: 15px;
+    text-align: center;
+    padding: 0 5px;
+    border-radius: 15px 15px 15px 0;
+    background-color: #E60012;
+}
+
+
+/* 购物车按钮 end */
+
+
+/* nav+商品分类栏 begin */
+
+.header .nav .item_list {
+    position: absolute;
+    background-color: #B1191A;
+}
+
+.header .nav .item_list {
+    width: 210px;
+    text-align: left;
+}
+
+.header .nav .item_list li {
+    height: 45px;
+    padding-left: 10px;
+}
+
+.header .nav .item_list li:hover {
+    margin-left: 2px;
+    background-color: #fff;
+}
+
+.header .nav .item_list li:hover a {
+    color: #B1191A;
+}
+
+.header .nav .item_list li a {
+    font-size: 14px;
+}
+
+.header .nav .item_list li a:first-child:after {
+    content: '\e607';
+    position: absolute;
+    right: 10px;
+    font-family: "iconfont";
+}
+
+.header .nav,
+.header .nav .w {
+    height: 47px;
+    border-bottom: 2px solid #B1191A;
+}
+
+.header .nav .all_item {
+    display: inline-block;
+    width: 210px;
+    height: 45px;
+    text-align: center;
+    background-color: #9b1213;
+    ;
+}
+
+.header .nav .all_item a {
+    line-height: 45px;
+    font-size: 16px;
+    color: #F6E8E8;
+}
+
+.header .nav .items {
+    position: relative;
+    display: inline-block;
+    margin-left: 42px;
+    font-size: 16px;
+}
+
+
+/* nav+商品分类栏 end */
+
+
+/* footer页脚部分 start */
+
+footer {
+    position: relative;
+    bottom: 0;
+    height: 416px;
+    background-color: #f1f1f1;
+}
+
+footer .w {
+    height: 100%;
+    /* background-color: pink; */
+}
+
+footer .w .mod_service {
+    height: 110px;
+    border-bottom: 1px solid #ededed;
+}
+
+footer .w .mod_service div {
+    float: left;
+    height: 110px;
+    width: 240px;
+    padding: 20px 0 20px 30px;
+}
+
+footer .w .mod_service div h3 {
+    float: left;
+}
+
+footer .w .mod_service div span {
+    float: left;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+footer .w .mod_service div::before {
+    float: left;
+    content: '\e722';
+    margin-right: 5px;
+    font-family: 'iconfont';
+    width: 60px;
+    height: 60px;
+    border-radius: 30px;
+    background-color: #C81623;
+    line-height: 61px;
+    font-size: 35px;
+    text-align: center;
+    color: #fff;
+}
+
+footer .w .mod_service div:nth-child(2):before {
+    content: '\e890';
+}
+
+footer .w .mod_service div:nth-child(3):before {
+    content: '\e699';
+}
+
+footer .w .mod_service div:nth-child(4):before {
+    content: '\e628';
+}
+
+footer .w .mod_service div:nth-child(5):before {
+    content: '\e683';
+}
+
+footer .w .mod_list {
+    position: relative;
+    height: 188px;
+    padding-top: 20px;
+    border-bottom: 1px solid #ededed;
+}
+
+footer .w .mod_list ul {
+    display: inline-block;
+    margin: 0 58px;
+}
+
+footer .w .mod_list ul li {
+    line-height: 20px;
+}
+
+footer .w .mod_list .qr_code {
+    position: absolute;
+    display: inline-block;
+    width: 100px;
+    margin-left: 35px;
+    text-align: center;
+}
+
+footer .w .mod_list .qr_code img {
+    width: 88%;
+    margin-top: 10px;
+}
+
+footer .w .copyright {
+    height: 120px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+footer .w .copyright span,
+footer .w .copyright a {
+    vertical-align: middle;
+}
+
+footer .w .copyright span {
+    display: inline-block;
+    height: 12px;
+    width: 1px;
+    margin: 0 12px;
+    border-left: 1px solid #999;
+}
+
+footer .w .copyright p {
+    line-height: 16px;
+}
+
+
+/* footer页脚部分 end */

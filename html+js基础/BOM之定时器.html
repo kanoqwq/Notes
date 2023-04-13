@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        //计时器之setTimeout() 单位为ms
+        var timer = setTimeout(function() {
+            alert("BOOOOOOOOM!!!!!!!");
+        }, 5000);
+        //多个定时器使用方法
+        var timer1 = setTimeout(function() {
+            console.log("timer1");
+        }, 2000);
+        var timer2 = setTimeout(function() {
+            console.log("timer2");
+        }, 3000);
+        var pwd;
+        // 清除定时器
+        pwd = prompt("请输入密码");
+        if (parseInt(pwd) === 7355608) {
+            clearTimeout(timer);
+        }
+        //setInterval间隔定时器
+        var body = document.querySelector("body");
+        window.onload = function() {
+            var timerI = setInterval(function() {
+
+                body.style.backgroundColor = "white";
+                body.style.backgroundColor = "red";
+                console.log("dd");
+            }, 500);
+        }
+    </script>
+</body>
+
+</html>

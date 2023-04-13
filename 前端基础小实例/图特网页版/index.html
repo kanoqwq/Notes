@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图特工作室-2021</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <script src="./script/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+    <!-- 主体 -->
+    <div class="app">
+        <!-- logo -->
+        <a href="#" class="logo">图特中心&nbsp;|&nbsp;2021</a>
+        <!-- 注册登录表单 -->
+        <div class="login">
+            <div class="center">
+                <h1>用户登录</h1>
+                <form id="form" action="./log" method="get">
+                    <input id="usr" type="text" name="username" placeholder="图特账号" />
+                    <input id="pwd" type="password" name="passwd" placeholder="密码" />
+                    <span id="albox" style="color: red;position: absolute"></span>
+                    <input id="submit" type="submit" class="submit" value="进入图特" />
+                </form>
+                <a id="reg_btn" href="#" class="btn" onclick="to_reg()">用户注册</a>
+            </div>
+        </div>
+    </div>
+    <!-- 脚本 -->
+    <script src="./script/main.js"></script>
+</body>
+
+</html>

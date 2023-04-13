@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../bootstrap.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="page-header">Promise 封装 AJAX 操作</h2>
+        <button class="btn btn-primary" id="btn">点击发送ajax</button>
+        <hr>
+        <p><strong id="res"></strong><span id="author"></span></p>
+    </div>
+    <script>
+        //获取元素对象
+        const btn = document.querySelector('#btn');
+        const res = document.querySelector('#res');
+        const author = document.querySelector('#author');
+        //绑定单机事件
+        let timer = null
+        btn.addEventListener('click', function() {
+            //节流
+            clearTimeout(timer)
+            timer = setTimeout(() => {
+                hitokoto();
+            }, 500);
+        })
+
+        function hitokoto() {
+            return new Promise((resolve, reject) => {
+                //创建对象
+                const xhr = new XMLHttpRequest();
+                //2.init xhr
+                xhr.open('GET', 'https://v1.hitokoto.cn/?c=a');
+                //3.send
+                xhr.send();
+                //4.handle request
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            //成功
+                            resolve(xhr.response);
+                        } else {
+                            //失败
+                            reject(xhr.status)
+                        }
+                    }
+                }
+            }).then(
+                (value) => {
+                    console.log(value);
+                    res.innerHTML = JSON.parse(value).hitokoto
+                    author.innerHTML = ' —— ' + JSON.parse(value).from
+                },
+                (reason) => {
+                    console.warn(reason);
+                }
+            )
+        }
+    </script>
+</body>
+
+</html>

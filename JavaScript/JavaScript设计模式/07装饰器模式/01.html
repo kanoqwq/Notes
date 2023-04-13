@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 装饰器模式
+        Function.prototype.before = function (beforeFn) {
+            let _this = this
+            return function () {
+                //先进行前置函数调用
+                beforeFn.apply(this, arguments)
+                //再执行原来的函数
+                return _this.apply(this, arguments)
+            }
+        }
+        Function.prototype.after = function (afterFn) {
+            let _this = this
+            return function () {
+                //先执行原来的函数
+                let result = _this.apply(this, arguments)
+                //再进行后置函数调用
+                afterFn.apply(this, arguments)
+                return result
+            }
+        }
+        function test() {
+            console.log('111');
+        }
+        //这里before返回的也是一个function，因为我们在Function原型对象上挂载了before和after
+        //可以实现链式调用
+        let Fun = test.before(() => {
+            console.log('我是before注入的函数');
+        }).after(() => {
+            console.log('我是after注入的函数');
+        })
+        Fun()
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="../bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        
+        <div class="row">
+            <h1>基本使用</h1>
+            <hr>
+            <button type="button" class="btn btn-primary">发送GET请求</button>
+            <button type="button" class="btn btn-success">发送POST请求</button>
+            <button type="button" class="btn btn-info">发送PUT请求</button>
+            <button type="button" class="btn btn-warning">发送DELETE请求</button>
+        </div> 
+    </div>
+    <script>
+        //获取按钮
+        const btn = document.querySelectorAll('button');
+        //发送get请求
+        btn[0].onclick = function(){
+            axios({
+                method:'get',
+                url: 'http://localhost:3000/posts/1'
+            }).then(
+                response=>{
+                    console.log(response);
+                },
+                reason=>{
+                    console.error('axios执行失败'+reason.message);
+                }
+            )
+        }
+        //发送post请求
+        btn[1].onclick = function(){
+            axios({
+                method:'post',
+                url: 'http://localhost:3000/posts/',
+                //设置请求体
+                data:{
+                    title:'还行',
+                    author:'kanoqwq'
+                }
+            }).then(
+                response=>{
+                    console.log(response);
+                },
+                reason=>{
+                    console.error('axios执行失败'+reason.message);
+                }
+            )
+        }
+
+        //发送delete请求(修改数据)
+        btn[2].onclick = function(){
+            axios({
+                method:'delete',
+                url: 'http://localhost:3000/posts/2',
+                //设置请求体
+                data:{
+                    title:'还行111',
+                    author:'kanoqwq111'
+                }
+            }).then(
+                response=>{
+                    console.log(response);
+                },
+                reason=>{
+                    console.error('axios执行失败'+reason.message);
+                }
+            )
+        }
+
+        //发送put请求(删除数据)
+        btn[3].onclick = function(){
+            axios({
+                method:'put',
+                url: 'http://localhost:3000/posts/2'
+            }).then(
+                response=>{
+                    console.log(response);
+                },
+                reason=>{
+                    console.error('axios执行失败'+reason.message);
+                }
+            )
+        }
+    </script>
+</body>
+</html>

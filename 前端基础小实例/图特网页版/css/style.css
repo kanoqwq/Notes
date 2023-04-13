@@ -1,0 +1,116 @@
+@font-face {
+    font-family: 'ZKWenYi-regular';
+    src: url(../fonts/ZKWenYi-regular.ttf);
+}
+
+html,
+body {
+    height: 100%;
+    background-color: #0099FF;
+}
+
+
+/* 主体 */
+
+.app {
+    position: relative;
+    display: flex;
+    height: 100%;
+    width: 100%;
+    min-width: 450px;
+    min-height: 600px;
+    background: url("../img/bg@1x.png") no-repeat;
+    background-color: #0099FF;
+    background-size: contain;
+    background-position: left bottom;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* 顶部logo */
+
+.app .logo {
+    position: absolute;
+    left: 100px;
+    top: 30px;
+    width: fit-content;
+    color: #fff;
+    font-family: 'ZKWenYi-regular';
+    font-size: 36px;
+}
+
+.logo::before {
+    content: " ";
+    position: absolute;
+    left: -50px;
+    top: 5px;
+    height: 40px;
+    width: 40px;
+    background: url('../img/logo@1x.png') no-repeat;
+}
+
+
+/* 注册登录表单 */
+
+.login {
+    height: 378px;
+    max-width: 400px;
+    border-radius: 11px;
+    box-shadow: 0px 2px 30px 0px rgba(13, 97, 223, 75);
+    background-color: #fff;
+    transition: all 0.3s;
+}
+
+.app_reg {
+    height: 433px;
+}
+
+.login h1 {
+    margin: 50px 0 20px 0;
+    color: #0099FF;
+    font-weight: 500;
+}
+
+.login input {
+    width: 300px;
+    height: 35px;
+    margin-top: 20px;
+    padding: 0 5px;
+    border: 1px solid #ccc;
+    outline: none;
+    transition: all ease 0.3s;
+}
+
+.login .submit {
+    background-color: #0099FF;
+    margin-top: 50px;
+    margin-bottom: 15px;
+    border: none;
+    transition: all 0.3s;
+    color: #fff;
+}
+
+.login .submit:hover {
+    background-color: #45A2FF;
+}
+
+.login .center {
+    margin: 0 50px;
+}
+
+.login .btn {
+    float: right;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0099FF;
+}
+
+@media (min-width: 768px) {
+    .app {
+        justify-content: flex-end;
+    }
+    .login {
+        margin-right: 15%;
+    }
+}

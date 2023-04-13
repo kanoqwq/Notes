@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            perspective: 800px;
+        }
+        
+        .box {
+            position: relative;
+            margin: 0 auto;
+            transform-style: preserve-3d;
+            width: 400px;
+            height: 400px;
+            transition: all 1s;
+        }
+        
+        .box:hover {
+            transform: rotateY(180deg);
+        }
+        
+        img {
+            position: absolute;
+            z-index: 2;
+            width: 400px;
+            border-radius: 50%;
+            border: 1px solid black;
+            transform: rotateY(-180deg);
+        }
+        
+        img:first-child {
+            /* 元素背面是否可见 */
+            backface-visibility: hidden;
+        }
+        
+        img:last-child {
+            z-index: 1;
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="https://image.kanokano.cn/2022/03/20220331021820633.jpg" alt="">
+        <img src="https://image.kanokano.cn/2022/03/20220317092002217.bmp" alt="">
+    </div>
+</body>
+
+</html>

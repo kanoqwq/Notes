@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>人员列表</h2>
+        <ul>
+            <!-- key的另一种写法 -->
+            <!-- a就相当于item，b就相当于index -->
+            <button @click="updatez">更新张三</button>
+            <li v-for="(a,b) in persons" :key="a.id">{{a.name}}-{{a.age}}-{{a.sex}}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                persons: [{
+                    id: '000',
+                    name: '张三',
+                    age: '11',
+                    sex: '男'
+                }, {
+                    id: '001',
+                    name: '张麻子',
+                    age: '28',
+                    sex: '男'
+                }, {
+                    id: '002',
+                    name: '李四',
+                    age: '19',
+                    sex: '男'
+                }, {
+                    id: '003',
+                    name: '王五',
+                    age: '50',
+                    sex: '男'
+                }, {
+                    id: '004',
+                    name: '马冬梅',
+                    age: '12',
+                    sex: '女'
+                }]
+            },
+            methods: {
+                updatez() {
+                    //正确的
+                    // this.persons[0].name = '马宝国';
+                    // this.persons[0].age = 60;
+                    // this.persons[0].sex = '男';
+
+                    //没奏效
+                    //vue并没有检测到数据更改
+                    this.persons[0] = {
+                        id: '001',
+                        name: '马宝国',
+                        age: '60',
+                        sex: '男'
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+    <style>
+        .happy {
+            background-color: yellow;
+        }
+        
+        .sad {
+            background-color: green;
+        }
+        
+        .basic {
+            display: block;
+            width: 300px;
+            height: 300px;
+        }
+        
+        .normal {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- vue 使用 v-bind:class="变量" 进行样式变换 -->
+
+    <div id="root">
+        <!-- 绑定class样式 字符串写法，适用于：样式类名不确定 ，需要动态指定 -->
+        <div class="basic normal" :class="mood" @click="changeMood">{{a}}1</div>
+        <hr>
+        <!-- 绑定class样式 数组写法，适用于：样式类名不确定 ，个数也不确定，名字也不确定，需要动态指定 -->
+        <div class="basic" :class="array">{{a}}2</div>
+        <button @click="md">点我删除类</button>
+        <hr>
+        <!-- 绑定class样式 对象写法，适用于：样式类名确定 ，个数也确定，名字也确定，需要动态决定用不用 -->
+        <div class="basic" :class="classObj">{{a}}2</div>
+
+        <!-- 绑定style样式 也是对象写法 -->
+        <div class="basic" :style="styleObj">{{a}}2</div>
+
+        <!-- 绑定style样式 数组对象写法 -->
+        <div class="basic" :style="[styleObj1,styleObj]">{{a}}2</div>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#root',
+            data: {
+                a: 'hello',
+                mood: 'normal',
+                array: ['normal', 'happy', 'sad'],
+                classObj: {
+                    //类的对象写法，false为不启用
+                    happy: true,
+                    sad: true
+                },
+                //样式的对象写法
+                styleObj: {
+                    //vue中的css属性写法
+                    // fontSize: '44px'
+                    //也可以写原生css写法
+                    'font-size': '44px'
+                },
+                styleObj1: {
+                    //vue中的css属性写法
+                    // fontSize: '44px'
+                    //也可以写原生css写法
+                    color: 'red'
+                }
+            },
+            methods: {
+                changeMood() {
+                    const arr = ['happy', 'sad', 'normal'];
+                    const index = Math.floor(Math.random() * 3);
+                    this.mood = arr[index]
+                },
+                md() {
+                    this.array.shift();
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

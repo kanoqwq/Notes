@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="parent">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+        <button>删除</button>
+    </div>
+    <script>
+        //节点操作
+        //NodeType 
+        //元素节点为1
+        //属性节点为2
+        //文本节点为3（文本节点包含文字空格换行等）
+        var node = document.querySelector("ul");
+
+        //操作父节点（距离元素最近的父节点）找不到返回NULL
+        console.log(node.parentNode);
+
+        //操作子节点（包含元素 属性 文本节点）
+        console.log(node.childNodes);
+
+        //获取所有的子元素（标签元素）
+        console.log(node.children);
+
+        //获取第一个子节点（包含元素 属性 文本节点）不一定是标签元素，很可能是一个换行符号
+        console.log(node.firstChild);
+
+        //获取最后一个子节点（包含元素 属性 文本节点）不一定是标签元素，很可能是一个换行符号
+        console.log(node.lastChild);
+
+        //获取 第一个/最后一个 子节点（标签元素）
+        console.log(node.firstElementChild);
+        console.log(node.lastElementChild);
+
+        //兼容性解决方案
+        console.log(node.children[0]);
+        console.log(node.children[node.children.length - 1]);
+
+        //获取兄弟节点（包含元素 属性 文本节点）
+        console.log(node.nextSibling);
+        console.log(node.previousSibling);
+
+        //获取兄弟元素节点
+        console.log(node.nextElementSibling);
+        console.log(node.previousElementSibling);
+
+        //动态创建节点
+        var span1 = document.createElement("span");
+        span1.innerText = "我在后面";
+
+        //添加节点到node里面末尾
+        node.appendChild(span1);
+
+        //添加节点到node内指定子节点的前面
+        var span = document.createElement("span");
+        span.innerText = "我在前面 ";
+        node.insertBefore(span, span1);
+
+        //复制节点(没写参数或参数为False表示浅拷贝，只复制标签不复制内容，如果为true为深拷贝，包括内容)
+        var node_copy = node.cloneNode(true);
+
+        //粘贴节点到node父元素内，button的前面
+        node.parentElement.insertBefore(node_copy, document.querySelector("button"));
+        var btn = document.querySelector("button");
+        btn.onclick = function() {
+            try {
+                //删除节点内子元素
+                node.removeChild(node.children[0]);
+            } catch {
+                alert("第一个ul内的所有节点已经清空,即将清除全部列表");
+
+                //删除节点
+                node_copy.remove();
+            }
+        }
+    </script>
+</body>
+
+</html>

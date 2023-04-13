@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log(1);
+        setTimeout(function() {
+            console.log(3);
+        }, 1000);
+        console.log(2);
+        //输出1 2 3 因为新的js引擎引入了多线程优化，可以多个任务同时进行
+        console.log(1);
+        setTimeout(function() {
+            console.log(3);
+        }, 0);
+        console.log(2);
+        //输出1 2 3  因为settimeout中的回调函数是异步任务，是在任务队列里面处理的
+        //任务分为同步任务和异步任务，两者不同
+        ///执行顺序为，先执行主线程执行栈中的同步任务，再将任务队列里面的回调函数放到主执行栈中最下面挂起，当同步任务中的任务执行完后，异步任务再执行
+        //事件循环：事件循环过程中，异步任务如果有相应的触发条件的话，任务会被暂时搁置在异步进程区域中，等待事件触发后，就会将该任务插入到异步队列中，主线程提取，并运行
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点击抽奖</button>
+    <script>
+        const btn = document.querySelector('button');
+        btn.onclick = function() {
+            //生成随机数
+            function rand(m, n) {
+                return Math.ceil(Math.random() * (n - m + 1) + m - 1);
+            }
+            // 这是一个promise示例
+            const p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    let n = rand(1, 100);
+                    //判断
+                    if (n <= 30) {
+                        resolve(n); //将promise对象的状态设置为成功
+                    } else {
+                        reject(n); //将promise对象的状态设置为失败
+                    }
+                }, 300)
+            });
+            //调用 then 方法
+            p.then((value) => {
+                alert(`抽到啦~${value}`);
+            }, (reason) => {
+                alert(`没抽到哦~${reason}`);
+            });
+        }
+    </script>
+</body>
+
+</html>

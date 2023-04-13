@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //声明map
+        let mp = new Map();
+        //添加元素
+        mp.set('name', 'kano');
+        mp.set('change', function() {
+            console.log('我是函数');
+        })
+        let key = {
+                age: 18
+            }
+            //size
+        console.log(mp.size);
+
+        //删除
+        mp.delete('age');
+        //获取
+        console.log(mp.get('name'));
+        console.log(mp);
+
+        //清空
+        mp.clear();
+
+        //遍历
+        for (let item of mp) {
+            console.log(mp);
+        }
+    </script>
+</body>
+
+</html>

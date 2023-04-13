@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="a"></div>
+    <script>
+        var d = document.querySelector("div");
+        // 设置自定义属性
+        d.setAttribute("kano_prop", "true");
+        //读取自定义属性
+        console.log(d.getAttribute("kano_prop"));
+        //移除自定义属性
+        d.removeAttribute("kano_prop");
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //数组方法
+        var arr = [1, 2, 3];
+        arr.forEach(function(value, index, array) { //value:数组元素，index：数组索引号，array：数组本身
+            console.log("每个数组元素" + value);
+            console.log("每个数组元素的索引号" + index);
+            console.log("数组本身" + array);
+        });
+        //filter() 方法 筛选数组 返回处理好的数组
+        var newarr = arr.filter(function(currentValue, index, array) {
+            return currentValue % 2 != 0; //筛选奇数的元素，依次装在新数组内一并返回
+        });
+        //some() 检测数组中的元素是否满足指定条件，返回一个布尔值 找到就立马返回true 最后找不到就返回false
+        var flag = arr.some(function(value, index, array) {
+            return value > 2;
+        });
+        console.log(flag);
+        console.log(newarr);
+        console.log('========================');
+
+
+        //对象方法
+        // Object.keys(obj) 用于获取对象自身所有的属性
+        //效果类似于 for..in...
+        var obj = {
+            id: 1,
+            name: 'kano',
+            price: 99999,
+            num: 1
+        };
+        var arr = Object.keys(obj);
+        console.log(arr);
+        console.log('========================');
+        //Object.defineProperty(obj,prop,descriptor) 定义对象中新属性或者修改原有的属性
+        //参数 obj代表要定义的对象，prop为字符串形式，目标对象的属性，descriptor为对象形式，为目标对象属性的描述
+        Object.defineProperty(obj, 'number', {
+            value: 1000
+        });
+        //可以使用writeable设置属性不可写
+        //常用的descriptor
+        //value:设置属性的值，默认为undefined
+        //writeable：设置值是否可以重写，true|false 默认为false
+        //enumerable：目标属性是否可以被枚举（是否能被遍历出来），true|false 默认为false
+        //configurable:目标属性是否可以被删除或是否可以再次修改特性， true|false 默认为false
+        //注意：configurable如果设置为false 则整个对象的descriptor全部都无法再次修改了
+        Object.defineProperty(obj, 'id', {
+            writable: false //不允许修改属性值
+        });
+        Object.defineProperty(obj, 'hide', {
+            value: "我藏起来啦",
+            enumerable: false,
+            configurable: false
+        });
+        //无法重定义，报错
+        // Object.defineProperty(obj, 'hide', {
+        //     value: "我藏起来啦111",
+        // });
+        obj.id = 2111; //修改无效
+        delete obj.hide; //删除无效
+        console.log(obj);
+        console.log(Object.keys(obj)); //无法遍历出enumerable为false的属性
+    </script>
+</body>
+
+</html>

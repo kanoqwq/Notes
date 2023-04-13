@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //get 和 set
+        //和c#的类似
+        class Person {
+            constructor(name) {
+                this.name = name;
+            }
+            get Name() {
+                if (this.name == 'kano') {
+                    return this.name + ' yyds';
+                } else {
+                    return this.name;
+                }
+            }
+            set Name(val) {
+                this.name = val;
+            }
+        }
+        let kano = new Person('kano');
+        console.log(kano.Name);
+        kano.Name = 'dd';
+        console.log(kano.Name);
+    </script>
+
+
+</body>
+
+</html>

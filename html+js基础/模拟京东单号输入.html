@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .info {
+            visibility: hidden;
+            display: inline-block;
+            position: relative;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            padding: 2px;
+            height: 26px;
+            max-width: 100%;
+            min-width: 100px;
+            overflow: hidden;
+            box-shadow: 1px 3px 8px #333;
+        }
+        
+        .info::after {
+            content: " ";
+            position: absolute;
+            bottom: -18px;
+            left: 30px;
+            width: 0px;
+            height: 0px;
+            border: 8px solid transparent;
+            border-top: 10px solid white;
+        }
+    </style>
+</head>
+
+<body>
+    <span id="info" class="info"></span><br>
+    <input type="text" id="ipt">
+    <script>
+        var ipt = document.querySelector("#ipt");
+        var info = document.querySelector("#info");
+        //这里使用keyup事件，这样不会导致s被输入进搜索框
+        document.addEventListener("keyup", function(e) {
+            if (e.code == "KeyS") {
+                ipt.focus();
+            }
+        });
+        //同步搜索框与info盒子的内容
+        //这里使用keyup，才会先输入，执行填充文本操作
+        document.addEventListener("keyup", function() {
+            info.innerHTML = ipt.value;
+            if (ipt.value == '') {
+                info.style.visibility = "hidden";
+            } else {
+                info.style.visibility = "visible";
+            }
+        });
+        //失焦隐藏
+        ipt.addEventListener("blur", function() {
+            info.style.visibility = "hidden";
+        });
+        //回焦显示，但得有内容
+        ipt.addEventListener("focus", function() {
+            if (this.value != "") {
+                info.style.visibility = "visible";
+            }
+        });
+    </script>
+</body>
+
+</html>

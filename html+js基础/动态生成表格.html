@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            margin-top: 8%;
+            border: 1px solid #333;
+        }
+        
+        th,
+        td {
+            padding: 10px 50px;
+            border: 1px solid #333;
+            /* background-color: red; */
+        }
+        
+        th {
+            background-color: #ccc;
+        }
+        
+        td {
+            padding: 0px 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <span>姓名：</span><input type="text" id="p_name"><br>
+        <span>专业：</span><input type="text" id="major"><br>
+        <span>成绩：</span><input type="number" id="score"><br><br>
+        <button>提交</button>
+    </div>
+    <table>
+        <thead>
+            <th>姓名</th>
+            <th>专业</th>
+            <th>成绩</th>
+            <th>选项</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        // 获取元素
+        var p_name = document.querySelector("#p_name");
+        var major = document.querySelector("#major");
+        var score = document.querySelector("#score");
+        var submit = document.querySelector("button");
+        var tbody = document.querySelector("tbody");
+
+        //创建一个构造器
+        function Person(_name, _major, _score) {
+            this.Name = _name;
+            this.Major = _major;
+            this.Score = _score;
+        }
+
+        //绑定提交事件
+        submit.onclick = function() {
+            if (p_name.value != '' && major.value != '' && score.value != '') {
+
+                //创建对象
+                var people = new Person(p_name.value, major.value, score.value);
+                var newTr = document.createElement("tr");
+
+                // 添加tr到表单内
+                tbody.append(newTr);
+
+                // 遍历对象
+                for (var i in people) {
+                    var newTd = document.createElement("td");
+                    newTd.innerHTML = people[i];
+                    newTr.append(newTd);
+                }
+                //添加并绑定删除按钮
+                var delTd = document.createElement("td");
+                var del = document.createElement("a");
+                del.href = "javascript:;";
+                del.innerHTML = "删除";
+                newTr.append(delTd);
+                delTd.append(del);
+                del.onclick = function() {
+                    //newTr.remove();
+                    //或者
+                    this.parentElement.parentElement.remove();
+                }
+
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h2>学校信息</h2>
+        <h2>学校名称:{{name}}</h2>
+        <h2>学校地址：{{adress}}</h2>
+        <hr/>
+        <h2>学生信息</h2>
+        <h2>学生姓名：{{student.name}}</h2>
+        <button @click="addsex">添加性别</button>
+        <h2 v-if="student.sex">学生性别：{{student.sex}}</h2>
+        <h2>学生年龄 真实：{{student.age.rAge}} 对外:{{student.age.sAge}}</h2>
+        <h2>朋友们</h2>
+        <ul>
+            <li v-for="(f,index) in student.friends" :key="index">
+                {{f.name}} --- {{f.age}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                name: 'kanokano',
+                adress: '湖南',
+                student: {
+                    name: 'tony',
+                    // sex: '男',
+                    age: {
+                        rAge: 40,
+                        sAge: 18
+                    },
+                    friends: [{
+                        name: 'tom',
+                        age: 11
+                    }, {
+                        name: 'jerry',
+                        age: 12
+                    }]
+                }
+            },
+            methods: {
+                addsex() {
+                    //this.$set(this.student, 'sex', '男')
+                    //或者
+                    Vue.set(this.student, 'sex', '男')
+                }
+            }
+        });
+
+        //注意，这个set方法只能给vue data里面某个对象增加属性
+        //也就是要操作的对象不能是Vue实例，或者Vue实例的根数据对象（data、_data）
+        //通过Vue.set来添加新属性
+        //Vue.set(vm.student, 'sex', '男')
+        //通过vm自身的$set添加新属性
+        //vm.$set(vm.student, 'sex', '男')
+    </script>
+</body>
+
+</html>

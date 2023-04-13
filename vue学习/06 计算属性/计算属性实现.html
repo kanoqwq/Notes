@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <!-- v-model 双向数据绑定 -->
+        <p> 姓：<input type="text" v-model="firstname"> </p>
+        <p> 名：<input type="text" v-model="lastname"></p>
+        <!-- 上面的input内容只要发生变化，vue的模板都会重新解析一遍html，从而带动下面的函数的重载 -->
+        <p> 姓名：<span>{{fullname}}</span></p>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#root',
+            data: {
+                firstname: '张',
+                lastname: '三'
+            },
+            //计算属性,computed内的就是计算属性，用来处理复杂的属性计算，里面的属性值也是用数据代理
+            //计算属性是有缓存的，get调用了一次，如果值没有改变，再次调用属性的时候就不会调用get函数了
+            //初次读取fullname时候，get会被调用，所依赖的数据发生变化时，get也会被调用
+            //computed 属性中的get不能被手动调用，Vue会在使用到属性的时候自动调用
+            computed: {
+                // fullname: {
+                //     get() {
+                //         //此处的this是vm
+                //         return this.firstname + '-' + this.lastname;
+                //     },
+                //     //当fullname被修改的时候自动调用set
+                //     set(value) {
+                //         let arr = value.split('-');
+                //         //改的是这两个变量，而不是fullname
+                //         this.firstname = arr[0];
+                //         this.lastname = arr[1]
+                //     }
+                // },
+                //fullname的简写形式
+                fullname() {
+                    return this.firstname + '-' + this.lastname;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

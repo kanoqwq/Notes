@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //抽象类的es5写法
+        let Container = function (params = {}) {
+            let F = function () {
+            }
+            F.prototype.init = function () {
+                this.getData()
+                this.render()
+            }
+            F.prototype.getData = params.getData || function () {
+                throw new Error('抽象方法需要实例化')
+            }
+            F.prototype.render = params.render || function () {
+                throw new Error('抽象方法需要实例化')
+            }
+            return F
+        }
+
+        let C1 = Container({
+            getData() {
+                console.log('getData');
+            },
+            render() {
+                console.log('render');
+            }
+        })
+        let c = new C1()
+        c.init()
+    </script>
+</body>
+
+</html>

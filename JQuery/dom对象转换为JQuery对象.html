@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./jquery.min.js"></script>
+</head>
+
+<body>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <script>
+        var body = document.querySelector('body');
+        // 直接用$包装一下就能转换成jquery对象了
+        $(body);
+        //jq对象转换为DOM对象
+        var d = $('body')[0]; //第一种
+        d = $('body').get(0); //第二种
+        //隐式迭代 jquery 会默认遍历一遍获取到的伪数组对象
+        //就是把匹配到的所有元素内部进行遍历循环，给每个元素操作一遍
+        $("p").html("ddd")
+    </script>
+</body>
+
+</html>
